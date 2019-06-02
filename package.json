@@ -1,0 +1,30 @@
+{
+  "name": "coreapp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "lint:fix": "yarn run lint -- --fix",
+    "eslint": "node ./node_modules/eslint/bin/eslint.js . --ext .js",
+    "eslint-fix": "node ./node_modules/eslint/bin/eslint.js . --fix --ext .js",
+    "clear": "watchman watch-del-all && rm -rf node_modules/ && yarn cache clean && yarn install && yarn start -- --reset-cache",
+    "clear-pods": "pod cache clean --all;rm -rf ~/Library/Caches/CocoaPods; rm -rf Pods; rm -rf ~/Library/Developer/Xcode/DerivedData/*; pod deintegrate; pod setup; pod install;",
+    "android": "react-native run-android"
+  },
+  "dependencies": {
+    "react": "16.8.6",
+    "react-native": "0.59.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/runtime": "^7.4.5",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.8.0",
+    "metro-react-native-babel-preset": "^0.54.1",
+    "react-test-renderer": "16.8.3"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
