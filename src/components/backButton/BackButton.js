@@ -27,7 +27,7 @@ const BackButton = ({
         paddingLeft: responsiveSize(10),
       }}
     >
-      <Icon name="keyboard_arrow_left" size={size} style={[{ color: iconColor }, iconStyle]} />
+      <Icon name="chevron-left" size={size} style={[{ color: iconColor }, iconStyle]} />
     </View>
     {!!text && (
       <Typography variant={textVariant} color="white" style={textStyle}>

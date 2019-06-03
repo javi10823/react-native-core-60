@@ -9,7 +9,7 @@ const Typography = ({ color, variant, children, textAlign, style, ...props }) =>
   <Text
     style={[
       {
-        ...color,
+        color,
         ...variant,
         textAlign,
       },

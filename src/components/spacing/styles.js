@@ -1,13 +1,12 @@
 import { responsiveSize } from '../../utils/dimensions';
 
 export default {
-  xtiny: responsiveSize(0.5),
-  tiny: responsiveSize(4),
-  small: responsiveSize(8),
-  smallPlus: responsiveSize(12),
-  base: responsiveSize(16),
-  medium: responsiveSize(24),
-  large: responsiveSize(32),
-  xLarge: responsiveSize(40),
-  twoXLarge: responsiveSize(50),
+  xThin: { name: 'xThin', value: responsiveSize(0.5) },
+  thin: { name: 'thin', value: responsiveSize(4) },
+  semiThin: { name: 'semiThin', value: responsiveSize(8) },
+  default: { name: 'default', value: responsiveSize(12) },
+  thick: { name: 'thick', value: responsiveSize(16) },
+  extraThick: { name: 'extraThick', value: responsiveSize(24) },
+  large: { name: 'large', value: responsiveSize(32) },
+  extraLarge: { name: 'extraLarge', value: responsiveSize(40) },
 };

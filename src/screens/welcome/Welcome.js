@@ -7,10 +7,11 @@ import Typography from '../../components/typography';
 import Button from '../../components/button';
 import Spacing from '../../components/spacing';
 import SpacingVariants from '../../components/spacing/styles';
-import styles from '.';
+import styles from './styles';
 import TypographyVariants from '../../components/typography/styles';
 
 import { goToPage } from '..';
+import Colors from '../../utils/colors';
 
 class Welcome extends React.Component {
   static options = () => ({ topBar: { visible: false, height: 0 } });
@@ -20,13 +21,19 @@ class Welcome extends React.Component {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.textContainer}>
-          <Typography variant={TypographyVariants.bodyTitle}>
+          <Typography color={Colors.text.white} variant={TypographyVariants.bodyTitle}>
             React Native BoilerPlate Junio 2019 0.59
           </Typography>
-          <Spacing variant={SpacingVariants.smallPlus} />
-          <Typography>nextdots.com</Typography>
+          <Spacing size={SpacingVariants.default.name} />
+          <Typography color={Colors.text.white}>nextdots.com</Typography>
         </View>
-        <Button text="Show components" onPress={() => goToPage(componentId, 'componentsExample')} />
+        <Button
+          buttonColor={Colors.global.white}
+          textColor={Colors.text.primary}
+          text="Show components"
+          onPress={() => goToPage(componentId, 'componentsExample')}
+          style={styles.button}
+        />
       </SafeAreaView>
     );
   }
