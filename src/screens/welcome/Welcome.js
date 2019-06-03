@@ -44,7 +44,7 @@ class Welcome extends React.Component {
           <Typography color={Colors.text.white} size={18}>
             {`React Native BoilerPlate\nJunio 2019 0.59`}
           </Typography>
-          <Spacing size={SpacingVariants.default.name} />
+          <Spacing spacing={SpacingVariants.default.name} />
           <Typography color={Colors.text.white}>nextdots.com</Typography>
         </View>
         <Button
