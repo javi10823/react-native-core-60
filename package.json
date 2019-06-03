@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
+    "test-update": "./node_modules/.bin/jest --updateSnapshot",
     "lint:fix": "yarn run lint -- --fix",
     "eslint": "node ./node_modules/eslint/bin/eslint.js . --ext .js",
     "eslint-fix": "node ./node_modules/eslint/bin/eslint.js . --fix --ext .js",
