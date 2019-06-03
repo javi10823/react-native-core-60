@@ -5,13 +5,16 @@ import Colors from '../../utils/colors';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.principal,
+    backgroundColor: Colors.global.principal,
     justifyContent: 'center',
     alignItems: 'center',
   },
   textContainer: {
     paddingHorizontal: responsiveSize(50),
     marginBottom: responsiveSize(80),
+  },
+  button: {
+    width: '85%',
   },
 });
 

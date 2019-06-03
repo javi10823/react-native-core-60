@@ -5,7 +5,7 @@ import colors from '../../utils/colors';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.principal,
+    backgroundColor: colors.global.principal,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -14,14 +14,14 @@ const styles = StyleSheet.create({
     marginBottom: responsiveSize(10),
   },
   buttonSignIn: {
-    borderColor: colors.white,
+    borderColor: colors.global.white,
     borderWidth: 2,
     backgroundColor: 'transparent',
     borderRadius: 5,
     width: '100%',
   },
   buttonSignUp: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.global.white,
     width: '100%',
     borderRadius: 5,
   },

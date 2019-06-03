@@ -19,6 +19,7 @@ export default {
     inactive: '#b1b1b1',
     foxbox: '#ff5400',
     black: 'black',
+    principal: '#039BE5',
   },
   text: {
     white: 'white',
