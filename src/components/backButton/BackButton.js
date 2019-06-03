@@ -7,16 +7,7 @@ import Typography from '../typography';
 import { normalize, responsiveSize } from '../../utils/dimensions';
 import { styleType } from '../../utils/propTypes';
 
-const BackButton = ({
-  text,
-  style,
-  iconStyle,
-  textStyle,
-  textVariant,
-  size,
-  iconColor,
-  onPress,
-}) => (
+const BackButton = ({ text, style, iconStyle, textStyle, textSize, size, iconColor, onPress }) => (
   <TouchableOpacity
     style={[{ flexDirection: 'row', alignItems: 'center' }, style]}
     onPress={() => onPress()}
@@ -30,7 +21,7 @@ const BackButton = ({
       <Icon name="chevron-left" size={size} style={[{ color: iconColor }, iconStyle]} />
     </View>
     {!!text && (
-      <Typography variant={textVariant} color="white" style={textStyle}>
+      <Typography size={textSize} color="white" style={textStyle}>
         {text}
       </Typography>
     )}
@@ -43,7 +34,7 @@ BackButton.propTypes = {
   style: styleType,
   iconStyle: styleType,
   textStyle: styleType,
-  textVariant: PropTypes.string,
+  textSize: PropTypes.number,
   iconColor: PropTypes.string,
   onPress: PropTypes.func.isRequired,
 };
@@ -53,7 +44,7 @@ BackButton.defaultProps = {
   style: {},
   iconStyle: {},
   textStyle: {},
-  textVariant: 'xSmallTitle',
+  textSize: 18,
   size: normalize(25),
   iconColor: '',
 };

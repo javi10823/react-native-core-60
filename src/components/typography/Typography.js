@@ -2,20 +2,27 @@ import React from 'react';
 import { Text } from 'react-native';
 import PropTypes from 'prop-types';
 
+import fonts from '../../utils/fonts';
 import colors from '../../utils/colors';
-import variants from './styles';
+import { normalize } from '../../utils/dimensions';
 
-const Typography = ({ color, variant, children, textAlign, style, ...props }) => (
+const Typography = ({ color, children, textAlign, style, size, font, bold, ...props }) => (
   <Text
+    {...props}
     style={[
       {
         color,
-        ...variant,
+        fontSize: size,
         textAlign,
+        fontFamily: font || fonts.regular,
       },
+      bold
+        ? {
+            fontFamily: fonts.bold,
+          }
+        : null,
       style,
     ]}
-    {...props}
   >
     {children}
   </Text>
@@ -23,18 +30,21 @@ const Typography = ({ color, variant, children, textAlign, style, ...props }) =>
 
 Typography.propTypes = {
   color: PropTypes.string,
-  variant: PropTypes.any,
   children: PropTypes.node.isRequired,
   textAlign: PropTypes.string,
   style: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  size: PropTypes.number,
+  font: PropTypes.string,
+  bold: PropTypes.bool,
 };
 
 Typography.defaultProps = {
-  variant: variants.midBody,
   color: colors.white,
   textAlign: 'center',
   style: {},
+  size: normalize(11),
+  font: undefined,
+  bold: false,
 };
 
 export default Typography;
-export { default as variants } from './styles';

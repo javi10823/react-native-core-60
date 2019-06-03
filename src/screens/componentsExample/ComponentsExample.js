@@ -10,7 +10,6 @@ import Button from '../../components/button';
 import Spacing from '../../components/spacing';
 import SpacingVariants from '../../components/spacing/styles';
 import styles from './styles';
-import TypographyVariants from '../../components/typography/styles';
 
 import { goBack } from '..';
 
@@ -30,7 +29,7 @@ class Welcome extends React.Component {
             onPress={() => goBack(componentId)}
           />
           <Spacing size={SpacingVariants.default.name} />
-          <Typography color={colors.global.white} variant={TypographyVariants.bodyTitle}>
+          <Typography color={colors.global.white} size={18}>
             Typography example
           </Typography>
           <Spacing size={SpacingVariants.default.name} />

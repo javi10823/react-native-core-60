@@ -8,7 +8,6 @@ import Button from '../../components/button';
 import Spacing from '../../components/spacing';
 import SpacingVariants from '../../components/spacing/styles';
 import styles from './styles';
-import TypographyVariants from '../../components/typography/styles';
 
 import { goToPage } from '..';
 import Colors from '../../utils/colors';
@@ -21,7 +20,7 @@ class Welcome extends React.Component {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.textContainer}>
-          <Typography color={Colors.text.white} variant={TypographyVariants.bodyTitle}>
+          <Typography color={Colors.text.white} size={18}>
             React Native BoilerPlate Junio 2019 0.59
           </Typography>
           <Spacing size={SpacingVariants.default.name} />
@@ -48,12 +47,12 @@ const mapDispatchToProps = dispatch =>
     {
       // actionConnect: action,
     },
-    dispatch
+    dispatch,
   );
 
 export default compose(
   connect(
     mapStateToProps,
-    mapDispatchToProps
-  )(Welcome)
+    mapDispatchToProps,
+  )(Welcome),
 );
