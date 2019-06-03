@@ -55,6 +55,7 @@ Go to Xcode, File -> Project Settings then change the Build System Default to Le
 ###### Version control
 
 - [Pre Commit](https://github.com/pre-commit/pre-commit)
+- Jest
 
 ## Style guidelines
 
