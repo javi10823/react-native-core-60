@@ -20,6 +20,7 @@
     "react-native": "0.59.5",
     "react-native-material-textfield": "^0.12.0",
     "react-native-navigation": "^2.21.0",
+    "react-native-vector-icons": "^6.4.2",
     "react-redux": "^7.0.3",
     "redux": "^4.0.1",
     "redux-form": "^8.2.3",
@@ -31,7 +32,6 @@
     "@babel/runtime": "^7.4.5",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.8.0",
-    "react-dom": "^16.8.6",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.13.2",
     "eslint": "^5.14.1",
@@ -47,8 +47,9 @@
     "jest": "^24.8.0",
     "lint-staged": "^8.1.4",
     "metro-react-native-babel-preset": "^0.54.1",
-    "react-test-renderer": "16.8.3",
-    "prettier": "^1.15.3"
+    "prettier": "^1.15.3",
+    "react-dom": "^16.8.6",
+    "react-test-renderer": "16.8.3"
   },
   "jest": {
     "preset": "react-native",
@@ -93,6 +94,11 @@
     "*.{json}": [
       "prettier --write",
       "git add"
+    ]
+  },
+  "rnpm": {
+    "assets": [
+      "./src/assets/fonts/"
     ]
   }
 }
