@@ -1,5 +1,16 @@
+import { YellowBox } from 'react-native';
 import { Navigation } from 'react-native-navigation';
-import { registerScreens, initApp } from './src/screens';
+import { registerScreens } from './src/screens';
+
+YellowBox.ignoreWarnings(['Require cycle:']);
 
 registerScreens();
-Navigation.events().registerAppLaunchedListener(() => initApp());
+Navigation.events().registerAppLaunchedListener(() => {
+  Navigation.setRoot({
+    root: {
+      component: {
+        name: 'initializing',
+      },
+    },
+  });
+});

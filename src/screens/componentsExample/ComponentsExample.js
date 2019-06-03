@@ -21,26 +21,26 @@ class Welcome extends React.Component {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.componentsContainer}>
-          <Spacing size={SpacingVariants.large.name} />
+          <Spacing spacing={SpacingVariants.large.name} />
           <Button
             text="Go back"
             style={styles.buttonSignUp}
             textColor={colors.global.principal}
             onPress={() => goBack(componentId)}
           />
-          <Spacing size={SpacingVariants.default.name} />
+          <Spacing spacing={SpacingVariants.default.name} />
           <Typography color={colors.global.white} size={18}>
             Typography example
           </Typography>
-          <Spacing size={SpacingVariants.default.name} />
-          <Button text="SIGN IN" style={styles.buttonSignIn} />
-          <Spacing size={SpacingVariants.default.name} />
+          <Spacing spacing={SpacingVariants.default.name} />
+          <Button text="BUTTON EXAMPLE 1" style={styles.buttonSignIn} />
+          <Spacing spacing={SpacingVariants.default.name} />
           <Button
-            text="SIGN UP FOR FREE"
+            text="BUTTON EXAMPLE 2"
             style={styles.buttonSignUp}
             textColor={colors.global.principal}
           />
-          <Spacing size={SpacingVariants.default.name} />
+          <Spacing spacing={SpacingVariants.default.name} />
           <View style={styles.imageContainer}>
             <ImagePlaceholder
               source={{

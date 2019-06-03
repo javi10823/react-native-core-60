@@ -97,7 +97,7 @@ Button.defaultProps = {
   style: {
     width: '80%',
   },
-  textColor: colors.white,
+  textColor: colors.global.white,
   buttonColor: '#00000020',
   iconStyle: {},
   textContainerStyle: {},

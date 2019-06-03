@@ -16,13 +16,6 @@ const styles = StyleSheet.create({
   button: {
     width: '85%',
   },
-  logoContainer: {
-    width: '100%',
-    paddingHorizontal: responsiveSize(70),
-    paddingBottom: responsiveSize(30),
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
 });
 
 export default styles;

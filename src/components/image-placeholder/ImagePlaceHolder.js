@@ -1,7 +1,7 @@
 import React from 'react';
 import { Animated, View, Image } from 'react-native';
 import IconImage from '../../assets/images/common/placeholder.png';
-import styles from '.';
+import styles from './styles';
 
 class ImagePlaceholder extends React.Component {
   state = {

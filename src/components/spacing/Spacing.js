@@ -3,23 +3,25 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import layout from '../../utils/layout';
 
-const Spacing = ({ size, horizontal }) => {
-  const spacingSize = layout.spacing[size];
-  const spacing = spacingSize;
+const Spacing = ({ size, horizontal, spacing }) => {
+  const spacingSize = spacing ? layout.spacing[spacing] : size;
   return !horizontal ? (
-    <View style={{ height: spacing, width: '100%' }} />
+    <View style={{ height: spacingSize, width: '100%' }} />
   ) : (
-    <View style={{ height: '100%', width: spacing }} />
+    <View style={{ height: '100%', width: spacingSize }} />
   );
 };
 
 Spacing.propTypes = {
-  size: PropTypes.string.isRequired,
+  spacing: PropTypes.string,
+  size: PropTypes.number,
   horizontal: PropTypes.bool,
 };
 
 Spacing.defaultProps = {
+  spacing: 'semiThin',
   horizontal: false,
+  size: 10,
 };
 
 export default Spacing;
