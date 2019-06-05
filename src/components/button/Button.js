@@ -50,13 +50,11 @@ class _Button extends React.Component {
 
     return (
       <Button
-        style={[
-          {
-            backgroundColor: buttonColor,
-            opacity: !(disabled || frozen || loading) ? 1 : disabledMoreVisible ? 0.6 : 0.3,
-          },
-          style,
-        ]}
+        style={{
+          backgroundColor: buttonColor,
+          opacity: !(disabled || frozen || loading) ? 1 : disabledMoreVisible ? 0.6 : 0.3,
+          ...style[0], // for styled components use
+        }}
         onPress={onPress}
         disabled={disabled || frozen || loading}
       >
@@ -70,7 +68,7 @@ class _Button extends React.Component {
             <Label style={[{ color: textColor, fontFamily: fonts.regular }]}>{text}</Label>
           </TextContainer>
           {iconRight ? (
-            <IconRight style={[iconStyle]}>
+            <IconRight style={iconStyle}>
               <Image source={iconRight} />
             </IconRight>
           ) : null}

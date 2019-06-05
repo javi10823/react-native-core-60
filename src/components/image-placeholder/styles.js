@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import styled from 'styled-components';
 
-export const Placeholder = styled(View)(props => ({
+export const Placeholder = styled(View)({
   alignItems: 'center',
   justifyContent: 'center',
   backgroundColor: '#EFEFF4',
@@ -11,5 +11,5 @@ export const Placeholder = styled(View)(props => ({
   left: 0,
   right: 0,
   borderRadius: 10,
-  ...props.style,
-}));
+  ...props => props.style,
+});

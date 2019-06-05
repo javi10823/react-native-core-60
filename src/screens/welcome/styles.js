@@ -5,30 +5,30 @@ import Colors from '../../utils/colors';
 // ────────────────────────────────────
 import button from '../../components/button';
 
-export const Container = styled(SafeAreaView)(props => ({
+export const Container = styled(SafeAreaView)({
   flex: 1,
   backgroundColor: Colors.global.principal,
   justifyContent: 'center',
   alignItems: 'center',
-  ...props.style,
-}));
+  ...props => props.style,
+});
 
-export const TextContainer = styled(View)(props => ({
+export const TextContainer = styled(View)({
   paddingHorizontal: responsiveSize(50),
   marginBottom: responsiveSize(80),
-  ...props.style,
-}));
+  ...props => props.style,
+});
 
-export const Button = styled(button)(props => ({
+export const Button = styled(button)({
   width: '85%',
-  ...props.style,
-}));
+  ...props => props.style,
+});
 
-export const LogoContainer = styled(TouchableOpacity)(props => ({
+export const LogoContainer = styled(TouchableOpacity)({
   width: '100%',
   paddingHorizontal: responsiveSize(70),
   paddingBottom: responsiveSize(30),
   justifyContent: 'center',
   alignItems: 'center',
-  ...props.style,
-}));
+  ...props => props.style,
+});

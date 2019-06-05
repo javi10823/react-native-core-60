@@ -1,16 +1,16 @@
 import { View, Text as text } from 'react-native';
 import styled from 'styled-components';
 
-export const Container = styled(View)(props => ({
+export const Container = styled(View)({
   flex: 1,
   alignItems: 'center',
   justifyContent: 'center',
   backgroundColor: 'white',
-  ...props.style,
-}));
+  ...props => props.style,
+});
 
-export const Text = styled(text)(props => ({
+export const Text = styled(text)({
   fontSize: 40,
   color: 'black',
-  ...props.style,
-}));
+  ...props => props.style,
+});

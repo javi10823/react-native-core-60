@@ -2,7 +2,7 @@ import { View, TouchableOpacity, Text } from 'react-native';
 import styled from 'styled-components';
 import { responsiveSize } from '../../utils/dimensions';
 
-export const Button = styled(TouchableOpacity)(props => ({
+export const Button = styled(TouchableOpacity)({
   flexDirection: 'row',
   justifyContent: 'center',
   paddingTop: 5,
@@ -11,10 +11,10 @@ export const Button = styled(TouchableOpacity)(props => ({
   height: 55,
   alignItems: 'center',
   position: 'relative',
-  ...props.style,
-}));
+  ...props => props.style,
+});
 
-export const ButtonContent = styled(View)(props => ({
+export const ButtonContent = styled(View)({
   flexDirection: 'row',
   justifyContent: 'center',
   paddingTop: responsiveSize(5),
@@ -24,39 +24,39 @@ export const ButtonContent = styled(View)(props => ({
   alignItems: 'center',
   position: 'relative',
   width: '100%',
-  ...props.style,
-}));
+  ...props => props.style,
+});
 
-export const Label = styled(Text)(props => ({
+export const Label = styled(Text)({
   textAlign: 'center',
   fontSize: 15,
   fontWeight: '400',
-  ...props.style,
-}));
+  ...props => props.style,
+});
 
-export const Icon = styled(View)(props => ({
+export const Icon = styled(View)({
   paddingTop: responsiveSize(10),
   paddingBottom: responsiveSize(10),
   marginRight: responsiveSize(20),
-  ...props.style,
-}));
+  ...props => props.style,
+});
 
-export const TextContainer = styled(View)(props => ({
+export const TextContainer = styled(View)({
   paddingHorizontal: responsiveSize(40),
-  ...props.style,
-}));
+  ...props => props.style,
+});
 
-export const SpinnerContainer = styled(View)(props => ({
+export const SpinnerContainer = styled(View)({
   height: responsiveSize(55),
   alignItems: 'center',
   justifyContent: 'center',
   width: '100%',
-  ...props.style,
-}));
+  ...props => props.style,
+});
 
-export const IconRight = styled(View)(props => ({
+export const IconRight = styled(View)({
   paddingTop: responsiveSize(10),
   paddingBottom: responsiveSize(10),
   marginLeft: responsiveSize(32),
-  ...props.style,
-}));
+  ...props => props.style,
+});
