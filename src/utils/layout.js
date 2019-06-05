@@ -1,7 +1,5 @@
 import { Dimensions, Platform, StatusBar } from 'react-native';
 
-import { responsiveSize } from './dimensions';
-
 const { width } = Dimensions.get('window');
 const { height } = Dimensions.get('window');
 
@@ -26,14 +24,4 @@ export default {
     height,
   },
   isSmallDevice: width < 375,
-  spacing: {
-    xThin: responsiveSize(2),
-    thin: responsiveSize(4),
-    semiThin: responsiveSize(8),
-    default: responsiveSize(16),
-    thick: responsiveSize(24),
-    extraThick: responsiveSize(32),
-    large: responsiveSize(64),
-    extraLarge: responsiveSize(128),
-  },
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import { View, ActivityIndicator } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import { PropTypes } from 'prop-types';
 
 import { compose, bindActionCreators } from 'redux';
@@ -12,7 +12,7 @@ import { USER_TOKEN } from '../../../config';
 
 import { initData } from './initData';
 
-import styles from './styles';
+import { Container } from './styles';
 import { waitOneSecond } from '../../utils/seconds';
 
 class Initializing extends React.Component {
@@ -33,9 +33,9 @@ class Initializing extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <Container>
         <ActivityIndicator size="large" color={colors.principal} />
-      </View>
+      </Container>
     );
   }
 }

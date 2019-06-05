@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import colors from '../../utils/colors';
-import styles from './styles';
+import { Container } from './styles';
 
 class Loading extends React.Component {
   componentDidMount() {
@@ -11,9 +11,9 @@ class Loading extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <Container>
         <ActivityIndicator size="large" color={colors.global.white} />
-      </View>
+      </Container>
     );
   }
 }

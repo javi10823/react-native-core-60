@@ -1,13 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { SafeAreaView, View, Alert, Image, TouchableOpacity, Linking } from 'react-native';
+import { Alert, Image, Linking } from 'react-native';
 import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Typography from '../../components/typography';
-import Button from '../../components/button';
 import Spacing from '../../components/spacing';
-import SpacingVariants from '../../components/spacing/styles';
-import styles from './styles';
+import { Container, TextContainer, Button, LogoContainer } from './styles';
 
 import { goToPage } from '..';
 import Colors from '../../utils/colors';
@@ -33,29 +31,25 @@ class Welcome extends React.Component {
   render() {
     const { loading } = this.state;
     return (
-      <SafeAreaView style={styles.container}>
-        <TouchableOpacity
-          style={styles.logoContainer}
-          onPress={() => Linking.openURL('http://nextdots.com/')}
-        >
+      <Container>
+        <LogoContainer onPress={() => Linking.openURL('http://nextdots.com/')}>
           <Image source={NextDotsLogo} style={{ width: '100%' }} resizeMode="contain" />
-        </TouchableOpacity>
-        <View style={styles.textContainer}>
+        </LogoContainer>
+        <TextContainer>
           <Typography color={Colors.text.white} size={18}>
             {`React Native BoilerPlate\nJunio 2019 0.59`}
           </Typography>
-          <Spacing spacing={SpacingVariants.default.name} />
+          <Spacing />
           <Typography color={Colors.text.white}>nextdots.com</Typography>
-        </View>
+        </TextContainer>
         <Button
           buttonColor={Colors.global.white}
           textColor={Colors.text.primary}
           text="Ingresar"
           onPress={this.logIn}
-          style={styles.button}
           loading={loading}
         />
-      </SafeAreaView>
+      </Container>
     );
   }
 }

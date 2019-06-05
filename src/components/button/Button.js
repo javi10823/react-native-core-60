@@ -1,12 +1,20 @@
 import React from 'react';
-import { TouchableOpacity, Text, View, ActivityIndicator } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
-import styles from './styles';
+import {
+  Button,
+  ButtonContent,
+  Label,
+  Icon,
+  TextContainer,
+  SpinnerContainer,
+  IconRight,
+} from './styles';
 import fonts from '../../utils/fonts';
 import Image from '../image-on-loading';
 import colors from '../../utils/colors';
 
-class Button extends React.Component {
+class _Button extends React.Component {
   state = {
     loading: false,
   };
@@ -19,6 +27,7 @@ class Button extends React.Component {
   };
 
   render() {
+    /* eslint-disable react/prop-types */
     const {
       text,
       textColor,
@@ -34,14 +43,14 @@ class Button extends React.Component {
       frozen,
       loading: propsLoading,
     } = this.props;
+    /* eslint-enable react/prop-types */
     const { loading: stateLoading } = this.state;
     const loading = propsLoading === null ? stateLoading : propsLoading;
     const onPress = onPressProps || this.onPressDefaultAction;
 
     return (
-      <TouchableOpacity
+      <Button
         style={[
-          styles.button,
           {
             backgroundColor: buttonColor,
             opacity: !(disabled || frozen || loading) ? 1 : disabledMoreVisible ? 0.6 : 0.3,
@@ -51,27 +60,25 @@ class Button extends React.Component {
         onPress={onPress}
         disabled={disabled || frozen || loading}
       >
-        <View style={[styles.buttonContent, { display: loading ? 'none' : 'flex' }]}>
+        <ButtonContent style={[{ display: loading ? 'none' : 'flex' }]}>
           {icon ? (
-            <View style={[styles.icon, iconStyle]}>
+            <Icon style={[iconStyle]}>
               <Image source={icon} />
-            </View>
+            </Icon>
           ) : null}
-          <View style={[styles.textContainer, textContainerStyle]}>
-            <Text style={[styles.label, { color: textColor, fontFamily: fonts.regular }]}>
-              {text}
-            </Text>
-          </View>
+          <TextContainer style={[textContainerStyle]}>
+            <Label style={[{ color: textColor, fontFamily: fonts.regular }]}>{text}</Label>
+          </TextContainer>
           {iconRight ? (
-            <View style={[styles.iconRight, iconStyle]}>
+            <IconRight style={[iconStyle]}>
               <Image source={iconRight} />
-            </View>
+            </IconRight>
           ) : null}
-        </View>
-        <View style={[styles.spinnerContainer, { display: loading ? 'flex' : 'none' }]}>
+        </ButtonContent>
+        <SpinnerContainer style={[{ display: loading ? 'flex' : 'none' }]}>
           <ActivityIndicator color={textColor} />
-        </View>
-      </TouchableOpacity>
+        </SpinnerContainer>
+      </Button>
     );
   }
 }
@@ -110,4 +117,4 @@ Button.defaultProps = {
   frozen: false,
 };
 
-export default Button;
+export default _Button;

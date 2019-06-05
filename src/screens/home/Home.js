@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { SafeAreaView, View, Alert } from 'react-native';
+import { Alert } from 'react-native';
 import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Typography from '../../components/typography';
-import Button from '../../components/button';
-import styles from './styles';
+import { Container, TextContainer, Button } from './styles';
 
 import { goToPage } from '..';
 import Colors from '../../utils/colors';
@@ -31,18 +30,17 @@ class Welcome extends React.Component {
     const { loading } = this.state;
     const { componentId } = this.props; // eslint-disable-line react/prop-types
     return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.textContainer}>
+      <Container>
+        <TextContainer>
           <Typography color={Colors.text.white} size={18}>
             HOME
           </Typography>
-        </View>
+        </TextContainer>
         <Button
           buttonColor={Colors.global.white}
           textColor={Colors.text.primary}
           text="Logout"
           onPress={this.logOut}
-          style={styles.button}
           loading={loading}
         />
         <Spacing />
@@ -51,9 +49,15 @@ class Welcome extends React.Component {
           textColor={Colors.text.primary}
           text="Component Examples"
           onPress={() => goToPage(componentId, 'componentsExample')}
-          style={styles.button}
         />
-      </SafeAreaView>
+        <Spacing />
+        <Button
+          buttonColor={Colors.global.white}
+          textColor={Colors.text.primary}
+          text="redux-form example"
+          onPress={() => goToPage(componentId, 'reduxForm')}
+        />
+      </Container>
     );
   }
 }

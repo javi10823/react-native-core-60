@@ -2,7 +2,7 @@ import React from 'react';
 import { Animated, View, Image } from 'react-native';
 import IconImage from '../../assets/images/common/placeholder.png';
 import { responsiveSize } from '../../utils/dimensions';
-import styles from './styles';
+import { Placeholder } from './styles';
 
 class DefaultProfileImageOnLoading extends React.Component {
   state = {
@@ -48,9 +48,9 @@ class DefaultProfileImageOnLoading extends React.Component {
     if (withPlaceholder) {
       return (
         <View>
-          <View style={[styles.placeholder, style, { zIndex: loaded ? -1 : 1 }]}>
+          <Placeholder style={[style, { zIndex: loaded ? -1 : 1 }]}>
             <Image source={IconImage} size={responsiveSize(50)} />
-          </View>
+          </Placeholder>
           {this.renderAnimatedImage(opacity, style)}
         </View>
       );

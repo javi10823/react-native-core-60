@@ -1,48 +1,64 @@
-import { StyleSheet } from 'react-native';
+import { View, SafeAreaView } from 'react-native';
+import styled from 'styled-components';
 import { responsiveSize } from '../../utils/dimensions';
 import colors from '../../utils/colors';
+// ──────────────────────────────────────────
+import Button from '../../components/button';
+import ImagePlaceholder from '../../components/image-placeholder';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.global.principal,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  componentsContainer: {
-    paddingHorizontal: responsiveSize(50),
-    marginBottom: responsiveSize(10),
-  },
-  buttonSignIn: {
-    borderColor: colors.global.white,
-    borderWidth: 2,
-    backgroundColor: 'transparent',
-    borderRadius: 5,
-    width: '100%',
-  },
-  buttonSignUp: {
-    backgroundColor: colors.global.white,
-    width: '100%',
-    borderRadius: 5,
-  },
-  logoContainer: {
-    padding: responsiveSize(20),
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  logo: {
-    width: '100%',
-  },
-  imageContainer: {
-    padding: responsiveSize(20),
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  imageStyle: {
-    width: responsiveSize(220),
-    height: responsiveSize(155),
-    borderRadius: 13,
-  },
-});
+export const Container = styled(SafeAreaView)(props => ({
+  flex: 1,
+  backgroundColor: colors.global.principal,
+  justifyContent: 'center',
+  alignItems: 'center',
+  ...props.style,
+}));
 
-export default styles;
+export const ComponentsContainer = styled(View)(props => ({
+  paddingHorizontal: responsiveSize(50),
+  marginBottom: responsiveSize(10),
+  ...props.style,
+}));
+
+export const ButtonSignIn = styled(Button)(props => ({
+  borderColor: colors.global.white,
+  borderWidth: 2,
+  backgroundColor: 'transparent',
+  borderRadius: 5,
+  width: '100%',
+  ...props.style,
+}));
+
+export const ButtonSignUp = styled(Button)(props => ({
+  borderColor: colors.global.white,
+  backgroundColor: colors.global.white,
+  width: '100%',
+  borderRadius: 5,
+  ...props.style,
+}));
+
+export const LogoContainer = styled(View)(props => ({
+  padding: responsiveSize(20),
+  justifyContent: 'center',
+  alignItems: 'center',
+  ...props.style,
+}));
+
+export const Logo = styled(View)(props => ({
+  width: '100%',
+  ...props.style,
+}));
+
+export const ImageContainer = styled(View)(props => ({
+  padding: responsiveSize(20),
+  justifyContent: 'center',
+  alignItems: 'center',
+  ...props.style,
+}));
+
+export const ImageStyle = styled(ImagePlaceholder)(props => ({
+  width: responsiveSize(220),
+  height: responsiveSize(155),
+  borderRadius: 13,
+  ...props.style,
+}));

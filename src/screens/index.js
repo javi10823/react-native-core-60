@@ -6,6 +6,7 @@ import ComponentsExample from './componentsExample';
 import Home from './home';
 import Initializing from './initializing';
 import Loading from './loading';
+import ReduxForm from './reduxForm';
 
 export function initApp(screen = 'welcome') {
   Navigation.setRoot({
@@ -78,4 +79,5 @@ export function registerScreens() {
   Navigation.registerComponentWithRedux( 'welcome', () => Welcome, Provider, store );
   Navigation.registerComponentWithRedux( 'home', () => Home, Provider, store );
   Navigation.registerComponentWithRedux( 'componentsExample', () => ComponentsExample, Provider, store );
+  Navigation.registerComponentWithRedux( 'reduxForm', () => ReduxForm, Provider, store );
 }

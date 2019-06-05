@@ -1,7 +1,7 @@
 import React from 'react';
 import { Animated, View, Image } from 'react-native';
 import IconImage from '../../assets/images/common/placeholder.png';
-import styles from './styles';
+import { Placeholder } from './styles';
 
 class ImagePlaceholder extends React.Component {
   state = {
@@ -24,9 +24,9 @@ class ImagePlaceholder extends React.Component {
 
     return (
       <View>
-        <View style={[styles.placeholder, props.style, { zIndex: loaded ? -1 : 1 }]}>
+        <Placeholder style={[props.style, { zIndex: loaded ? -1 : 1 }]}>
           <Image source={IconImage} style={{ width: 100, height: 100 }} />
-        </View>
+        </Placeholder>
         <Animated.Image
           {...props}
           onLoad={this.onLoad}
