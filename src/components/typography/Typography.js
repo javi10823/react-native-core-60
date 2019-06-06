@@ -62,7 +62,10 @@ Typography.propTypes = {
   color: PropTypes.string,
   children: PropTypes.node.isRequired,
   textAlign: PropTypes.string,
-  style: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  style: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  ]),
   size: PropTypes.number,
   font: PropTypes.string,
   bold: PropTypes.bool,

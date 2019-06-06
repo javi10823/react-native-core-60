@@ -67,11 +67,13 @@ class _Button extends React.Component {
     return (
       <Button
         onPress={onPress}
-        style={{
-          backgroundColor: buttonColor,
-          opacity: !(disabled || frozen || loading) ? 1 : disabledMoreVisible ? 0.6 : 0.3,
-          ...style[0], // for styled components use
-        }}
+        style={[
+          {
+            backgroundColor: buttonColor,
+            opacity: !(disabled || frozen || loading) ? 1 : disabledMoreVisible ? 0.6 : 0.3,
+          },
+          style,
+        ]}
         disabled={disabled || frozen || loading}
       >
         <ButtonContent style={[{ display: loading ? 'none' : 'flex' }]}>
@@ -102,7 +104,10 @@ Button.propTypes = {
   buttonColor: PropTypes.string,
   onPress: PropTypes.func,
   text: PropTypes.string,
-  style: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  style: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  ]),
   iconStyle: PropTypes.any,
   textContainerStyle: PropTypes.any,
   icon: PropTypes.number,

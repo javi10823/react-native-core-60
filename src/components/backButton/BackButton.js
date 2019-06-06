@@ -32,7 +32,7 @@ class BackButton extends React.Component {
     const textStyle = checkIfUndefined(textStyle_props, {});
     const textSize = checkIfUndefined(textSize_props, 18);
     const size = checkIfUndefined(size_props, normalize(25));
-    const iconColor = checkIfUndefined(iconColor_props, normalize(25));
+    const iconColor = checkIfUndefined(iconColor_props, 'black');
     const onPress = checkIfUndefined(onPress_props, () => {});
 
     // ─────default props────────────────────────────────────────────────────────────
@@ -45,13 +45,17 @@ class BackButton extends React.Component {
         <View
           style={{
             alignItems: 'center',
-            paddingLeft: responsiveSize(10),
+            padding: responsiveSize(5),
           }}
         >
           <Icon name="chevron-left" size={size} style={[{ color: iconColor }, iconStyle]} />
         </View>
         {!!text && (
-          <Typography size={textSize} color="white" style={textStyle}>
+          <Typography
+            style={[{ flex: 1, marginRight: responsiveSize(35) }, textStyle]}
+            size={textSize}
+            color="white"
+          >
             {text}
           </Typography>
         )}

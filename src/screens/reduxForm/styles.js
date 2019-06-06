@@ -1,16 +1,17 @@
-import { View, Text as text } from 'react-native';
+import { View, SafeAreaView } from 'react-native';
 import styled from 'styled-components';
+import { responsiveSize } from '../../utils/dimensions';
 
-export const Container = styled(View)({
+export const Container = styled(SafeAreaView)({
   flex: 1,
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundColor: 'white',
+  backgroundColor: '#04404480',
   ...props => props.style,
 });
 
-export const Text = styled(text)({
-  fontSize: 40,
-  color: 'black',
+export const Content = styled(View)({
+  flex: 1,
+  alignItems: 'center',
+  justifyContent: 'center',
+  paddingHorizontal: responsiveSize(20),
   ...props => props.style,
 });
