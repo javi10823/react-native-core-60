@@ -24,7 +24,7 @@ class ImagePlaceholder extends React.Component {
 
     return (
       <View>
-        <Placeholder style={[...props => props.style, { zIndex: loaded ? -1 : 1 }]}>
+        <Placeholder style={[...props.style, { zIndex: loaded ? -1 : 1 }]}>
           <Image source={IconImage} style={{ width: 100, height: 100 }} />
         </Placeholder>
         <Animated.Image

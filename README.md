@@ -65,3 +65,6 @@ Go to Xcode, File -> Project Settings then change the Build System Default to Le
 - https://prettier.io/
 
 :v: **Enjoy!**
+
+
+## PropTypes.defaultProps not working with styled components by now

@@ -38,7 +38,7 @@ class Welcome extends React.Component {
         </TextContainer>
         <Button
           buttonColor={Colors.global.white}
-          textColor={Colors.text.primary}
+          textColor={Colors.global.principal}
           text="Logout"
           onPress={this.logOut}
           loading={loading}
@@ -46,14 +46,14 @@ class Welcome extends React.Component {
         <Spacing />
         <Button
           buttonColor={Colors.global.white}
-          textColor={Colors.text.primary}
+          textColor={Colors.global.principal}
           text="Component Examples"
           onPress={() => goToPage(componentId, 'componentsExample')}
         />
         <Spacing />
         <Button
           buttonColor={Colors.global.white}
-          textColor={Colors.text.primary}
+          textColor={Colors.global.principal}
           text="redux-form example"
           onPress={() => goToPage(componentId, 'reduxForm')}
         />
