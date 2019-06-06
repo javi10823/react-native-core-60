@@ -13,20 +13,6 @@
 $ yarn
 ```
 
-## Rename project (optional)
-
-### Install React Native Rename Globaly
-
-```
-$ yarn global add react-native-rename
-```
-
-### Rename the project
-
-```
-$ react-native-rename <newName>
-```
-
 ## launch iOS
 
 ```
@@ -40,9 +26,23 @@ Go to Xcode, File -> Project Settings then change the Build System Default to Le
 
 ## launch Android
 
-`$ yarn run android-build` (command to generate the necessary bundle for android)
+`$ react-native run-android`
 
 ## Libreries used
+
+## Rename project (optional)
+
+### Install React Native Rename Globaly
+
+```
+$ yarn global add react-native-rename
+```
+
+### Rename the project
+
+```
+$ react-native-rename <newName>
+```
 
 ###### Flux architecture
 
@@ -67,4 +67,6 @@ Go to Xcode, File -> Project Settings then change the Build System Default to Le
 :v: **Enjoy!**
 
 
-## PropTypes.defaultProps not working with styled components by now
+## Notes
+
+- [PropTypes.defaultProps not working with styled components by now](https://github.com/styled-components/styled-components/issues/1914)

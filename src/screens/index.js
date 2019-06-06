@@ -62,10 +62,8 @@ export const showModal = (page, props) => {
 
 export const hideAllModals = () => {
   return new Promise(resolve => {
-    setTimeout(() => {
-      Navigation.dismissAllModals().catch(() => {});
-      setTimeout(() => resolve(), 500);
-    }, 100);
+    Navigation.dismissAllModals().catch(() => {});
+    setTimeout(() => resolve(), 500);
   });
 };
 

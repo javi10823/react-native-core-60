@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Typography from '../../components/typography';
 import { Container, TextContainer, Button } from './styles';
 
-import { goToPage } from '..';
+import { goToPage, showModal, hideModal, hideAllModals } from '..';
 import Colors from '../../utils/colors';
 import { logOut } from '../../actions/auth';
 import Spacing from '../../components/spacing';
@@ -24,6 +24,18 @@ class Welcome extends React.Component {
         this.setState({ loading: false });
       } else goToPage(componentId, 'welcome');
     });
+  };
+
+  showModalWay1 = async () => {
+    await showModal('loading', {
+      setModalComponentId: modalComponentId => (this.modalLoadingComponentId = modalComponentId),
+    });
+    setTimeout(async () => hideModal(this.modalLoadingComponentId), 1000);
+  };
+
+  showModalWay2 = async () => {
+    await showModal('loading');
+    setTimeout(() => hideAllModals(), 1000);
   };
 
   render() {
@@ -56,6 +68,20 @@ class Welcome extends React.Component {
           textColor={Colors.global.principal}
           text="redux-form example"
           onPress={() => goToPage(componentId, 'reduxForm')}
+        />
+        <Spacing />
+        <Button
+          buttonColor={Colors.global.white}
+          textColor={Colors.global.black}
+          text="show modal way 1"
+          onPress={this.showModalWay1}
+        />
+        <Spacing />
+        <Button
+          buttonColor={Colors.global.white}
+          textColor={Colors.global.errorBackground}
+          text="show modal way 2"
+          onPress={this.showModalWay2}
         />
       </Container>
     );

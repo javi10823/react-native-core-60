@@ -10,8 +10,7 @@
     "eslint": "node ./node_modules/eslint/bin/eslint.js . --ext .js",
     "eslint-fix": "node ./node_modules/eslint/bin/eslint.js . --fix --ext .js",
     "clear": "watchman watch-del-all && rm -rf node_modules/ && yarn cache clean && yarn install && yarn start -- --reset-cache",
-    "clear-pods": "pod cache clean --all;rm -rf ~/Library/Caches/CocoaPods; rm -rf Pods; rm -rf ~/Library/Developer/Xcode/DerivedData/*; pod deintegrate; pod setup; pod install;",
-    "android": "cd ./android && ./gradlew app:assembleDebug && ./gradlew installDebug"
+    "clear-pods": "pod cache clean --all;rm -rf ~/Library/Caches/CocoaPods; rm -rf Pods; rm -rf ~/Library/Developer/Xcode/DerivedData/*; pod deintegrate; pod setup; pod install;"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.4.2",
