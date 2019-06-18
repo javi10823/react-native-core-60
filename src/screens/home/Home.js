@@ -83,6 +83,13 @@ class Welcome extends React.Component {
           text="show modal way 2"
           onPress={this.showModalWay2}
         />
+        <Spacing />
+        <Button
+          buttonColor={Colors.global.white}
+          textColor={Colors.global.principal}
+          text="DeviceInfo Example"
+          onPress={() => goToPage(componentId, 'deviceInfoExample')}
+        />
       </Container>
     );
   }

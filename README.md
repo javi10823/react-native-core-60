@@ -1,10 +1,11 @@
 # React Native Core app 2019 - (Junio 19)- React Native 0.59
 
 <img width="600" src="https://user-images.githubusercontent.com/30802967/59052277-15c7c980-8865-11e9-9f7e-da53852693b8.png">
-<img width="600" src="https://user-images.githubusercontent.com/30802967/59052276-152f3300-8865-11e9-8e92-08a677907eaa.png">
+<img width="600" src="https://user-images.githubusercontent.com/30802967/59700530-dd5fae00-91c9-11e9-8271-e407b369fa4f.png">
 <img width="600" src="https://user-images.githubusercontent.com/30802967/59052273-152f3300-8865-11e9-858e-2fff137c0823.png">
 <img width="600" src="https://user-images.githubusercontent.com/30802967/59052272-152f3300-8865-11e9-9968-4a45ddb3b497.png">
 <img width="600" src="https://user-images.githubusercontent.com/30802967/59052270-14969c80-8865-11e9-8cee-b394ce6d76f1.png">
+<img width="600" src="https://user-images.githubusercontent.com/30802967/59700528-dcc71780-91c9-11e9-972f-9cd91b67faad.png">
 
 - React Native version: 0.59.5
 - React Native navigation from Wix 2.21.0
