@@ -1,11 +1,13 @@
+// @flow
+
 import ServiceConfig from './ExampleConfig';
 
 export default class AppService {
-  static getExample() {
-    return new Promise(async (resolve, reject) => {
+  static getExample(): Function {
+    return new Promise(async (resolve: Function, reject: Function) => {
       try {
-        let endpoint = ServiceConfig.getExample;
-        let response = await ServiceConfig.APIConnector.get(endpoint, {});
+        const endpoint = ServiceConfig.getExample;
+        const response = await ServiceConfig.APIConnector.get(endpoint, {});
 
         if (response.code) {
           reject(response);

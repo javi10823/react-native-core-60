@@ -52,6 +52,13 @@ $ react-native-rename <newName>
 
 - [Redux](https://redux.js.org/introduction)
 
+###### We use flow
+
+- [Flow](https://flow.org/)
+- [Flow in react](https://github.com/facebook/flow/tree/master/website/en/docs/react)
+- [Test flow online](https://flow.org/try/)
+- [Flow cheatsheet](https://www.saltycrane.com/flow-type-cheat-sheet/latest/)
+
 ###### Routing and navigation
 
 - [React Native Navigtation from Wix V2](https://github.com/wix/react-native-navigation)
@@ -73,4 +80,6 @@ $ react-native-rename <newName>
 
 ## Notes
 
-- [PropTypes.defaultProps not working with styled components by now](https://github.com/styled-components/styled-components/issues/1914)
+- For better code experience use [VSCode](https://code.visualstudio.com/) and install the extension [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Flow Language Support](https://marketplace.visualstudio.com/items?itemName=flowtype.flow-for-vscode)
+
+- StyledComponents must be start with "_", example <_Container/>

@@ -1,3 +1,5 @@
+// @flow
+
 import { LOGIN_WITH_ERROR, LOGOUT_WITH_ERROR, ERASE_ALL_DATA_IN_STORE } from '../actions/types';
 
 const initialState = {
@@ -5,7 +7,7 @@ const initialState = {
   logoutError: null,
 };
 
-export default (state = initialState, action) => {
+export default (state: Object = initialState, action: Object): Object => {
   switch (action.type) {
     case LOGIN_WITH_ERROR:
       return Object.assign({}, state, { loginError: action.error });

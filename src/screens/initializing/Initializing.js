@@ -1,7 +1,8 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import { ActivityIndicator } from 'react-native';
-import { PropTypes } from 'prop-types';
 
 import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -12,10 +13,24 @@ import { USER_TOKEN } from '../../../config';
 
 import { initData } from './initData';
 
-import { Container } from './styles';
+import { _Container } from './styled';
 import { waitOneSecond } from '../../utils/seconds';
 
-class Initializing extends React.Component {
+type State = {|
+  loading: boolean,
+|};
+
+// comingFromOutside
+type InternalProps = $ReadOnly<{||}>;
+
+// comingFromConnect
+type Props = $ReadOnly<{|
+  ...InternalProps,
+  componentId: string,
+  initDataConnected: Function,
+|}>;
+
+class Initializing extends React.Component<Props, State> {
   async componentDidMount() {
     const { initDataConnected } = this.props;
     try {
@@ -31,24 +46,25 @@ class Initializing extends React.Component {
     }
   }
 
-  render() {
+  render(): React.Node {
     return (
-      <Container>
+      <_Container>
         <ActivityIndicator size="large" color={colors.principal} />
-      </Container>
+      </_Container>
     );
   }
 }
 
-Initializing.propTypes = {
-  initDataConnected: PropTypes.any.isRequired,
-};
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ initDataConnected: initData }, dispatch);
+const mapDispatchToProps = (dispatch: *): * =>
+  bindActionCreators(
+    {
+      initDataConnected: initData,
+    },
+    dispatch,
+  );
 
 export default compose(
-  connect(
+  connect<Props, InternalProps, *, *, *, *>(
     null,
     mapDispatchToProps,
   )(Initializing),

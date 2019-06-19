@@ -1,3 +1,5 @@
+// @flow
+
 import { Dimensions, Platform, StatusBar } from 'react-native';
 
 const { width } = Dimensions.get('window');
@@ -10,7 +12,7 @@ const isIPhoneX = [
   (width === 375 && height === 812) || (width === 414 && height === 896),
 ].every(Boolean);
 
-export function getStatusBarHeight() {
+export function getStatusBarHeight(): number {
   return Platform.select({
     ios: isIPhoneX ? 44 : 20,
     android: StatusBar.currentHeight,

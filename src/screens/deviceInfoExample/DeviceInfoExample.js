@@ -1,23 +1,39 @@
-import React, { Component } from 'react';
+// @flow
+
+import * as React from 'react';
 import DeviceInfo from 'react-native-device-info';
 
 import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { Container, Content } from './styles';
-import BackButton from '../../components/backButton/BackButton';
-import Spacing from '../../components/spacing/Spacing';
-import Typography from '../../components/typography';
+import { _Container, _Content } from './styled';
+import { BackButton, Spacing, Typography } from '../../components';
 
 import { goBack } from '..';
 
-class DeviceInfoExample extends Component {
-  render() {
-    const { componentId } = this.props; // eslint-disable-line react/prop-types
+type State = {||};
+
+// comingFromOutside
+type InternalProps = $ReadOnly<{||}>;
+
+// comingFromConnect
+type Props = $ReadOnly<{|
+  ...InternalProps,
+  componentId: string,
+|}>;
+
+class DeviceInfoExample extends React.Component<Props, State> {
+  render(): React.Node {
+    const { componentId } = this.props;
     return (
-      <Container>
-        <BackButton onPress={() => goBack(componentId)} text="rn device info example" />
-        <Content>
+      <_Container>
+        <BackButton
+          onPress={() => {
+            goBack(componentId);
+          }}
+          text="rn device info example"
+        />
+        <_Content>
           <Typography size={13}>{`DeviceInfo.getApplicationName() ->`}</Typography>
           <Typography size={15} bold>
             {DeviceInfo.getApplicationName()}
@@ -53,17 +69,18 @@ class DeviceInfoExample extends Component {
             {DeviceInfo.getDeviceType()}
           </Typography>
           <Spacing />
-        </Content>
-      </Container>
+        </_Content>
+      </_Container>
     );
   }
 }
 
-const mapStateToProps = store => ({
+// eslint-disable-next-line no-unused-vars
+const mapStateToProps = (state: *): * => ({
   // spaces: store.spaces.spaces,
 });
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch: *): * =>
   bindActionCreators(
     {
       // getAllSpacesConnected: getAllSpaces,
@@ -72,7 +89,7 @@ const mapDispatchToProps = dispatch =>
   );
 
 export default compose(
-  connect(
+  connect<Props, InternalProps, *, *, *, *>(
     mapStateToProps,
     mapDispatchToProps,
   )(DeviceInfoExample),

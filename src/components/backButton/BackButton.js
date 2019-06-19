@@ -1,40 +1,38 @@
-/* eslint-disable camelcase */
-/* eslint-disable react/require-default-props */
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import * as React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import Typography from '../typography';
 import { normalize, responsiveSize } from '../../utils/dimensions';
-import { styleType } from '../../utils/propTypes';
 
-class BackButton extends React.Component {
-  render() {
-    const {
-      text: text_props,
-      style: style_props,
-      iconStyle: iconStyle_props,
-      textStyle: textStyle_props,
-      textSize: textSize_props,
-      size: size_props,
-      iconColor: iconColor_props,
-      onPress: onPress_props,
-    } = this.props;
+type State = {||};
 
+type Props = $ReadOnly<{|
+  text?: string,
+  style?: Object,
+  iconStyle?: Object,
+  textStyle?: Object,
+  textSize?: number,
+  size?: number,
+  iconColor?: string,
+  onPress?: Function,
+|}>;
+
+class BackButton extends React.Component<Props, State> {
+  render(): React.Node {
     // ─────default props────────────────────────────────────────────────────────────
-    const checkIfUndefined = (valueFromProps, defaultValue) =>
-      valueFromProps === undefined ? defaultValue : valueFromProps;
-
-    const text = checkIfUndefined(text_props, '');
-    const style = checkIfUndefined(style_props, {});
-    const iconStyle = checkIfUndefined(iconStyle_props, {});
-    const textStyle = checkIfUndefined(textStyle_props, {});
-    const textSize = checkIfUndefined(textSize_props, 18);
-    const size = checkIfUndefined(size_props, normalize(25));
-    const iconColor = checkIfUndefined(iconColor_props, 'black');
-    const onPress = checkIfUndefined(onPress_props, () => {});
-
+    const { text, style, iconStyle, textStyle, textSize, size, iconColor, onPress }: Props = {
+      text: '',
+      style: {},
+      iconStyle: {},
+      textStyle: {},
+      textSize: 18,
+      size: normalize(25),
+      iconColor: 'black',
+      onPress: () => {},
+    };
     // ─────default props────────────────────────────────────────────────────────────
 
     return (
@@ -63,26 +61,5 @@ class BackButton extends React.Component {
     );
   }
 }
-
-BackButton.propTypes = {
-  text: PropTypes.string,
-  size: PropTypes.number,
-  style: styleType,
-  iconStyle: styleType,
-  textStyle: styleType,
-  textSize: PropTypes.number,
-  iconColor: PropTypes.string,
-  onPress: PropTypes.func.isRequired,
-};
-
-// BackButton.defaultProps = {
-//   text: '',
-//   style: {},
-//   iconStyle: {},
-//   textStyle: {},
-//   textSize: 18,
-//   size: normalize(25),
-//   iconColor: '',
-// };
 
 export default BackButton;

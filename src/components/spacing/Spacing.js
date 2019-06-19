@@ -1,20 +1,30 @@
-/* eslint-disable react/require-default-props */
-/* eslint-disable camelcase */
-import React from 'react';
-import PropTypes from 'prop-types';
+// @flow
+
+import * as React from 'react';
 import { View } from 'react-native';
 import { responsiveSize } from '../../utils/dimensions';
 
-class Spacing extends React.Component {
-  render() {
-    const { size: size_props, horizontal: horizontal_props } = this.props;
+type State = {||};
 
+type Props = $ReadOnly<{|
+  size?: number,
+  horizontal?: boolean,
+|}>;
+
+const _default = {
+  size: 12,
+  horizontal: false,
+};
+
+class Spacing extends React.Component<Props, State> {
+  render(): React.Node {
     // ─────default props────────────────────────────────────────────────────────────
-    const checkIfUndefined = (valueFromProps, defaultValue) =>
-      valueFromProps === undefined ? defaultValue : valueFromProps;
-
-    const size = checkIfUndefined(size_props, 12);
-    const horizontal = checkIfUndefined(horizontal_props, false);
+    const isNotUndefined = (prop: *): boolean => !(prop === undefined);
+    const { size: _size, horizontal: _horizontal } = this.props;
+    const { size, horizontal }: Props = {
+      size: isNotUndefined(_size) ? _size : _default.size,
+      horizontal: isNotUndefined(_horizontal) ? _horizontal : _default.horizontal,
+    };
     // ─────default props────────────────────────────────────────────────────────────
 
     if (horizontal) {
@@ -23,15 +33,5 @@ class Spacing extends React.Component {
     return <View style={{ height: responsiveSize(size), width: '100%' }} />;
   }
 }
-
-Spacing.propTypes = {
-  size: PropTypes.number,
-  horizontal: PropTypes.bool,
-};
-
-// Spacing.defaultProps = {
-//   horizontal: false,
-//   size: 12,
-// };
 
 export default Spacing;

@@ -1,3 +1,5 @@
+// @flow
+
 import { Navigation } from 'react-native-navigation';
 import { Provider } from 'react-redux';
 import store from '../store';
@@ -9,7 +11,7 @@ import Loading from './loading';
 import ReduxForm from './reduxForm';
 import DeviceInfoExample from './deviceInfoExample';
 
-export function initApp(screen = 'welcome') {
+export function initApp(screen: string = 'welcome') {
   Navigation.setRoot({
     root: {
       stack: {
@@ -32,7 +34,7 @@ export function initApp(screen = 'welcome') {
   });
 }
 
-export const goToPage = (componentId, page, props) => {
+export const goToPage = (componentId: string, page: string, props: Object) => {
   Navigation.push(componentId, {
     component: {
       name: page,
@@ -41,9 +43,9 @@ export const goToPage = (componentId, page, props) => {
   });
 };
 
-export const goBack = componentId => Navigation.pop(componentId);
+export const goBack = (componentId: string): * => Navigation.pop(componentId);
 
-export const showModal = (page, props) => {
+export const showModal = (page: string, props: Object) => {
   Navigation.showModal({
     component: {
       name: page,
@@ -61,23 +63,24 @@ export const showModal = (page, props) => {
   });
 };
 
-export const hideAllModals = () => {
-  return new Promise(resolve => {
+export const hideAllModals = (): * => {
+  return new Promise((resolve: *) => {
     Navigation.dismissAllModals().catch(() => {});
-    setTimeout(() => resolve(), 500);
+    setTimeout((): * => resolve(), 500);
   });
 };
 
-export const hideModal = async componentId => Navigation.dismissModal(componentId).catch(() => {});
+export const hideModal = async (componentId: string): * =>
+  Navigation.dismissModal(componentId).catch(() => {});
 
 // register all screens of the app (including internal ones)
 // prettier-ignore
 export function registerScreens() {
-  Navigation.registerComponentWithRedux( 'initializing', () => Initializing, Provider, store );
-  Navigation.registerComponentWithRedux( 'loading', () => Loading, Provider, store );
-  Navigation.registerComponentWithRedux( 'welcome', () => Welcome, Provider, store );
-  Navigation.registerComponentWithRedux( 'home', () => Home, Provider, store );
-  Navigation.registerComponentWithRedux( 'componentsExample', () => ComponentsExample, Provider, store );
-  Navigation.registerComponentWithRedux( 'reduxForm', () => ReduxForm, Provider, store );
-  Navigation.registerComponentWithRedux( 'deviceInfoExample', () => DeviceInfoExample, Provider, store );
+  Navigation.registerComponentWithRedux( 'initializing', (): * => Initializing, Provider, store );
+  Navigation.registerComponentWithRedux( 'loading', (): * => Loading, Provider, store );
+  Navigation.registerComponentWithRedux( 'welcome', (): * => Welcome, Provider, store );
+  Navigation.registerComponentWithRedux( 'home', (): * => Home, Provider, store );
+  Navigation.registerComponentWithRedux( 'componentsExample', (): * => ComponentsExample, Provider, store );
+  Navigation.registerComponentWithRedux( 'reduxForm', (): * => ReduxForm, Provider, store );
+  Navigation.registerComponentWithRedux( 'deviceInfoExample', (): * => DeviceInfoExample, Provider, store );
 }

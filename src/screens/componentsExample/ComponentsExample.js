@@ -1,54 +1,66 @@
-/* eslint-disable react/prop-types */
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import colors from '../../utils/colors';
 
 import Typography from '../../components/typography';
 import Spacing from '../../components/spacing';
 import {
-  Container,
-  ComponentsContainer,
-  ButtonSignUp,
-  ButtonSignIn,
-  ImageContainer,
-  ImageStyle,
-} from './styles';
+  _Container,
+  _ComponentsContainer,
+  _ButtonSignUp,
+  _ButtonSignIn,
+  _ImageContainer,
+  _ImageStyle,
+} from './styled';
 
 import { goBack } from '..';
 
-class Welcome extends React.Component {
-  static options = () => ({ topBar: { visible: false, height: 0 } });
+type State = {||};
 
-  render() {
+// comingFromOutside
+type InternalProps = $ReadOnly<{||}>;
+
+// comingFromConnect
+type Props = $ReadOnly<{|
+  ...InternalProps,
+  componentId: string,
+|}>;
+
+class ComponentsExample extends React.Component<Props, State> {
+  static options = (): * => ({ topBar: { visible: false, height: 0 } });
+
+  render(): React.Node {
     const { componentId } = this.props;
     return (
-      <Container>
-        <ComponentsContainer>
+      <_Container>
+        <_ComponentsContainer>
           <Spacing size={32} />
-          <ButtonSignUp
+          <_ButtonSignUp
             text="Go back"
             textColor={colors.global.principal}
-            onPress={() => goBack(componentId)}
+            onPress={(): * => goBack(componentId)}
           />
           <Spacing />
           <Typography color={colors.global.white} size={18}>
             Typography example
           </Typography>
           <Spacing />
-          <ButtonSignIn text="BUTTON EXAMPLE 1" />
+          <_ButtonSignIn text="BUTTON EXAMPLE 1" />
           <Spacing />
-          <ButtonSignUp text="BUTTON EXAMPLE 2" textColor={colors.global.principal} />
+          <_ButtonSignUp text="BUTTON EXAMPLE 2" textColor={colors.global.principal} />
           <Spacing />
-          <ImageContainer>
-            <ImageStyle
+          <_ImageContainer>
+            <_ImageStyle
               source={{
                 uri: 'https://www.dropbox.com/s/0gfn7kvtwkfd9t0/AWS%20Pop-up%20Loft.jpg?dl=1',
               }}
             />
-          </ImageContainer>
-        </ComponentsContainer>
-      </Container>
+          </_ImageContainer>
+        </_ComponentsContainer>
+      </_Container>
     );
   }
 }
 
-export default Welcome;
+export default ComponentsExample;

@@ -1,24 +1,43 @@
-/* eslint-disable react/prop-types */
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import { Alert } from 'react-native';
+
 import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Typography from '../../components/typography';
-import { Container, TextContainer, Button } from './styles';
+
+import { _Container, _TextContainer, _Button } from './styled';
+import { Spacing, Typography } from '../../components';
 
 import { goToPage, showModal, hideModal, hideAllModals } from '..';
 import Colors from '../../utils/colors';
 import { logOut } from '../../actions/auth';
-import Spacing from '../../components/spacing';
 
-class Welcome extends React.Component {
+type State = {|
+  loading: boolean,
+|};
+
+// comingFromOutside
+type InternalProps = $ReadOnly<{||}>;
+
+// comingFromConnect
+type Props = $ReadOnly<{|
+  ...InternalProps,
+  componentId: string,
+  logOutConnected: Function,
+  logoutError: Object,
+|}>;
+
+class Home extends React.Component<Props, State> {
+  modalLoadingComponentId: string;
+
   state = { loading: false };
 
   logOut = () => {
     this.setState({ loading: true }, async () => {
-      const { logOutConnect, componentId } = this.props;
-      await logOutConnect();
-      const { logoutError } = this.props; // eslint-disable-line react/prop-types
+      const { logOutConnected, componentId } = this.props;
+      await logOutConnected();
+      const { logoutError } = this.props;
       if (logoutError) {
         Alert.alert('ERROR ON LOGOUT');
         this.setState({ loading: false });
@@ -28,88 +47,94 @@ class Welcome extends React.Component {
 
   showModalWay1 = async () => {
     await showModal('loading', {
-      setModalComponentId: modalComponentId => (this.modalLoadingComponentId = modalComponentId),
+      setModalComponentId: (modalComponentId: string) => {
+        this.modalLoadingComponentId = modalComponentId;
+      },
     });
-    setTimeout(async () => hideModal(this.modalLoadingComponentId), 1000);
+    setTimeout(async () => {
+      hideModal(this.modalLoadingComponentId);
+    }, 1000);
   };
 
   showModalWay2 = async () => {
     await showModal('loading');
-    setTimeout(() => hideAllModals(), 1000);
+    setTimeout(() => {
+      hideAllModals();
+    }, 1000);
   };
 
-  render() {
+  render(): React.Node {
     const { loading } = this.state;
-    const { componentId } = this.props; // eslint-disable-line react/prop-types
+    const { componentId } = this.props;
     return (
-      <Container>
-        <TextContainer>
+      <_Container>
+        <_TextContainer>
           <Typography color={Colors.text.white} size={18}>
             HOME
           </Typography>
-        </TextContainer>
-        <Button
-          buttonColor={Colors.global.white}
-          textColor={Colors.global.principal}
-          text="Logout"
-          onPress={this.logOut}
-          loading={loading}
-        />
-        <Spacing />
-        <Button
+        </_TextContainer>
+        <_Button
           buttonColor={Colors.global.white}
           textColor={Colors.global.principal}
           text="Component Examples"
-          onPress={() => goToPage(componentId, 'componentsExample')}
+          onPress={(): * => goToPage(componentId, 'componentsExample')}
         />
         <Spacing />
-        <Button
+        <_Button
           buttonColor={Colors.global.white}
           textColor={Colors.global.principal}
           text="redux-form example"
-          onPress={() => goToPage(componentId, 'reduxForm')}
+          onPress={(): * => goToPage(componentId, 'reduxForm')}
         />
         <Spacing />
-        <Button
+        <_Button
           buttonColor={Colors.global.white}
           textColor={Colors.global.black}
           text="show modal way 1"
           onPress={this.showModalWay1}
         />
         <Spacing />
-        <Button
+        <_Button
           buttonColor={Colors.global.white}
           textColor={Colors.global.errorBackground}
           text="show modal way 2"
           onPress={this.showModalWay2}
         />
         <Spacing />
-        <Button
+        <_Button
           buttonColor={Colors.global.white}
           textColor={Colors.global.principal}
           text="DeviceInfo Example"
-          onPress={() => goToPage(componentId, 'deviceInfoExample')}
+          onPress={(): * => goToPage(componentId, 'deviceInfoExample')}
         />
-      </Container>
+        <Spacing />
+        <_Button
+          buttonColor={`${Colors.global.black}80`}
+          textColor={Colors.global.white}
+          text="Logout"
+          onPress={this.logOut}
+          loading={loading}
+        />
+      </_Container>
     );
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: *): * => ({
   logoutError: state.auth.logoutError,
 });
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch: *): * =>
   bindActionCreators(
     {
-      logOutConnect: logOut,
+      logOutConnected: logOut,
     },
     dispatch,
   );
 
 export default compose(
-  connect(
+  connect<Props, InternalProps, *, *, *, *>(
     mapStateToProps,
     mapDispatchToProps,
-  )(Welcome),
+  )(Home),
 );

@@ -1,19 +1,36 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import { ActivityIndicator } from 'react-native';
 import colors from '../../utils/colors';
-import { Container } from './styles';
+import { _Container } from './styled';
 
-class Loading extends React.Component {
+type State = {|
+  loading: boolean,
+|};
+
+// comingFromOutside
+type InternalProps = $ReadOnly<{|
+  setModalComponentId: Function,
+|}>;
+
+// comingFromConnect
+type Props = $ReadOnly<{|
+  ...InternalProps,
+  componentId: string,
+|}>;
+
+class Loading extends React.Component<Props, State> {
   componentDidMount() {
-    const { setModalComponentId, componentId } = this.props; // eslint-disable-line react/prop-types
+    const { setModalComponentId, componentId } = this.props;
     if (setModalComponentId) setModalComponentId(componentId);
   }
 
-  render() {
+  render(): React.Node {
     return (
-      <Container>
+      <_Container>
         <ActivityIndicator size="large" color={colors.global.white} />
-      </Container>
+      </_Container>
     );
   }
 }

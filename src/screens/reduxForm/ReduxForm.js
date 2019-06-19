@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
+// @flow
+
+import * as React from 'react';
 import { Alert } from 'react-native';
 
 import { bindActionCreators } from 'redux';
 import { Field, reduxForm, change } from 'redux-form';
 import { connect } from 'react-redux';
 
-import { Container, Content } from './styles';
+import { _Container, _Content } from './styled';
 import InputTextField from '../../components/inputTextField/InputTextField';
 import { required } from '../../utils/validations_es';
 import Spacing from '../../components/spacing/Spacing';
@@ -13,23 +15,40 @@ import Button from '../../components/button';
 import BackButton from '../../components/backButton/BackButton';
 import { goBack } from '..';
 
-class ReduxForm extends Component {
+type State = {|
+  loading: boolean,
+|};
+
+// comingFromOutside
+type InternalProps = $ReadOnly<{||}>;
+
+// comingFromConnect
+type Props = $ReadOnly<{|
+  ...InternalProps,
+  componentId: string,
+  form_name_example: string,
+  changeFieldValue: Function,
+  handleSubmit: Function,
+  valid: boolean,
+|}>;
+
+class ReduxForm extends React.Component<Props, State> {
   setDefaultData = () => {
-    const { changeFieldValue } = this.props; // eslint-disable-line react/prop-types
+    const { changeFieldValue } = this.props;
     changeFieldValue('firstName', 'Nicolas');
     changeFieldValue('lastName', 'Sturm');
   };
 
-  doSomething = ({ firstName, lastName }) => {
+  doSomething = ({ firstName, lastName }: { firstName: string, lastName: string }) => {
     Alert.alert(`Hello ${firstName} ${lastName}`);
   };
 
-  render() {
-    const { componentId, handleSubmit, valid: fieldsValid } = this.props; // eslint-disable-line react/prop-types
+  render(): React.Node {
+    const { componentId, handleSubmit, valid: fieldsValid } = this.props;
     return (
-      <Container>
-        <BackButton onPress={() => goBack(componentId)} text="redux-form example" />
-        <Content>
+      <_Container>
+        <BackButton onPress={(): * => goBack(componentId)} text="redux-form example" />
+        <_Content>
           <Field
             name="firstName"
             label="Nombre"
@@ -67,24 +86,22 @@ class ReduxForm extends Component {
             onPress={handleSubmit(this.doSomething)}
             disabled={!fieldsValid}
           />
-        </Content>
-      </Container>
+        </_Content>
+      </_Container>
     );
   }
 }
 
-// eslint-disable-next-line no-unused-vars
-const mapStateToProps = store => ({
-  // spaces: store.spaces.spaces,
-  form_name_example: store.form.form_name_example,
+const mapStateToProps = (state: *): * => ({
+  form_name_example: state.form.form_name_example,
 });
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch: *): * =>
   bindActionCreators(
     {
       // getAllSpacesConnected: getAllSpaces,
-      changeFieldValue(field, value) {
-        return _dispatch => {
+      changeFieldValue(field: string, value: string): * {
+        return (_dispatch: *) => {
           _dispatch(change('form_name_example', field, value));
         };
       },
@@ -96,7 +113,7 @@ export default reduxForm({
   form: 'form_name_example',
   destroyOnUnmount: true,
 })(
-  connect(
+  connect<Props, InternalProps, *, *, *, *>(
     mapStateToProps,
     mapDispatchToProps,
   )(ReduxForm),

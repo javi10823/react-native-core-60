@@ -1,10 +1,55 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import { Animated, View, Image } from 'react-native';
 import IconImage from '../../assets/images/common/placeholder.png';
-import { responsiveSize } from '../../utils/dimensions';
-import { Placeholder } from './styles';
+import { _Placeholder } from './styled';
 
-class DefaultProfileImageOnLoading extends React.Component {
+type State = {|
+  opacity: Animated.Value,
+  loaded: boolean,
+|};
+
+type Props = $ReadOnly<{|
+  withPlaceholder?: boolean,
+  style?: Object,
+|}>;
+
+const AnimatedImage = ({
+  opacity,
+  style,
+  onLoad,
+  onLoadEnd,
+  extraProps,
+}: {
+  opacity: Animated.Value,
+  style: Object,
+  onLoad: Function,
+  onLoadEnd: Function,
+  extraProps: *,
+}): * => (
+  <Animated.Image
+    {...extraProps}
+    onLoad={onLoad}
+    onLoadEnd={onLoadEnd}
+    style={[
+      {
+        opacity,
+        transform: [
+          {
+            scale: opacity.interpolate({
+              inputRange: [0, 1],
+              outputRange: [0.85, 1],
+            }),
+          },
+        ],
+      },
+      style,
+    ]}
+  />
+);
+
+class DefaultProfileImageOnLoading extends React.Component<Props, State> {
   state = {
     opacity: new Animated.Value(0),
     loaded: false,
@@ -19,44 +64,36 @@ class DefaultProfileImageOnLoading extends React.Component {
     }).start();
   };
 
-  renderAnimatedImage = (opacity, style) => (
-    <Animated.Image
-      {...this.props}
-      onLoad={this.onLoad}
-      onLoadEnd={() => this.setState({ loaded: true })}
-      style={[
-        {
-          opacity,
-          transform: [
-            {
-              scale: opacity.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0.85, 1],
-              }),
-            },
-          ],
-        },
-        style,
-      ]}
-    />
-  );
-
-  render() {
+  render(): React.Node {
     const { opacity, loaded } = this.state;
-    const { withPlaceholder, style } = this.props; // eslint-disable-line react/prop-types
+    const { withPlaceholder, style } = this.props;
 
     if (withPlaceholder) {
       return (
         <View>
-          <Placeholder style={[style, { zIndex: loaded ? -1 : 1 }]}>
-            <Image source={IconImage} size={responsiveSize(50)} />
-          </Placeholder>
-          {this.renderAnimatedImage(opacity, style)}
+          <_Placeholder style={[style, { zIndex: loaded ? -1 : 1 }]}>
+            <Image source={IconImage} style={{ width: 100, height: 100 }} />
+          </_Placeholder>
+          <AnimatedImage
+            opacity={opacity}
+            style={style}
+            onLoad={this.onLoad}
+            onLoadEnd={(): * => this.setState({ loaded: true })}
+            extraProps={this.props}
+          />
         </View>
       );
     }
 
-    return this.renderAnimatedImage(opacity, style);
+    return (
+      <AnimatedImage
+        opacity={opacity}
+        style={style}
+        onLoad={this.onLoad}
+        onLoadEnd={(): * => this.setState({ loaded: true })}
+        extraProps={this.props}
+      />
+    );
   }
 }
 

@@ -1,3 +1,5 @@
+// @flow
+
 /**
  * Metro configuration for React Native
  * https://github.com/facebook/react-native
@@ -7,7 +9,7 @@
 
 module.exports = {
   transformer: {
-    getTransformOptions: async () => ({
+    getTransformOptions: async (): * => ({
       transform: {
         experimentalImportSupport: false,
         inlineRequires: false,
