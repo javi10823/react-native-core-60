@@ -31,7 +31,7 @@ const _default = {
 class Typography extends React.Component<Props, State> {
   render(): React.Node {
     // ─────default props────────────────────────────────────────────────────────────
-    const isNotUndefined = (prop: *): boolean => prop === undefined;
+    const isNotUndefined = (prop: *): boolean => !(prop === undefined);
     const {
       color: _color,
       children: _children,

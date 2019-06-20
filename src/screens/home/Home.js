@@ -90,14 +90,14 @@ class Home extends React.Component<Props, State> {
         <_Button
           buttonColor={Colors.global.white}
           textColor={Colors.global.black}
-          text="show modal way 1"
+          text="show modal (code way 1)"
           onPress={this.showModalWay1}
         />
         <Spacing />
         <_Button
           buttonColor={Colors.global.white}
           textColor={Colors.global.errorBackground}
-          text="show modal way 2"
+          text="show modal (code way 2)"
           onPress={this.showModalWay2}
         />
         <Spacing />

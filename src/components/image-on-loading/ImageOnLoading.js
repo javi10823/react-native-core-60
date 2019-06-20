@@ -15,6 +15,11 @@ type Props = $ReadOnly<{|
   style?: Object,
 |}>;
 
+const _default = {
+  withPlaceholder: false,
+  style: {},
+};
+
 const AnimatedImage = ({
   opacity,
   style,
@@ -66,7 +71,16 @@ class DefaultProfileImageOnLoading extends React.Component<Props, State> {
 
   render(): React.Node {
     const { opacity, loaded } = this.state;
-    const { withPlaceholder, style } = this.props;
+    // ─────default props────────────────────────────────────────────────────────────
+    const isNotUndefined = (prop: *): boolean => !(prop === undefined);
+    const { withPlaceholder: _withPlaceholder, style: _style } = this.props;
+    const { withPlaceholder, style }: Props = {
+      withPlaceholder: isNotUndefined(_withPlaceholder)
+        ? _withPlaceholder
+        : _default.withPlaceholder,
+      style: isNotUndefined(_style) ? _style : _default.style,
+    };
+    // ─────default props────────────────────────────────────────────────────────────
 
     if (withPlaceholder) {
       return (

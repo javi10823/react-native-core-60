@@ -33,6 +33,12 @@ type Props = $ReadOnly<{|
   inputContainerStyle?: Object,
 |}>;
 
+const _default = {
+  input: {},
+  secureTextEntry: false,
+  inputContainerStyle: {},
+};
+
 class InputTextField extends React.Component<Props, State> {
   state = { passwordVisible: false };
 
@@ -63,8 +69,27 @@ class InputTextField extends React.Component<Props, State> {
   };
 
   render(): React.Node {
-    const { input, meta, secureTextEntry, inputContainerStyle, ...props } = this.props;
     const { passwordVisible } = this.state;
+    // ─────default props────────────────────────────────────────────────────────────
+    const isNotUndefined = (prop: *): boolean => !(prop === undefined);
+    const {
+      input: _input,
+      meta: _meta,
+      secureTextEntry: _secureTextEntry,
+      inputContainerStyle: _inputContainerStyle,
+      ...props
+    } = this.props;
+    const { input, meta, secureTextEntry, inputContainerStyle }: Props = {
+      input: isNotUndefined(_input) ? _input : _default.input,
+      meta: _meta,
+      secureTextEntry: isNotUndefined(_secureTextEntry)
+        ? _secureTextEntry
+        : _default.secureTextEntry,
+      inputContainerStyle: isNotUndefined(_inputContainerStyle)
+        ? _inputContainerStyle
+        : _default.inputContainerStyle,
+    };
+    // ─────default props────────────────────────────────────────────────────────────
 
     return (
       <View style={[styles.inputContainer, inputContainerStyle]}>

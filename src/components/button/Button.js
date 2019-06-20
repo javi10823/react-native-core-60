@@ -34,6 +34,20 @@ type Props = $ReadOnly<{|
   loading?: boolean,
 |}>;
 
+const _default = {
+  text: 'Button Text',
+  textColor: 'white',
+  buttonColor: '#00000020',
+  style: { width: '80%' },
+  iconStyle: {},
+  textContainerStyle: {},
+  icon: 0,
+  iconRight: 0,
+  disabled: false,
+  disabledMoreVisible: false,
+  frozen: false,
+};
+
 class __Button extends React.Component<Props, State> {
   state = {
     loading: false,
@@ -48,6 +62,22 @@ class __Button extends React.Component<Props, State> {
   render(): React.Node {
     const { loading: stateLoading } = this.state;
     // ─────default props────────────────────────────────────────────────────────────
+    const isNotUndefined = (prop: *): boolean => !(prop === undefined);
+    const {
+      text: _text,
+      textColor: _textColor,
+      buttonColor: _buttonColor,
+      onPress: _onPress,
+      style: _style,
+      iconStyle: _iconStyle,
+      textContainerStyle: _textContainerStyle,
+      icon: _icon,
+      iconRight: _iconRight,
+      disabled: _disabled,
+      disabledMoreVisible: _disabledMoreVisible,
+      frozen: _frozen,
+      loading: _loading,
+    } = this.props;
     const {
       text,
       textColor,
@@ -63,19 +93,23 @@ class __Button extends React.Component<Props, State> {
       frozen,
       loading,
     }: Props = {
-      text: 'Button Text',
-      textColor: 'white',
-      buttonColor: '#00000020',
-      onPress: this.onPressDefaultAction,
-      style: { width: '80%' },
-      iconStyle: {},
-      textContainerStyle: {},
-      icon: 0,
-      iconRight: 0,
-      disabled: false,
-      disabledMoreVisible: false,
-      frozen: false,
-      loading: stateLoading,
+      text: isNotUndefined(_text) ? _text : _default.text,
+      textColor: isNotUndefined(_textColor) ? _textColor : _default.textColor,
+      buttonColor: isNotUndefined(_buttonColor) ? _buttonColor : _default.buttonColor,
+      onPress: isNotUndefined(_onPress) ? _onPress : this.onPressDefaultAction,
+      style: isNotUndefined(_style) ? _style : _default.style,
+      iconStyle: isNotUndefined(_iconStyle) ? _iconStyle : _default.iconStyle,
+      textContainerStyle: isNotUndefined(_textContainerStyle)
+        ? _textContainerStyle
+        : _default.textContainerStyle,
+      icon: isNotUndefined(_icon) ? _icon : _default.icon,
+      iconRight: isNotUndefined(_iconRight) ? _iconRight : _default.iconRight,
+      disabled: isNotUndefined(_disabled) ? _disabled : _default.disabled,
+      disabledMoreVisible: isNotUndefined(_disabledMoreVisible)
+        ? _disabledMoreVisible
+        : _default.disabledMoreVisible,
+      frozen: isNotUndefined(_frozen) ? _frozen : _default.frozen,
+      loading: isNotUndefined(_loading) ? _loading : stateLoading,
     };
     // ─────default props────────────────────────────────────────────────────────────
 

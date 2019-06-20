@@ -20,18 +20,40 @@ type Props = $ReadOnly<{|
   onPress?: Function,
 |}>;
 
+const _default = {
+  text: '',
+  style: {},
+  iconStyle: {},
+  textStyle: {},
+  textSize: 18,
+  size: normalize(25),
+  iconColor: 'black',
+  onPress: () => {},
+};
+
 class BackButton extends React.Component<Props, State> {
   render(): React.Node {
     // ─────default props────────────────────────────────────────────────────────────
+    const isNotUndefined = (prop: *): boolean => !(prop === undefined);
+    const {
+      text: _text,
+      style: _style,
+      iconStyle: _iconStyle,
+      textStyle: _textStyle,
+      textSize: _textSize,
+      size: _size,
+      iconColor: _iconColor,
+      onPress: _onPress,
+    } = this.props;
     const { text, style, iconStyle, textStyle, textSize, size, iconColor, onPress }: Props = {
-      text: '',
-      style: {},
-      iconStyle: {},
-      textStyle: {},
-      textSize: 18,
-      size: normalize(25),
-      iconColor: 'black',
-      onPress: () => {},
+      text: isNotUndefined(_text) ? _text : _default.text,
+      style: isNotUndefined(_style) ? _style : _default.style,
+      iconStyle: isNotUndefined(_iconStyle) ? _iconStyle : _default.iconStyle,
+      textStyle: isNotUndefined(_textStyle) ? _textStyle : _default.iconStyle,
+      textSize: isNotUndefined(_textSize) ? _textSize : _default.textSize,
+      size: isNotUndefined(_size) ? _size : _default.size,
+      iconColor: isNotUndefined(_iconColor) ? _iconColor : _default.iconColor,
+      onPress: isNotUndefined(_onPress) ? _onPress : _default.onPress,
     };
     // ─────default props────────────────────────────────────────────────────────────
 
