@@ -1,8 +1,10 @@
+// @flow
+
 import { URL_API } from '../../../config';
 
-let _env = 'LC';
+const _env = 'LC';
 class Settings {
-  static get apiRestEndpoint() {
+  static get apiRestEndpoint(): string {
     switch (_env) {
       case 'PROD':
         return '';
@@ -17,7 +19,7 @@ class Settings {
     }
   }
 
-  static get environment() {
+  static get environment(): string {
     return _env;
   }
 }

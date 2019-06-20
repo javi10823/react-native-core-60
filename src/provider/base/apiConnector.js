@@ -1,3 +1,5 @@
+// @flow
+
 import Logger from './logger';
 
 const logger = new Logger('api-connector');
@@ -34,7 +36,7 @@ const Errors = {
   ID_DUPLICATED_MSG: 'Duplicate Name',
 };
 
-function _Error({ code, message }) {
+function _Error({ code, message }: { code: number | string, message: string }) {
   this.code = code;
   this.message = message || 'Default Message';
 }
@@ -42,7 +44,15 @@ _Error.prototype = Object.create(Error.prototype);
 _Error.prototype.constructor = _Error;
 
 export default class APIConnector {
-  constructor(options = {}) {
+  _fetch: Function;
+
+  _defaultHeaders: Object;
+
+  _timeout: number;
+
+  _requestUpload: Function;
+
+  constructor(options: Object = {}) {
     const { timeout = 0 } = options;
 
     this._fetch = fetch;
@@ -51,70 +61,71 @@ export default class APIConnector {
     if (timeout) this._timeout = timeout;
   }
 
-  static get defaultHeaders() {
+  static get defaultHeaders(): Object {
     return _defaultHeaders;
   }
 
-  static set defaultHeaders(value) {
+  static set defaultHeaders(value: Object) {
     _defaultHeaders = value;
   }
 
-  static get Methods() {
+  static get Methods(): Object {
     return Methods;
   }
 
-  static get Errors() {
+  static get Errors(): Object {
     return Errors;
   }
 
-  head(uri, args = {}) {
+  head(uri: string, args: Object = {}): Function {
     return this._request(uri, { ...args, method: Methods.HEAD });
   }
 
-  get(uri, args = {}) {
+  get(uri: string, args: Object = {}): Function {
     return this._request(uri, { ...args, method: Methods.GET });
   }
 
-  post(uri, args = {}) {
+  post(uri: string, args: Object = {}): Function {
     return this._request(uri, { ...args, method: Methods.POST });
   }
 
-  put(uri, args = {}) {
+  put(uri: string, args: Object = {}): Function {
     return this._request(uri, { ...args, method: Methods.PUT });
   }
 
-  patch(uri, args = {}) {
+  patch(uri: string, args: Object = {}): Function {
     return this._request(uri, { ...args, method: Methods.PATCH });
   }
 
-  delete(uri, args = {}) {
+  delete(uri: string, args: Object = {}): Function {
     return this._request(uri, { ...args, method: Methods.DELETE });
   }
 
-  _request(uri, args = {}) {
-    let { method, headers = {}, body, emptyResponse, checkResponseCode, uploadFormData } = args;
+  _request(uri: string, args: Object = {}): Function {
+    const { method, headers = {}, body, emptyResponse, uploadFormData } = args;
+    let { checkResponseCode } = args;
 
     if (!uri || uri instanceof String)
       return logger.error(`No valid uri given for method ${method}`) && this;
 
-    let options = {};
+    const options = {};
     options.method = method;
     options.headers = { ...this._defaultHeaders, ...headers };
     if (body) options.body = body;
 
-    let time = +new Date();
-    let bodyLog = options.body ? ` & body: ${JSON.stringify(options.body).substr(0, 80)}...` : '';
+    const time = +new Date();
+    const bodyLog = options.body ? ` & body: ${JSON.stringify(options.body).substr(0, 80)}...` : '';
     logger.info(
       `request ${options.method}: ${uri} sent, headers: ${JSON.stringify(
-        options.headers
-      )}${bodyLog}`
+        options.headers,
+      )}${bodyLog}`,
     );
 
     if (uploadFormData) {
       return this._requestUpload(uri, options, uploadFormData);
     }
-    return new Promise((resolve, reject) => {
-      let request = fetch(uri, options);
+    return new Promise((resolve: Function, reject: Function) => {
+      const request = fetch(uri, options);
       let timeoutReached = false;
       let requestDone = false;
 
@@ -122,14 +133,14 @@ export default class APIConnector {
         setTimeout(() => {
           if (requestDone) return;
           timeoutReached = true;
-          let err = new TypeError(Errors.TIMEOUT_MSG);
+          const err: Object = new TypeError(Errors.TIMEOUT_MSG);
           err.code = Errors.TIMEOUT;
           logger.info(`request ${method}: ${uri} timeout after ${+new Date() - time}ms`);
           reject(err);
         }, this._timeout);
       }
 
-      request.then(response => {
+      request.then((response: Function) => {
         requestDone = true;
         if (timeoutReached) return;
         logger.info(`request ${method}: ${uri} completed, took: ${+new Date() - time}ms`);
@@ -156,7 +167,7 @@ export default class APIConnector {
             new _Error({
               code: Errors.REQUEST_ENTITY_TOO_LARGE,
               message: Errors.REQUEST_ENTITY_TOO_LARGE_MSG,
-            })
+            }),
           );
         }
 
@@ -169,7 +180,7 @@ export default class APIConnector {
             new _Error({
               code: Errors.ID_DUPLICATED,
               message: Errors.ID_DUPLICATED_MSG,
-            })
+            }),
           );
         }
 
@@ -178,7 +189,7 @@ export default class APIConnector {
             new _Error({
               code: Errors.UNAUTHORIZED_ERROR,
               message: Errors.UNAUTHORIZED_ERROR_MSG,
-            })
+            }),
           );
         }
         if (response.status === 204) {
@@ -188,11 +199,11 @@ export default class APIConnector {
         }
       });
 
-      request.catch(err => {
+      request.catch((err: Object) => {
         requestDone = true;
         if (timeoutReached) return;
         logger.error(
-          `request ${method}: ${uri} raised error: ${err}, took ${+new Date() - time}ms`
+          `request ${method}: ${uri} raised error: ${err}, took ${+new Date() - time}ms`,
         );
         if (err.message === Errors.NO_CONNECTION_MSG) {
           err.code = Errors.NO_CONNECTION;
@@ -202,12 +213,12 @@ export default class APIConnector {
     });
   }
 
-  static _requestUpload(uri, options, uploadFormData) {
-    let formData = uploadFormData;
-    let time = +new Date();
+  static _requestUpload(uri: string, options: Object, uploadFormData: FormData): * {
+    const formData = uploadFormData;
+    const time = +new Date();
 
-    return new Promise((resolve, reject) => {
-      let xhr = new XMLHttpRequest();
+    return new Promise((resolve: Function, reject: Function) => {
+      const xhr = new XMLHttpRequest();
       xhr.open(options.method, uri);
 
       if (options.headers['X-Session'])
@@ -221,11 +232,10 @@ export default class APIConnector {
           reject(new _Error({ code: xhr.status, message: xhr.responseText }));
         }
         if (!xhr.responseText) {
-          // eslint-disable-next-line no-console
-          console.log('Upload failed No response payload.');
+          console.log('Upload failed No response payload.'); // eslint-disable-line no-console
           reject(new _Error({ code: 500, message: xhr.responseText }));
         }
-        let index = xhr.responseText.indexOf('arcor.com');
+        const index = xhr.responseText.indexOf('arcor.com');
         if (index !== -1) {
           reject(new _Error({ code: 500, message: xhr.responseText }));
         }

@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+// @flow
+
+import * as React from 'react';
 import { View, TouchableOpacity, Image } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
-import PropTypes from 'prop-types';
 
 import seeIcon from './see.png';
 import dontSeeIcon from './dontSee.png';
@@ -21,16 +22,35 @@ const styles = {
   },
 };
 
-class InputTextField extends Component {
+type State = {|
+  passwordVisible: boolean,
+|};
+
+type Props = $ReadOnly<{|
+  input?: Object,
+  meta?: *,
+  secureTextEntry?: boolean,
+  inputContainerStyle?: Object,
+|}>;
+
+const _default = {
+  input: {},
+  secureTextEntry: false,
+  inputContainerStyle: {},
+};
+
+class InputTextField extends React.Component<Props, State> {
   state = { passwordVisible: false };
 
-  togglePasswordVisibility = () => {
-    this.setState(prevState => ({
-      passwordVisible: !prevState.passwordVisible,
-    }));
+  togglePasswordVisibility = (): * => {
+    this.setState(
+      (prevState: Object): * => ({
+        passwordVisible: !prevState.passwordVisible,
+      }),
+    );
   };
 
-  renderPasswordAccessory = () => {
+  renderPasswordAccessory = (): * => {
     const { passwordVisible } = this.state;
     return (
       <TouchableOpacity
@@ -48,9 +68,28 @@ class InputTextField extends Component {
     );
   };
 
-  render() {
-    const { input, meta, secureTextEntry, inputContainerStyle, ...props } = this.props; // eslint-disable-line
+  render(): React.Node {
     const { passwordVisible } = this.state;
+    // ─────default props────────────────────────────────────────────────────────────
+    const isNotUndefined = (prop: *): boolean => !(prop === undefined);
+    const {
+      input: _input,
+      meta: _meta,
+      secureTextEntry: _secureTextEntry,
+      inputContainerStyle: _inputContainerStyle,
+      ...props
+    } = this.props;
+    const { input, meta, secureTextEntry, inputContainerStyle }: Props = {
+      input: isNotUndefined(_input) ? _input : _default.input,
+      meta: _meta,
+      secureTextEntry: isNotUndefined(_secureTextEntry)
+        ? _secureTextEntry
+        : _default.secureTextEntry,
+      inputContainerStyle: isNotUndefined(_inputContainerStyle)
+        ? _inputContainerStyle
+        : _default.inputContainerStyle,
+    };
+    // ─────default props────────────────────────────────────────────────────────────
 
     return (
       <View style={[styles.inputContainer, inputContainerStyle]}>
@@ -72,15 +111,5 @@ class InputTextField extends Component {
     );
   }
 }
-
-InputTextField.propTypes = {
-  secureTextEntry: PropTypes.bool,
-  toggleVisibility: PropTypes.bool,
-};
-
-InputTextField.defaultProps = {
-  secureTextEntry: false,
-  toggleVisibility: false,
-};
 
 export default InputTextField;

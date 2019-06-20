@@ -1,3 +1,5 @@
+// @flow
+
 export const LogLevels = {
   LOG: 'log',
   INFO: 'info',
@@ -6,40 +8,45 @@ export const LogLevels = {
 };
 
 export default class Logger {
-  constructor(name = 'main', printTimestamp = false) {
+  _name: string;
+
+  _printTimestamp: boolean;
+
+  _console: *;
+
+  constructor(name: string = 'main', printTimestamp: boolean = false) {
     this._name = name;
     this._printTimestamp = !!printTimestamp;
     this._console = console;
   }
 
-  log(...args) {
+  log(...args: Object): Function {
     return this._log(LogLevels.LOG, ...args);
   }
 
-  info(...args) {
+  info(...args: Object): Function {
     return this._log(LogLevels.INFO, ...args);
   }
 
-  warn(...args) {
+  warn(...args: Object): Function {
     return this._log(LogLevels.WARN, ...args);
   }
 
-  error(...args) {
+  error(...args: Object): Function {
     return this._log(LogLevels.ERROR, ...args);
   }
 
-  setPrintTimestamp(val = true) {
+  setPrintTimestamp(val: boolean = true): * {
     this._printTimestamp = !!val;
     return this;
   }
 
-  _log(level = LogLevels.INFO, ...args) {
-    let ts = this._printTimestamp ? `${+new Date()} ` : '';
+  _log(level: string = LogLevels.INFO, ...args: Object): * {
+    const ts = this._printTimestamp ? `${+new Date()} ` : '';
     try {
       this._console[level](`[${this._name}] ${ts}${level}:`, ...args);
     } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error(e);
+      console.error(e); // eslint-disable-line no-console
     }
     return this;
   }

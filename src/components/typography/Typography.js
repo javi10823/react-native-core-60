@@ -1,37 +1,56 @@
-/* eslint-disable camelcase */
-/* eslint-disable react/require-default-props */
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import { Text } from 'react-native';
-import PropTypes from 'prop-types';
 
 import fonts from '../../utils/fonts';
 import { normalize } from '../../utils/dimensions';
 
-class Typography extends React.Component {
-  render() {
+type State = {||};
+
+type Props = $ReadOnly<{|
+  color?: string,
+  children?: string,
+  textAlign?: 'auto' | 'left' | 'right' | 'center' | 'justify',
+  style?: Object,
+  size?: number,
+  font?: string | typeof undefined,
+  bold?: boolean,
+|}>;
+
+const _default = {
+  color: 'white',
+  children: 'TEXT',
+  textAlign: 'center',
+  style: {},
+  size: normalize(11),
+  font: undefined,
+  bold: false,
+};
+
+class Typography extends React.Component<Props, State> {
+  render(): React.Node {
+    // ─────default props────────────────────────────────────────────────────────────
+    const isNotUndefined = (prop: *): boolean => !(prop === undefined);
     const {
-      color: color_props,
-      children: children_props,
-      textAlign: textAlign_props,
-      style: style_props,
-      size: size_props,
-      font: font_props,
-      bold: bold_props,
+      color: _color,
+      children: _children,
+      textAlign: _textAlign,
+      style: _style,
+      size: _size,
+      font: _font,
+      bold: _bold,
       ...props
     } = this.props;
-
-    // ─────default props────────────────────────────────────────────────────────────
-    const checkIfUndefined = (valueFromProps, defaultValue) =>
-      valueFromProps === undefined ? defaultValue : valueFromProps;
-
-    const color = checkIfUndefined(color_props, 'white');
-    const children = checkIfUndefined(children_props, 'TEXT');
-    const textAlign = checkIfUndefined(textAlign_props, 'center');
-    const style = checkIfUndefined(style_props, {});
-    const size = checkIfUndefined(size_props, normalize(11));
-    const font = checkIfUndefined(font_props, undefined);
-    const bold = checkIfUndefined(bold_props, false);
-
+    const { color, children, textAlign, style, size, font, bold }: Props = {
+      color: isNotUndefined(_color) ? _color : _default.color,
+      children: isNotUndefined(_children) ? _children : _default.children,
+      textAlign: isNotUndefined(_textAlign) ? _textAlign : _default.textAlign,
+      style: isNotUndefined(_style) ? _style : _default.style,
+      size: isNotUndefined(_size) ? _size : _default.size,
+      font: isNotUndefined(_font) ? _font : _default.font,
+      bold: isNotUndefined(_bold) ? _bold : _default.bold,
+    };
     // ─────default props────────────────────────────────────────────────────────────
 
     return (
@@ -57,27 +76,5 @@ class Typography extends React.Component {
     );
   }
 }
-
-Typography.propTypes = {
-  color: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  textAlign: PropTypes.string,
-  style: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
-  ]),
-  size: PropTypes.number,
-  font: PropTypes.string,
-  bold: PropTypes.bool,
-};
-
-// Typography.defaultProps = {
-//   color: colors.white,
-//   textAlign: 'center',
-//   style: {},
-//   size: normalize(11),
-//   font: undefined,
-//   bold: false,
-// };
 
 export default Typography;

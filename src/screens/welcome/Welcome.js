@@ -1,11 +1,12 @@
-/* eslint-disable react/prop-types */
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import { Alert, Image, Linking } from 'react-native';
 import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Typography from '../../components/typography';
 import Spacing from '../../components/spacing';
-import { Container, TextContainer, Button, LogoContainer } from './styles';
+import { _Container, _TextContainer, _Button, _LogoContainer } from './styled';
 
 import { goToPage } from '..';
 import Colors from '../../utils/colors';
@@ -13,14 +14,29 @@ import { logIn } from '../../actions/auth';
 
 import NextDotsLogo from '../../assets/images/common/nextDotsLogo.png';
 
-class Welcome extends React.Component {
+type State = {|
+  loading: boolean,
+|};
+
+// comingFromOutside
+type InternalProps = $ReadOnly<{||}>;
+
+// comingFromConnect
+type Props = $ReadOnly<{|
+  ...InternalProps,
+  componentId: string,
+  logInConnected: Function,
+  loginError: Object,
+|}>;
+
+class Welcome extends React.Component<Props, State> {
   state = { loading: false };
 
   logIn = () => {
     this.setState({ loading: true }, async () => {
-      const { logInConnect, componentId } = this.props;
-      await logInConnect();
-      const { loginError } = this.props; // eslint-disable-line react/prop-types
+      const { logInConnected, componentId } = this.props;
+      await logInConnected();
+      const { loginError } = this.props;
       if (loginError) {
         Alert.alert('ERROR ON LOGIN');
         this.setState({ loading: false });
@@ -28,46 +44,46 @@ class Welcome extends React.Component {
     });
   };
 
-  render() {
+  render(): React.Node {
     const { loading } = this.state;
     return (
-      <Container>
-        <LogoContainer onPress={() => Linking.openURL('http://nextdots.com/')}>
+      <_Container>
+        <_LogoContainer onPress={(): * => Linking.openURL('http://nextdots.com/')}>
           <Image source={NextDotsLogo} style={{ width: '100%' }} resizeMode="contain" />
-        </LogoContainer>
-        <TextContainer>
+        </_LogoContainer>
+        <_TextContainer>
           <Typography color={Colors.text.white} size={18}>
             {`React Native BoilerPlate\nJunio 2019 0.59`}
           </Typography>
           <Spacing />
           <Typography color={Colors.text.white}>nextdots.com</Typography>
-        </TextContainer>
-        <Button
+        </_TextContainer>
+        <_Button
           buttonColor={Colors.global.white}
           textColor={Colors.text.primary}
           text="Ingresar"
           onPress={this.logIn}
           loading={loading}
         />
-      </Container>
+      </_Container>
     );
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: *): * => ({
   loginError: state.auth.loginError,
 });
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch: *): * =>
   bindActionCreators(
     {
-      logInConnect: logIn,
+      logInConnected: logIn,
     },
     dispatch,
   );
 
 export default compose(
-  connect(
+  connect<Props, InternalProps, *, *, *, *>(
     mapStateToProps,
     mapDispatchToProps,
   )(Welcome),
