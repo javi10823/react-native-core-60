@@ -75,11 +75,10 @@ $ react-native-rename <newName>
 - https://github.com/airbnb/javascript/tree/master/react
 - https://prettier.io/
 
-:v: **Enjoy!**
-
-
 ## Notes
 
 - For better code experience use [VSCode](https://code.visualstudio.com/) and install the extension [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Flow Language Support](https://marketplace.visualstudio.com/items?itemName=flowtype.flow-for-vscode)
 
-- StyledComponents must be start with "_", example <_Container/>
+- Check the [wiki](https://github.com/javi10823/react-native-core-59/wiki) for good practices
+
+:v: **Enjoy!**
