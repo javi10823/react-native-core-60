@@ -14,44 +14,34 @@ type Props = $ReadOnly<{|
   textAlign?: 'auto' | 'left' | 'right' | 'center' | 'justify',
   style?: Object,
   size?: number,
-  font?: string | typeof undefined,
+  font?: string,
   bold?: boolean,
+  onPress?: Function,
+  noUnderline?: boolean,
 |}>;
 
-const _default = {
-  color: 'white',
-  children: 'TEXT',
-  textAlign: 'center',
-  style: {},
-  size: normalize(11),
-  font: undefined,
-  bold: false,
-};
-
 class Typography extends React.Component<Props, State> {
+  static defaultProps = {
+    color: 'white',
+    children: 'TEXT',
+    textAlign: 'center',
+    style: {},
+    size: 11,
+  };
+
   render(): React.Node {
-    // ─────default props────────────────────────────────────────────────────────────
-    const isNotUndefined = (prop: *): boolean => !(prop === undefined);
     const {
-      color: _color,
-      children: _children,
-      textAlign: _textAlign,
-      style: _style,
-      size: _size,
-      font: _font,
-      bold: _bold,
+      color,
+      children,
+      textAlign,
+      style,
+      size,
+      font,
+      bold,
+      onPress,
+      noUnderline,
       ...props
     } = this.props;
-    const { color, children, textAlign, style, size, font, bold }: Props = {
-      color: isNotUndefined(_color) ? _color : _default.color,
-      children: isNotUndefined(_children) ? _children : _default.children,
-      textAlign: isNotUndefined(_textAlign) ? _textAlign : _default.textAlign,
-      style: isNotUndefined(_style) ? _style : _default.style,
-      size: isNotUndefined(_size) ? _size : _default.size,
-      font: isNotUndefined(_font) ? _font : _default.font,
-      bold: isNotUndefined(_bold) ? _bold : _default.bold,
-    };
-    // ─────default props────────────────────────────────────────────────────────────
 
     return (
       <Text
@@ -59,17 +49,16 @@ class Typography extends React.Component<Props, State> {
         style={[
           {
             color,
-            fontSize: size,
+            fontSize: normalize(size),
             textAlign,
             fontFamily: font || fonts.regular,
+            textDecorationLine: onPress && !noUnderline ? 'underline' : 'none',
           },
-          bold
-            ? {
-                fontFamily: fonts.bold,
-              }
-            : null,
+          bold ? { fontFamily: fonts.bold } : null,
           style,
         ]}
+        lineHeight={1}
+        onPress={onPress}
       >
         {children}
       </Text>

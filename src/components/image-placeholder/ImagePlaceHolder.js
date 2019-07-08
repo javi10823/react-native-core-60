@@ -14,12 +14,11 @@ type Props = $ReadOnly<{|
   style?: Object,
 |}>;
 
-const _default = {
-  withPlaceholder: false,
-  style: {},
-};
-
 class ImagePlaceholder extends React.Component<Props, State> {
+  static defaultProps = {
+    style: {},
+  };
+
   state = {
     opacity: new Animated.Value(0),
     loaded: false,
@@ -36,13 +35,7 @@ class ImagePlaceholder extends React.Component<Props, State> {
 
   render(): React.Node {
     const { opacity, loaded } = this.state;
-    // ─────default props────────────────────────────────────────────────────────────
-    const isNotUndefined = (prop: *): boolean => !(prop === undefined);
-    const { style: _style } = this.props;
-    const { style }: Props = {
-      style: isNotUndefined(_style) ? _style : _default.style,
-    };
-    // ─────default props────────────────────────────────────────────────────────────
+    const { style } = this.props;
 
     return (
       <View>

@@ -81,4 +81,18 @@ $ react-native-rename <newName>
 
 - Check the [wiki](https://github.com/javi10823/react-native-core-59/wiki) for good practices
 
+- Jest now disabled
+
+```
+(code before in package.json)
+
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn test -u"
+    }
+  },
+
+```
+
 :v: **Enjoy!**

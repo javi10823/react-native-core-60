@@ -24,6 +24,7 @@ const styles = {
 
 type State = {|
   passwordVisible: boolean,
+  textFieldWidth: number,
 |};
 
 type Props = $ReadOnly<{|
@@ -31,22 +32,51 @@ type Props = $ReadOnly<{|
   meta?: *,
   secureTextEntry?: boolean,
   inputContainerStyle?: Object,
+  renderIcon?: number,
+  hidePasswordIcon?: boolean,
+  // ────────────────
+  label?: string,
+  placeholder?: string,
 |}>;
 
-const _default = {
-  input: {},
-  secureTextEntry: false,
-  inputContainerStyle: {},
-};
-
 class InputTextField extends React.Component<Props, State> {
-  state = { passwordVisible: false };
+  static defaultProps = {
+    input: {},
+    inputContainerStyle: {},
+    label: '',
+  };
+
+  state = { passwordVisible: false, textFieldWidth: 100 };
 
   togglePasswordVisibility = (): * => {
     this.setState(
       (prevState: Object): * => ({
         passwordVisible: !prevState.passwordVisible,
       }),
+    );
+  };
+
+  renderIcon = (): * => {
+    const { textFieldWidth } = this.state;
+    const { renderIcon } = this.props;
+
+    return (
+      <View
+        style={{
+          height: responsiveSize(30),
+          width: responsiveSize(30),
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'absolute',
+          left: -textFieldWidth - 35,
+          top: -5,
+        }}
+      >
+        <Image
+          source={renderIcon}
+          style={{ width: responsiveSize(25), height: responsiveSize(25) }}
+        />
+      </View>
     );
   };
 
@@ -70,42 +100,48 @@ class InputTextField extends React.Component<Props, State> {
 
   render(): React.Node {
     const { passwordVisible } = this.state;
-    // ─────default props────────────────────────────────────────────────────────────
-    const isNotUndefined = (prop: *): boolean => !(prop === undefined);
     const {
-      input: _input,
-      meta: _meta,
-      secureTextEntry: _secureTextEntry,
-      inputContainerStyle: _inputContainerStyle,
+      input,
+      inputContainerStyle,
+      renderIcon,
+      meta,
+      secureTextEntry,
+      hidePasswordIcon,
       ...props
     } = this.props;
-    const { input, meta, secureTextEntry, inputContainerStyle }: Props = {
-      input: isNotUndefined(_input) ? _input : _default.input,
-      meta: _meta,
-      secureTextEntry: isNotUndefined(_secureTextEntry)
-        ? _secureTextEntry
-        : _default.secureTextEntry,
-      inputContainerStyle: isNotUndefined(_inputContainerStyle)
-        ? _inputContainerStyle
-        : _default.inputContainerStyle,
-    };
-    // ─────default props────────────────────────────────────────────────────────────
+    const { placeholder, label } = this.props;
+    const doNotShowLabelInFocus = placeholder && !label;
 
     return (
       <View style={[styles.inputContainer, inputContainerStyle]}>
         <TextField
           onChangeText={input && input.onChange}
           value={input && input.value}
+          labelTextStyle={{ marginLeft: responsiveSize(renderIcon ? 35 : 0) }}
+          inputContainerStyle={{ paddingLeft: responsiveSize(renderIcon ? 35 : 0) }}
           tintColor={colors.text.primary}
           errorColor={colors.global.errorBackground}
           baseColor={colors.text.primary}
+          onLayout={(event: *): * =>
+            this.setState({ textFieldWidth: event.nativeEvent.layout.width })
+          }
           {...props}
           error={meta && meta.touched && !meta.valid ? meta.error : ''}
           onBlur={input && input.onBlur}
           onFocus={input && input.onFocus}
           labelFontSize={normalize(13)}
-          renderAccessory={secureTextEntry ? this.renderPasswordAccessory : null}
+          renderAccessory={
+            renderIcon
+              ? this.renderIcon
+              : secureTextEntry && !hidePasswordIcon
+              ? this.renderPasswordAccessory
+              : null
+          }
           secureTextEntry={secureTextEntry && !passwordVisible}
+          inputContainerPadding={12}
+          labelHeight={doNotShowLabelInFocus ? 0 : 32}
+          placeholderTextColor={colors.global.inactive}
+          lineWidth={1.3}
         />
       </View>
     );
