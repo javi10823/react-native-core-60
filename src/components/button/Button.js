@@ -13,6 +13,7 @@ import {
 } from './styled';
 import fonts from '../../utils/fonts';
 import Image from '../image-on-loading';
+import colors from '../../utils/colors';
 
 type State = {|
   loading: boolean,
@@ -37,8 +38,8 @@ type Props = $ReadOnly<{|
 class __Button extends React.Component<Props, State> {
   static defaultProps = {
     text: 'Button Text',
-    textColor: 'white',
-    buttonColor: '#000000',
+    textColor: colors.global.white,
+    buttonColor: colors.global.black,
     style: { width: '80%' },
     iconStyle: {},
     textContainerStyle: {},

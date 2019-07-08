@@ -22,7 +22,7 @@ export const _IconContainer = styled.View({
 export const _Icon = styled(Icon)(
   (props: Object): Object => ({
     color: props.color || Colors.global.black,
-    fontSize: responsiveSize(props.size || normalize(25)),
+    fontSize: props.size || normalize(25),
     ...props.style,
   }),
 );
@@ -31,7 +31,7 @@ export const _Typography = styled(Typography)(
   (props: Object): Object => ({
     flex: 1,
     marginRight: responsiveSize(35),
-    fontSize: responsiveSize(props.size || 18),
+    fontSize: props.size || 18,
     ...props.style,
   }),
 );

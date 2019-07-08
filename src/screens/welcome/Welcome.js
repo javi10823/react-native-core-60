@@ -36,11 +36,11 @@ class Welcome extends React.Component<Props, State> {
     this.setState({ loading: true }, async () => {
       const { logInConnected, componentId } = this.props;
       await logInConnected();
-      const { loginError } = this.props;
-      if (loginError) {
-        Alert.alert('ERROR ON LOGIN');
-        this.setState({ loading: false });
-      } else goToPage(componentId, 'home');
+      this.setState({ loading: false }, () => {
+        const { loginError } = this.props;
+        if (loginError) Alert.alert('ERROR ON LOGIN');
+        else goToPage(componentId, 'home');
+      });
     });
   };
 

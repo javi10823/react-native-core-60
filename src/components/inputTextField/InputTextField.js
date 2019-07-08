@@ -10,17 +10,14 @@ import dontSeeIcon from './dontSee.png';
 import { normalize, responsiveSize } from '../../utils/dimensions';
 import colors from '../../utils/colors';
 
-const styles = {
-  inputContainer: {
-    position: 'relative',
-    width: '100%',
-  },
-  eyeIcon: {
-    position: 'absolute',
-    top: '50%',
-    right: 10,
-  },
-};
+import {
+  _InputContainer,
+  _IconContainer,
+  _PassAccesoryContainer,
+  _RenderIconImage,
+  _TextField_labelTextStyle,
+  _TextField_inputContainerStyle,
+} from './styled';
 
 type State = {|
   passwordVisible: boolean,
@@ -61,40 +58,18 @@ class InputTextField extends React.Component<Props, State> {
     const { renderIcon } = this.props;
 
     return (
-      <View
-        style={{
-          height: responsiveSize(30),
-          width: responsiveSize(30),
-          alignItems: 'center',
-          justifyContent: 'center',
-          position: 'absolute',
-          left: -textFieldWidth - 35,
-          top: -5,
-        }}
-      >
-        <Image
-          source={renderIcon}
-          style={{ width: responsiveSize(25), height: responsiveSize(25) }}
-        />
-      </View>
+      <_IconContainer textFieldWidth={textFieldWidth}>
+        <_RenderIconImage source={renderIcon} />
+      </_IconContainer>
     );
   };
 
   renderPasswordAccessory = (): * => {
     const { passwordVisible } = this.state;
     return (
-      <TouchableOpacity
-        onPress={this.togglePasswordVisibility}
-        style={{
-          height: responsiveSize(50),
-          width: responsiveSize(50),
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginBottom: responsiveSize(45),
-        }}
-      >
+      <_PassAccesoryContainer onPress={this.togglePasswordVisibility}>
         <Image source={passwordVisible ? dontSeeIcon : seeIcon} />
-      </TouchableOpacity>
+      </_PassAccesoryContainer>
     );
   };
 
@@ -113,12 +88,12 @@ class InputTextField extends React.Component<Props, State> {
     const doNotShowLabelInFocus = placeholder && !label;
 
     return (
-      <View style={[styles.inputContainer, inputContainerStyle]}>
+      <_InputContainer style={inputContainerStyle}>
         <TextField
           onChangeText={input && input.onChange}
           value={input && input.value}
-          labelTextStyle={{ marginLeft: responsiveSize(renderIcon ? 35 : 0) }}
-          inputContainerStyle={{ paddingLeft: responsiveSize(renderIcon ? 35 : 0) }}
+          labelTextStyle={_TextField_labelTextStyle(renderIcon)}
+          inputContainerStyle={_TextField_inputContainerStyle(renderIcon)}
           tintColor={colors.text.primary}
           errorColor={colors.global.errorBackground}
           baseColor={colors.text.primary}
@@ -138,12 +113,12 @@ class InputTextField extends React.Component<Props, State> {
               : null
           }
           secureTextEntry={secureTextEntry && !passwordVisible}
-          inputContainerPadding={12}
-          labelHeight={doNotShowLabelInFocus ? 0 : 32}
+          inputContainerPadding={responsiveSize(12)}
+          labelHeight={responsiveSize(doNotShowLabelInFocus ? 0 : 32)}
           placeholderTextColor={colors.global.inactive}
           lineWidth={1.3}
         />
-      </View>
+      </_InputContainer>
     );
   }
 }

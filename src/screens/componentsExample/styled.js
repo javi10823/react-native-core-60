@@ -27,12 +27,18 @@ export const _ButtonSignIn = styled(Button)({
   width: '100%',
 });
 
-export const _ButtonSignUp = styled(Button)({
-  borderColor: colors.global.white,
-  backgroundColor: colors.global.white,
-  width: '100%',
-  borderRadius: 5,
-});
+export const _ButtonSignUp = styled(Button)(
+  (props: Object): Object => {
+    console.log(`\n\n`, 'componentsExample - _ButtonSignUp - props', props, `\n\n\n`);
+    return {
+      borderColor: colors.global.white,
+      backgroundColor: colors.global.white,
+      width: '100%',
+      borderRadius: 5,
+      ...props.style,
+    };
+  },
+);
 
 export const _ImageContainer = styled.View({
   padding: responsiveSize(20),
