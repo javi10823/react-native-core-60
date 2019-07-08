@@ -16,6 +16,7 @@ export default {
     inactive: '#b1b1b1',
     black: '#000000',
     principal: '#039BE5',
+    tarawera: '#044044',
   },
   text: {
     white: '#ffffff',

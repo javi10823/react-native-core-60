@@ -6,12 +6,12 @@ import colors from '../../utils/colors';
 import Typography from '../../components/typography';
 import Spacing from '../../components/spacing';
 import {
-  _Container,
-  _ComponentsContainer,
-  _ButtonSignUp,
-  _ButtonSignIn,
-  _ImageContainer,
-  _ImageStyle,
+  Container,
+  ComponentsContainer,
+  ButtonSignUp,
+  ButtonSignIn,
+  ImageContainer,
+  ImageStyle,
 } from './styled';
 
 import { goBack } from '..';
@@ -33,10 +33,10 @@ class ComponentsExample extends React.Component<Props, State> {
   render(): React.Node {
     const { componentId } = this.props;
     return (
-      <_Container>
-        <_ComponentsContainer>
+      <Container>
+        <ComponentsContainer>
           <Spacing size={32} />
-          <_ButtonSignUp
+          <ButtonSignUp
             text="Go back"
             textColor={colors.global.principal}
             onPress={(): * => goBack(componentId)}
@@ -46,19 +46,19 @@ class ComponentsExample extends React.Component<Props, State> {
             Typography example
           </Typography>
           <Spacing />
-          <_ButtonSignIn text="BUTTON EXAMPLE 1" />
+          <ButtonSignIn text="BUTTON EXAMPLE 1" />
           <Spacing />
-          <_ButtonSignUp text="BUTTON EXAMPLE 2" textColor={colors.global.principal} />
+          <ButtonSignUp text="BUTTON EXAMPLE 2" textColor={colors.global.principal} />
           <Spacing />
-          <_ImageContainer>
-            <_ImageStyle
+          <ImageContainer>
+            <ImageStyle
               source={{
                 uri: 'https://www.dropbox.com/s/0gfn7kvtwkfd9t0/AWS%20Pop-up%20Loft.jpg?dl=1',
               }}
             />
-          </_ImageContainer>
-        </_ComponentsContainer>
-      </_Container>
+          </ImageContainer>
+        </ComponentsContainer>
+      </Container>
     );
   }
 }

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Animated, View, Image } from 'react-native';
 import IconImage from '../../assets/images/common/placeholder.png';
-import { _Placeholder } from './styled';
+import { Placeholder } from './styled';
 
 type State = {|
   opacity: Animated.Value,
@@ -39,9 +39,9 @@ class ImagePlaceholder extends React.Component<Props, State> {
 
     return (
       <View>
-        <_Placeholder style={[style || {}, { zIndex: loaded ? -1 : 1 }]}>
+        <Placeholder style={[style || {}, { zIndex: loaded ? -1 : 1 }]}>
           <Image source={IconImage} style={{ width: 100, height: 100 }} />
-        </_Placeholder>
+        </Placeholder>
         <Animated.Image
           {...this.props}
           onLoad={this.onLoad}

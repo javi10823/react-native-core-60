@@ -6,7 +6,7 @@ import DeviceInfo from 'react-native-device-info';
 import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { _Container, _Content } from './styled';
+import { Container, Content } from './styled';
 import { BackButton, Spacing, Typography } from '../../components';
 
 import { goBack } from '..';
@@ -26,14 +26,14 @@ class DeviceInfoExample extends React.Component<Props, State> {
   render(): React.Node {
     const { componentId } = this.props;
     return (
-      <_Container>
+      <Container>
         <BackButton
           onPress={() => {
             goBack(componentId);
           }}
           text="rn device info example"
         />
-        <_Content>
+        <Content>
           <Typography size={13}>{`DeviceInfo.getApplicationName() ->`}</Typography>
           <Typography size={15} bold>
             {DeviceInfo.getApplicationName()}
@@ -69,8 +69,8 @@ class DeviceInfoExample extends React.Component<Props, State> {
             {DeviceInfo.getDeviceType()}
           </Typography>
           <Spacing />
-        </_Content>
-      </_Container>
+        </Content>
+      </Container>
     );
   }
 }

@@ -5,12 +5,12 @@ import { responsiveSize } from '../../utils/dimensions';
 import colors from '../../utils/colors';
 // ──────────────────────────────────────────
 
-export const _Container = styled.SafeAreaView({
+export const Container = styled.SafeAreaView({
   flex: 1,
   backgroundColor: colors.global.principal,
 });
 
-export const _Content = styled.View({
+export const Content = styled.View({
   flex: 1,
   alignItems: 'center',
   justifyContent: 'center',

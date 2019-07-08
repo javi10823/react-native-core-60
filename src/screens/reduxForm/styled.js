@@ -2,13 +2,14 @@
 
 import styled from 'styled-components';
 import { responsiveSize } from '../../utils/dimensions';
+import colors from '../../utils/colors';
 
-export const _Container = styled.SafeAreaView({
+export const Container = styled.SafeAreaView({
   flex: 1,
-  backgroundColor: '#04404480',
+  backgroundColor: colors.global.tarawera + 80,
 });
 
-export const _Content = styled.View({
+export const Content = styled.View({
   flex: 1,
   alignItems: 'center',
   justifyContent: 'center',

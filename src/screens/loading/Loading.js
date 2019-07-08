@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { ActivityIndicator } from 'react-native';
 import colors from '../../utils/colors';
-import { _Container } from './styled';
+import { Container } from './styled';
 
 type State = {|
   loading: boolean,
@@ -28,9 +28,9 @@ class Loading extends React.Component<Props, State> {
 
   render(): React.Node {
     return (
-      <_Container>
+      <Container>
         <ActivityIndicator size="large" color={colors.global.white} />
-      </_Container>
+      </Container>
     );
   }
 }

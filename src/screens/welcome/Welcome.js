@@ -6,7 +6,7 @@ import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Typography from '../../components/typography';
 import Spacing from '../../components/spacing';
-import { _Container, _TextContainer, _Button, _LogoContainer } from './styled';
+import { Container, TextContainer, Button, LogoContainer } from './styled';
 
 import { goToPage } from '..';
 import Colors from '../../utils/colors';
@@ -47,25 +47,25 @@ class Welcome extends React.Component<Props, State> {
   render(): React.Node {
     const { loading } = this.state;
     return (
-      <_Container>
-        <_LogoContainer onPress={(): * => Linking.openURL('http://nextdots.com/')}>
+      <Container>
+        <LogoContainer onPress={(): * => Linking.openURL('http://nextdots.com/')}>
           <Image source={NextDotsLogo} style={{ width: '100%' }} resizeMode="contain" />
-        </_LogoContainer>
-        <_TextContainer>
+        </LogoContainer>
+        <TextContainer>
           <Typography color={Colors.text.white} size={18}>
             {`React Native BoilerPlate\nJunio 2019 0.59`}
           </Typography>
           <Spacing />
           <Typography color={Colors.text.white}>nextdots.com</Typography>
-        </_TextContainer>
-        <_Button
+        </TextContainer>
+        <Button
           buttonColor={Colors.global.white}
           textColor={Colors.text.primary}
           text="Ingresar"
           onPress={this.logIn}
           loading={loading}
         />
-      </_Container>
+      </Container>
     );
   }
 }

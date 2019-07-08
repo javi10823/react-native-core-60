@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { normalize } from '../../utils/dimensions';
-import { _Icon, _Typography, _Container, _IconContainer } from './styled';
+import { Icon, Typography, Container, IconContainer } from './styled';
 import colors from '../../utils/colors';
 
 type State = {||};
@@ -36,16 +36,16 @@ class BackButton extends React.Component<Props, State> {
 
     return (
       <TouchableOpacity onPress={onPress}>
-        <_Container style={style}>
-          <_IconContainer>
-            <_Icon name="arrow-back" size={size} color={iconColor} style={iconStyle} />
-          </_IconContainer>
+        <Container style={style}>
+          <IconContainer>
+            <Icon name="arrow-back" size={size} color={iconColor} style={iconStyle} />
+          </IconContainer>
           {!!text && (
-            <_Typography style={textStyle} size={textSize} color="white">
+            <Typography style={textStyle} size={textSize} color="white">
               {text}
-            </_Typography>
+            </Typography>
           )}
-        </_Container>
+        </Container>
       </TouchableOpacity>
     );
   }

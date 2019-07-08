@@ -1193,14 +1193,14 @@
 //     }) => void,
 //     getTestIDProps: (scene: TabScene) => (scene: TabScene) => any,
 //     renderIcon: (scene: TabScene) => React$Node,
-//     getButtonComponent: (scene: TabScene) => React$ComponentType<_BottomTabBarButtonComponentProps>,
+//     getButtonComponent: (scene: TabScene) => React$ComponentType<BottomTabBarButtonComponentProps>,
 //     style?: ViewStyleProp,
 //     animateStyle?: ViewStyleProp,
 //     labelStyle?: TextStyleProp,
 //     tabStyle?: ViewStyleProp,
 //     showIcon?: boolean,
 //   };
-//   declare export var BottomTabBar: React$ComponentType<_BottomTabBarProps>;
+//   declare export var BottomTabBar: React$ComponentType<BottomTabBarProps>;
 
 //   declare export function withNavigation<Props: {}, ComponentType: React$ComponentType<Props>>(
 //     Component: ComponentType,

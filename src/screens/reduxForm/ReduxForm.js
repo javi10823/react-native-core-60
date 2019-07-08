@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import { Field, reduxForm, change } from 'redux-form';
 import { connect } from 'react-redux';
 
-import { _Container, _Content } from './styled';
+import { Container, Content } from './styled';
 import InputTextField from '../../components/inputTextField/InputTextField';
 import { required } from '../../utils/validations_es';
 import Spacing from '../../components/spacing/Spacing';
@@ -47,9 +47,9 @@ class ReduxForm extends React.Component<Props, State> {
   render(): React.Node {
     const { componentId, handleSubmit, valid: fieldsValid } = this.props;
     return (
-      <_Container>
+      <Container>
         <BackButton onPress={(): * => goBack(componentId)} text="redux-form example" />
-        <_Content>
+        <Content>
           <Field
             name="firstName"
             label="Nombre"
@@ -91,8 +91,8 @@ class ReduxForm extends React.Component<Props, State> {
             onPress={handleSubmit(this.doSomething)}
             disabled={!fieldsValid}
           />
-        </_Content>
-      </_Container>
+        </Content>
+      </Container>
     );
   }
 }

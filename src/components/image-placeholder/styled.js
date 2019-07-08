@@ -2,7 +2,7 @@
 
 import styled from 'styled-components';
 
-export const _Placeholder = styled.View({
+export const Placeholder = styled.View({
   alignItems: 'center',
   justifyContent: 'center',
   backgroundColor: '#EFEFF4',
