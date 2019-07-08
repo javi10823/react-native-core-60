@@ -1,11 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import { TouchableOpacity, View } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-
-import Typography from '../typography';
-import { normalize, responsiveSize } from '../../utils/dimensions';
+import { TouchableOpacity } from 'react-native';
+import { normalize } from '../../utils/dimensions';
+import { _Icon, _Typography, _Container, _IconContainer } from './styled';
+import colors from '../../utils/colors';
 
 type State = {||};
 
@@ -20,65 +19,33 @@ type Props = $ReadOnly<{|
   onPress?: Function,
 |}>;
 
-const _default = {
-  text: '',
-  style: {},
-  iconStyle: {},
-  textStyle: {},
-  textSize: 18,
-  size: normalize(25),
-  iconColor: 'black',
-  onPress: () => {},
-};
-
 class BackButton extends React.Component<Props, State> {
+  static defaultProps = {
+    text: '',
+    style: {},
+    iconStyle: {},
+    textStyle: {},
+    textSize: 18,
+    size: normalize(25),
+    iconColor: colors.global.black,
+    onPress: () => {},
+  };
+
   render(): React.Node {
-    // ─────default props────────────────────────────────────────────────────────────
-    const isNotUndefined = (prop: *): boolean => !(prop === undefined);
-    const {
-      text: _text,
-      style: _style,
-      iconStyle: _iconStyle,
-      textStyle: _textStyle,
-      textSize: _textSize,
-      size: _size,
-      iconColor: _iconColor,
-      onPress: _onPress,
-    } = this.props;
-    const { text, style, iconStyle, textStyle, textSize, size, iconColor, onPress }: Props = {
-      text: isNotUndefined(_text) ? _text : _default.text,
-      style: isNotUndefined(_style) ? _style : _default.style,
-      iconStyle: isNotUndefined(_iconStyle) ? _iconStyle : _default.iconStyle,
-      textStyle: isNotUndefined(_textStyle) ? _textStyle : _default.iconStyle,
-      textSize: isNotUndefined(_textSize) ? _textSize : _default.textSize,
-      size: isNotUndefined(_size) ? _size : _default.size,
-      iconColor: isNotUndefined(_iconColor) ? _iconColor : _default.iconColor,
-      onPress: isNotUndefined(_onPress) ? _onPress : _default.onPress,
-    };
-    // ─────default props────────────────────────────────────────────────────────────
+    const { text, style, iconStyle, textStyle, textSize, size, iconColor, onPress } = this.props;
 
     return (
-      <TouchableOpacity
-        style={[{ flexDirection: 'row', alignItems: 'center' }, style]}
-        onPress={onPress}
-      >
-        <View
-          style={{
-            alignItems: 'center',
-            padding: responsiveSize(5),
-          }}
-        >
-          <Icon name="chevron-left" size={size} style={[{ color: iconColor }, iconStyle]} />
-        </View>
-        {!!text && (
-          <Typography
-            style={[{ flex: 1, marginRight: responsiveSize(35) }, textStyle]}
-            size={textSize}
-            color="white"
-          >
-            {text}
-          </Typography>
-        )}
+      <TouchableOpacity onPress={onPress}>
+        <_Container style={style}>
+          <_IconContainer>
+            <_Icon name="arrow-back" size={size} color={iconColor} style={iconStyle} />
+          </_IconContainer>
+          {!!text && (
+            <_Typography style={textStyle} size={textSize} color="white">
+              {text}
+            </_Typography>
+          )}
+        </_Container>
       </TouchableOpacity>
     );
   }

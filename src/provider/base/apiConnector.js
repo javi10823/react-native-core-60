@@ -26,6 +26,9 @@ const Errors = {
   SERVER_ERROR: '503',
   SERVER_ERROR_MSG: 'Internal Server Error',
 
+  NOT_FOUND: 404,
+  NOT_FOUND_MSG: 'Not found',
+
   REQUEST_ENTITY_TOO_LARGE: 413,
   REQUEST_ENTITY_TOO_LARGE_MSG: 'Request entity too large',
 
@@ -125,7 +128,11 @@ export default class APIConnector {
       return this._requestUpload(uri, options, uploadFormData);
     }
     return new Promise((resolve: Function, reject: Function) => {
+      console.log(`\n\n`, '_request - uri', uri, `\n\n\n`);
+      console.log(`\n\n`, '_request - options', options, `\n\n\n`);
+
       const request = fetch(uri, options);
+
       let timeoutReached = false;
       let requestDone = false;
 
@@ -141,6 +148,7 @@ export default class APIConnector {
       }
 
       request.then((response: Function) => {
+        console.log(`\n\n`, 'request - response', response, `\n\n\n`);
         requestDone = true;
         if (timeoutReached) return;
         logger.info(`request ${method}: ${uri} completed, took: ${+new Date() - time}ms`);
@@ -149,7 +157,12 @@ export default class APIConnector {
           reject(new _Error({ code: 503, message: Errors.SERVER_ERROR_MSG }));
         }
 
-        if (response && (response.status === 500 || response.status === 404)) {
+        if (response && response.status === Errors.NOT_FOUND) {
+          checkResponseCode = true;
+          reject(new _Error({ code: 404, message: Errors.NOT_FOUND_MSG }));
+        }
+
+        if (response && response.status === 500) {
           checkResponseCode = true;
           if (
             checkResponseCode &&
@@ -200,6 +213,8 @@ export default class APIConnector {
       });
 
       request.catch((err: Object) => {
+        console.log(`\n\n`, 'request - err', err, `\n\n\n`);
+
         requestDone = true;
         if (timeoutReached) return;
         logger.error(

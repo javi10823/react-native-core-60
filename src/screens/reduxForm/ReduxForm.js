@@ -14,6 +14,7 @@ import Spacing from '../../components/spacing/Spacing';
 import Button from '../../components/button';
 import BackButton from '../../components/backButton/BackButton';
 import { goBack } from '..';
+import colors from '../../utils/colors';
 
 type State = {|
   loading: boolean,
@@ -78,11 +79,15 @@ class ReduxForm extends React.Component<Props, State> {
             secureTextEntry
           />
           <Spacing />
-          <Button text="Setear data" buttonColor="#00000080" onPress={this.setDefaultData} />
+          <Button
+            text="Setear data"
+            buttonColor={colors.global.black + 80}
+            onPress={this.setDefaultData}
+          />
           <Spacing />
           <Button
             text="Hacer algo"
-            buttonColor="#00000080"
+            buttonColor={colors.global.black + 80}
             onPress={handleSubmit(this.doSomething)}
             disabled={!fieldsValid}
           />

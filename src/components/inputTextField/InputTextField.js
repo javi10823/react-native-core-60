@@ -10,20 +10,18 @@ import dontSeeIcon from './dontSee.png';
 import { normalize, responsiveSize } from '../../utils/dimensions';
 import colors from '../../utils/colors';
 
-const styles = {
-  inputContainer: {
-    position: 'relative',
-    width: '100%',
-  },
-  eyeIcon: {
-    position: 'absolute',
-    top: '50%',
-    right: 10,
-  },
-};
+import {
+  _InputContainer,
+  _IconContainer,
+  _PassAccesoryContainer,
+  _RenderIconImage,
+  _TextField_labelTextStyle,
+  _TextField_inputContainerStyle,
+} from './styled';
 
 type State = {|
   passwordVisible: boolean,
+  textFieldWidth: number,
 |};
 
 type Props = $ReadOnly<{|
@@ -31,16 +29,21 @@ type Props = $ReadOnly<{|
   meta?: *,
   secureTextEntry?: boolean,
   inputContainerStyle?: Object,
+  renderIcon?: number,
+  hidePasswordIcon?: boolean,
+  // ────────────────
+  label?: string,
+  placeholder?: string,
 |}>;
 
-const _default = {
-  input: {},
-  secureTextEntry: false,
-  inputContainerStyle: {},
-};
-
 class InputTextField extends React.Component<Props, State> {
-  state = { passwordVisible: false };
+  static defaultProps = {
+    input: {},
+    inputContainerStyle: {},
+    label: '',
+  };
+
+  state = { passwordVisible: false, textFieldWidth: 100 };
 
   togglePasswordVisibility = (): * => {
     this.setState(
@@ -50,64 +53,72 @@ class InputTextField extends React.Component<Props, State> {
     );
   };
 
+  renderIcon = (): * => {
+    const { textFieldWidth } = this.state;
+    const { renderIcon } = this.props;
+
+    return (
+      <_IconContainer textFieldWidth={textFieldWidth}>
+        <_RenderIconImage source={renderIcon} />
+      </_IconContainer>
+    );
+  };
+
   renderPasswordAccessory = (): * => {
     const { passwordVisible } = this.state;
     return (
-      <TouchableOpacity
-        onPress={this.togglePasswordVisibility}
-        style={{
-          height: responsiveSize(50),
-          width: responsiveSize(50),
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginBottom: responsiveSize(45),
-        }}
-      >
+      <_PassAccesoryContainer onPress={this.togglePasswordVisibility}>
         <Image source={passwordVisible ? dontSeeIcon : seeIcon} />
-      </TouchableOpacity>
+      </_PassAccesoryContainer>
     );
   };
 
   render(): React.Node {
     const { passwordVisible } = this.state;
-    // ─────default props────────────────────────────────────────────────────────────
-    const isNotUndefined = (prop: *): boolean => !(prop === undefined);
     const {
-      input: _input,
-      meta: _meta,
-      secureTextEntry: _secureTextEntry,
-      inputContainerStyle: _inputContainerStyle,
+      input,
+      inputContainerStyle,
+      renderIcon,
+      meta,
+      secureTextEntry,
+      hidePasswordIcon,
       ...props
     } = this.props;
-    const { input, meta, secureTextEntry, inputContainerStyle }: Props = {
-      input: isNotUndefined(_input) ? _input : _default.input,
-      meta: _meta,
-      secureTextEntry: isNotUndefined(_secureTextEntry)
-        ? _secureTextEntry
-        : _default.secureTextEntry,
-      inputContainerStyle: isNotUndefined(_inputContainerStyle)
-        ? _inputContainerStyle
-        : _default.inputContainerStyle,
-    };
-    // ─────default props────────────────────────────────────────────────────────────
+    const { placeholder, label } = this.props;
+    const doNotShowLabelInFocus = placeholder && !label;
 
     return (
-      <View style={[styles.inputContainer, inputContainerStyle]}>
+      <_InputContainer style={inputContainerStyle}>
         <TextField
           onChangeText={input && input.onChange}
           value={input && input.value}
+          labelTextStyle={_TextField_labelTextStyle(renderIcon)}
+          inputContainerStyle={_TextField_inputContainerStyle(renderIcon)}
           tintColor={colors.text.primary}
           errorColor={colors.global.errorBackground}
           baseColor={colors.text.primary}
+          onLayout={(event: *): * =>
+            this.setState({ textFieldWidth: event.nativeEvent.layout.width })
+          }
           {...props}
           error={meta && meta.touched && !meta.valid ? meta.error : ''}
           onBlur={input && input.onBlur}
           onFocus={input && input.onFocus}
           labelFontSize={normalize(13)}
-          renderAccessory={secureTextEntry ? this.renderPasswordAccessory : null}
+          renderAccessory={
+            renderIcon
+              ? this.renderIcon
+              : secureTextEntry && !hidePasswordIcon
+              ? this.renderPasswordAccessory
+              : null
+          }
           secureTextEntry={secureTextEntry && !passwordVisible}
+          inputContainerPadding={responsiveSize(12)}
+          labelHeight={responsiveSize(doNotShowLabelInFocus ? 0 : 32)}
+          placeholderTextColor={colors.global.inactive}
+          lineWidth={1.3}
         />
-      </View>
+      </_InputContainer>
     );
   }
 }

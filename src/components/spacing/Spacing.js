@@ -11,21 +11,14 @@ type Props = $ReadOnly<{|
   horizontal?: boolean,
 |}>;
 
-const _default = {
-  size: 12,
-  horizontal: false,
-};
-
 class Spacing extends React.Component<Props, State> {
+  static defaultProps = {
+    size: 12,
+    horizontal: false,
+  };
+
   render(): React.Node {
-    // ─────default props────────────────────────────────────────────────────────────
-    const isNotUndefined = (prop: *): boolean => !(prop === undefined);
-    const { size: _size, horizontal: _horizontal } = this.props;
-    const { size, horizontal }: Props = {
-      size: isNotUndefined(_size) ? _size : _default.size,
-      horizontal: isNotUndefined(_horizontal) ? _horizontal : _default.horizontal,
-    };
-    // ─────default props────────────────────────────────────────────────────────────
+    const { size, horizontal } = this.props;
 
     if (horizontal) {
       return <View style={{ height: '100%', width: responsiveSize(size) }} />;

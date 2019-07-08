@@ -5,13 +5,15 @@ import { REF_RATIO } from './responsive';
 
 const { height, width } = Dimensions.get('window');
 
-export const H = height;
-export const W = width;
+export const SCREEN_HEIGHT = height;
+export const SCREEN_WIDTH = width;
 
 // based on iphone 5s's scale
 const scale = width / 320;
 
-export function normalize(size: number): number {
+export function normalize(size: number | typeof undefined): number {
+  // eslint-disable-next-line no-param-reassign
+  if (!size) size = 11;
   const newSize = size * scale;
   if (Platform.OS === 'ios') {
     return Math.round(PixelRatio.roundToNearestPixel(newSize));
