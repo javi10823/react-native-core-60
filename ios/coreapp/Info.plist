@@ -73,6 +73,9 @@
 		<string>Nunito-Bold.ttf</string>
 		<string>Nunito-Light.ttf</string>
 		<string>Nunito-Regular.ttf</string>
+		<string>NunitoSans-Bold.ttf</string>
+		<string>NunitoSans-Light.ttf</string>
+		<string>NunitoSans-Regular.ttf</string>
 	</array>
 </dict>
 </plist>

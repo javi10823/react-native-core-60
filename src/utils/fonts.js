@@ -1,6 +1,5 @@
 export default {
-  bold: 'Nunito-Bold',
-  regular: 'Nunito-Regular',
-  light: 'Nunito-Light',
-  extraBold: 'Nunito-Extra-Bold',
+  bold: 'NunitoSans-Bold', // bold: 'Nunito-Bold',
+  regular: 'NunitoSans-Regular', // regular: 'Nunito-Regular',
+  light: 'NunitoSans-Light', // light: 'Nunito-Light',
 };
