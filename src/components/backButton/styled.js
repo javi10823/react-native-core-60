@@ -1,12 +1,12 @@
 // @flow
 
 import styled from 'styled-components';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import icon from 'react-native-vector-icons/MaterialIcons';
 import { responsiveSize, normalize } from '../../utils/dimensions';
-import Typography from '../typography';
+import typography from '../typography';
 import Colors from '../../utils/colors';
 
-export const _Container = styled.View(
+export const Container = styled.View(
   (props: Object): Object => ({
     flexDirection: 'row',
     alignItems: 'center',
@@ -14,12 +14,12 @@ export const _Container = styled.View(
   }),
 );
 
-export const _IconContainer = styled.View({
+export const IconContainer = styled.View({
   alignItems: 'center',
   padding: responsiveSize(5),
 });
 
-export const _Icon = styled(Icon)(
+export const Icon = styled(icon)(
   (props: Object): Object => ({
     color: props.color || Colors.global.black,
     fontSize: props.size || normalize(25),
@@ -27,11 +27,11 @@ export const _Icon = styled(Icon)(
   }),
 );
 
-export const _Typography = styled(Typography)(
+export const Typography = styled(typography)(
   (props: Object): Object => ({
     flex: 1,
     marginRight: responsiveSize(35),
-    fontSize: props.size || 18,
+    fontSize: props.size || normalize(18),
     ...props.style,
   }),
 );

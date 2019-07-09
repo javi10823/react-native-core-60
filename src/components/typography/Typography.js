@@ -5,6 +5,7 @@ import { Text } from 'react-native';
 
 import fonts from '../../utils/fonts';
 import { normalize } from '../../utils/dimensions';
+import colors from '../../utils/colors';
 
 type State = {||};
 
@@ -22,7 +23,7 @@ type Props = $ReadOnly<{|
 
 class Typography extends React.Component<Props, State> {
   static defaultProps = {
-    color: 'white',
+    color: colors.global.white,
     children: 'TEXT',
     textAlign: 'center',
     style: {},

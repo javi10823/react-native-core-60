@@ -6,7 +6,7 @@ import { Alert } from 'react-native';
 import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { _Container, _TextContainer, _Button } from './styled';
+import { Container, TextContainer, Button } from './styled';
 import { Spacing, Typography } from '../../components';
 
 import { goToPage, showModal, hideModal, hideAllModals } from '..';
@@ -67,55 +67,55 @@ class Home extends React.Component<Props, State> {
     const { loading } = this.state;
     const { componentId } = this.props;
     return (
-      <_Container>
-        <_TextContainer>
+      <Container>
+        <TextContainer>
           <Typography color={Colors.text.white} size={18}>
             HOME
           </Typography>
-        </_TextContainer>
-        <_Button
+        </TextContainer>
+        <Button
           buttonColor={Colors.global.white}
           textColor={Colors.global.principal}
           text="Component Examples"
           onPress={(): * => goToPage(componentId, 'componentsExample')}
         />
         <Spacing />
-        <_Button
+        <Button
           buttonColor={Colors.global.white}
           textColor={Colors.global.principal}
           text="redux-form example"
           onPress={(): * => goToPage(componentId, 'reduxForm')}
         />
         <Spacing />
-        <_Button
+        <Button
           buttonColor={Colors.global.white}
           textColor={Colors.global.black}
           text="show modal (code way 1)"
           onPress={this.showModalWay1}
         />
         <Spacing />
-        <_Button
+        <Button
           buttonColor={Colors.global.white}
           textColor={Colors.global.errorBackground}
           text="show modal (code way 2)"
           onPress={this.showModalWay2}
         />
         <Spacing />
-        <_Button
+        <Button
           buttonColor={Colors.global.white}
           textColor={Colors.global.principal}
           text="DeviceInfo Example"
           onPress={(): * => goToPage(componentId, 'deviceInfoExample')}
         />
         <Spacing />
-        <_Button
+        <Button
           buttonColor={`${Colors.global.black}80`}
           textColor={Colors.global.white}
           text="Logout"
           onPress={this.logOut}
           loading={loading}
         />
-      </_Container>
+      </Container>
     );
   }
 }

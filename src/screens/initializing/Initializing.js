@@ -13,7 +13,7 @@ import { USER_TOKEN } from '../../../config';
 
 import { initData } from './initData';
 
-import { _Container } from './styled';
+import { Container } from './styled';
 import { waitOneSecond } from '../../utils/seconds';
 
 type State = {|
@@ -48,9 +48,9 @@ class Initializing extends React.Component<Props, State> {
 
   render(): React.Node {
     return (
-      <_Container>
+      <Container>
         <ActivityIndicator size="large" color={colors.principal} />
-      </_Container>
+      </Container>
     );
   }
 }

@@ -3,13 +3,13 @@
 import * as React from 'react';
 import { ActivityIndicator } from 'react-native';
 import {
-  _Button,
-  _ButtonContent,
-  _Label,
-  _Icon,
-  _TextContainer,
-  _SpinnerContainer,
-  _IconRight,
+  Button,
+  ButtonContent,
+  Label,
+  Icon,
+  TextContainer,
+  SpinnerContainer,
+  IconRight,
 } from './styled';
 import fonts from '../../utils/fonts';
 import Image from '../image-on-loading';
@@ -35,7 +35,7 @@ type Props = $ReadOnly<{|
   loading?: boolean,
 |}>;
 
-class __Button extends React.Component<Props, State> {
+class _Button extends React.Component<Props, State> {
   static defaultProps = {
     text: 'Button Text',
     textColor: colors.global.white,
@@ -79,7 +79,7 @@ class __Button extends React.Component<Props, State> {
     } = this.props;
 
     return (
-      <_Button
+      <Button
         onPress={onPress}
         style={[
           {
@@ -90,27 +90,27 @@ class __Button extends React.Component<Props, State> {
         ]}
         disabled={disabled || frozen || loading}
       >
-        <_ButtonContent style={[{ display: loading ? 'none' : 'flex' }]}>
+        <ButtonContent style={[{ display: loading ? 'none' : 'flex' }]}>
           {icon ? (
-            <_Icon style={[iconStyle]}>
+            <Icon style={[iconStyle]}>
               <Image source={icon} />
-            </_Icon>
+            </Icon>
           ) : null}
-          <_TextContainer style={[textContainerStyle]}>
-            <_Label style={[{ color: textColor, fontFamily: fonts.regular }]}>{text}</_Label>
-          </_TextContainer>
+          <TextContainer style={[textContainerStyle]}>
+            <Label style={[{ color: textColor, fontFamily: fonts.regular }]}>{text}</Label>
+          </TextContainer>
           {iconRight ? (
-            <_IconRight style={iconStyle}>
+            <IconRight style={iconStyle}>
               <Image source={iconRight} />
-            </_IconRight>
+            </IconRight>
           ) : null}
-        </_ButtonContent>
-        <_SpinnerContainer style={[{ display: loading ? 'flex' : 'none' }]}>
+        </ButtonContent>
+        <SpinnerContainer style={[{ display: loading ? 'flex' : 'none' }]}>
           <ActivityIndicator color={textColor} />
-        </_SpinnerContainer>
-      </_Button>
+        </SpinnerContainer>
+      </Button>
     );
   }
 }
 
-export default __Button;
+export default _Button;

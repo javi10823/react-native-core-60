@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { View, TouchableOpacity, Image } from 'react-native';
+import { Image } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 
 import seeIcon from './see.png';
@@ -11,12 +11,12 @@ import { normalize, responsiveSize } from '../../utils/dimensions';
 import colors from '../../utils/colors';
 
 import {
-  _InputContainer,
-  _IconContainer,
-  _PassAccesoryContainer,
-  _RenderIconImage,
-  _TextField_labelTextStyle,
-  _TextField_inputContainerStyle,
+  InputContainer,
+  IconContainer,
+  PassAccesoryContainer,
+  RenderIconImage,
+  TextField_labelTextStyle,
+  TextField_inputContainerStyle,
 } from './styled';
 
 type State = {|
@@ -58,18 +58,18 @@ class InputTextField extends React.Component<Props, State> {
     const { renderIcon } = this.props;
 
     return (
-      <_IconContainer textFieldWidth={textFieldWidth}>
-        <_RenderIconImage source={renderIcon} />
-      </_IconContainer>
+      <IconContainer textFieldWidth={textFieldWidth}>
+        <RenderIconImage source={renderIcon} />
+      </IconContainer>
     );
   };
 
   renderPasswordAccessory = (): * => {
     const { passwordVisible } = this.state;
     return (
-      <_PassAccesoryContainer onPress={this.togglePasswordVisibility}>
+      <PassAccesoryContainer onPress={this.togglePasswordVisibility}>
         <Image source={passwordVisible ? dontSeeIcon : seeIcon} />
-      </_PassAccesoryContainer>
+      </PassAccesoryContainer>
     );
   };
 
@@ -88,12 +88,12 @@ class InputTextField extends React.Component<Props, State> {
     const doNotShowLabelInFocus = placeholder && !label;
 
     return (
-      <_InputContainer style={inputContainerStyle}>
+      <InputContainer style={inputContainerStyle}>
         <TextField
           onChangeText={input && input.onChange}
           value={input && input.value}
-          labelTextStyle={_TextField_labelTextStyle(renderIcon)}
-          inputContainerStyle={_TextField_inputContainerStyle(renderIcon)}
+          labelTextStyle={TextField_labelTextStyle(renderIcon)}
+          inputContainerStyle={TextField_inputContainerStyle(renderIcon)}
           tintColor={colors.text.primary}
           errorColor={colors.global.errorBackground}
           baseColor={colors.text.primary}
@@ -118,7 +118,7 @@ class InputTextField extends React.Component<Props, State> {
           placeholderTextColor={colors.global.inactive}
           lineWidth={1.3}
         />
-      </_InputContainer>
+      </InputContainer>
     );
   }
 }

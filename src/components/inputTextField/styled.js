@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import styled from 'styled-components';
 import { responsiveSize } from '../../utils/dimensions';
 
-export const _InputContainer = styled.View(
+export const InputContainer = styled.View(
   (props: Object): Object => ({
     position: 'relative',
     width: '100%',
@@ -12,7 +12,7 @@ export const _InputContainer = styled.View(
   }),
 );
 
-export const _IconContainer = styled.View(
+export const IconContainer = styled.View(
   (props: Object): Object => ({
     height: responsiveSize(30),
     width: responsiveSize(30),
@@ -25,7 +25,7 @@ export const _IconContainer = styled.View(
   }),
 );
 
-export const _PassAccesoryContainer = styled.TouchableOpacity(
+export const PassAccesoryContainer = styled.TouchableOpacity(
   (props: Object): Object => ({
     height: responsiveSize(50),
     width: responsiveSize(50),
@@ -36,7 +36,7 @@ export const _PassAccesoryContainer = styled.TouchableOpacity(
   }),
 );
 
-export const _RenderIconImage = styled.Image(
+export const RenderIconImage = styled.Image(
   (props: Object): Object => ({
     width: responsiveSize(25),
     height: responsiveSize(25),
@@ -44,14 +44,12 @@ export const _RenderIconImage = styled.Image(
   }),
 );
 
-export const _TextField_labelTextStyle = (
-  renderIcon: boolean | number | typeof undefined,
-): Object =>
+export const TextField_labelTextStyle = (renderIcon: boolean | number | typeof undefined): Object =>
   StyleSheet.create({
     marginLeft: responsiveSize(renderIcon ? 35 : 0),
   });
 
-export const _TextField_inputContainerStyle = (
+export const TextField_inputContainerStyle = (
   renderIcon: boolean | number | typeof undefined,
 ): Object =>
   StyleSheet.create({
