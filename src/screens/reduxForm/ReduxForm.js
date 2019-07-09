@@ -56,8 +56,8 @@ class ReduxForm extends React.Component<Props, State> {
             type="input"
             validate={[required]}
             component={InputTextField}
-            baseColor="white"
-            tintColor="white"
+            baseColor={colors.global.white}
+            tintColor={colors.global.white}
             placeholder="John"
             labelPadding={16}
             inputContainerPadding={2}
@@ -70,8 +70,8 @@ class ReduxForm extends React.Component<Props, State> {
             type="input"
             validate={[required]}
             component={InputTextField}
-            baseColor="white"
-            tintColor="white"
+            baseColor={colors.global.white}
+            tintColor={colors.global.white}
             placeholder="Doe"
             labelPadding={16}
             inputContainerPadding={2}

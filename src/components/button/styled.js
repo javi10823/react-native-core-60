@@ -1,13 +1,13 @@
 // @flow
 
 import styled from 'styled-components';
-import { responsiveSize } from '../../utils/dimensions';
+import { responsiveSize, normalize } from '../../utils/dimensions';
 
 export const Button = styled.TouchableOpacity({
   flexDirection: 'row',
   justifyContent: 'center',
-  paddingTop: 5,
-  paddingBottom: 5,
+  paddingTop: responsiveSize(5),
+  paddingBottom: responsiveSize(5),
   borderRadius: 8,
   height: 55,
   alignItems: 'center',
@@ -28,7 +28,7 @@ export const ButtonContent = styled.View({
 
 export const Label = styled.Text({
   textAlign: 'center',
-  fontSize: 15,
+  fontSize: normalize(15),
   fontWeight: '400',
 });
 

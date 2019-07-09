@@ -22,7 +22,7 @@ export const ComponentsContainer = styled.View({
 export const ButtonSignIn = styled(Button)({
   borderColor: colors.global.white,
   borderWidth: 2,
-  backgroundColor: 'transparent',
+  backgroundColor: colors.global.transparent,
   borderRadius: 5,
   width: '100%',
 });

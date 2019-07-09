@@ -41,7 +41,7 @@ class BackButton extends React.Component<Props, State> {
             <Icon name="arrow-back" size={size} color={iconColor} style={iconStyle} />
           </IconContainer>
           {!!text && (
-            <Typography style={textStyle} size={textSize} color="white">
+            <Typography style={textStyle} size={textSize} color={colors.global.white}>
               {text}
             </Typography>
           )}

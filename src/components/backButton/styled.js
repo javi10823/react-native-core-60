@@ -31,7 +31,7 @@ export const Typography = styled(typography)(
   (props: Object): Object => ({
     flex: 1,
     marginRight: responsiveSize(35),
-    fontSize: props.size || 18,
+    fontSize: props.size || normalize(18),
     ...props.style,
   }),
 );
