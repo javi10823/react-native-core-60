@@ -28,6 +28,7 @@ type Props = $ReadOnly<{|
   ...InternalProps,
   componentId: string,
   initDataConnected: Function,
+  theme: string,
 |}>;
 
 class Initializing extends React.Component<Props, State> {
@@ -47,9 +48,10 @@ class Initializing extends React.Component<Props, State> {
   }
 
   render(): React.Node {
+    const { theme } = this.props;
     return (
       <Container>
-        <ActivityIndicator size="large" color={colors.principal} />
+        <ActivityIndicator size="large" color={colors.primaryText(theme)} />
       </Container>
     );
   }

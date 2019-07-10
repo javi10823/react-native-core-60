@@ -1,8 +1,7 @@
 // @flow
 
 import { Navigation } from 'react-native-navigation';
-import { Provider } from 'react-redux';
-import store from '../store';
+import registerScreen from '../utils/themeProvider';
 import Welcome from './welcome';
 import ComponentsExample from './componentsExample';
 import Home from './home';
@@ -74,13 +73,12 @@ export const hideModal = async (componentId: string): * =>
   Navigation.dismissModal(componentId).catch(() => {});
 
 // register all screens of the app (including internal ones)
-// prettier-ignore
 export function registerScreens() {
-  Navigation.registerComponentWithRedux( 'initializing', (): * => Initializing, Provider, store );
-  Navigation.registerComponentWithRedux( 'loading', (): * => Loading, Provider, store );
-  Navigation.registerComponentWithRedux( 'welcome', (): * => Welcome, Provider, store );
-  Navigation.registerComponentWithRedux( 'home', (): * => Home, Provider, store );
-  Navigation.registerComponentWithRedux( 'componentsExample', (): * => ComponentsExample, Provider, store );
-  Navigation.registerComponentWithRedux( 'reduxForm', (): * => ReduxForm, Provider, store );
-  Navigation.registerComponentWithRedux( 'deviceInfoExample', (): * => DeviceInfoExample, Provider, store );
+  registerScreen('initializing', Initializing);
+  registerScreen('loading', Loading);
+  registerScreen('welcome', Welcome);
+  registerScreen('home', Home);
+  registerScreen('componentsExample', ComponentsExample);
+  registerScreen('reduxForm', ReduxForm);
+  registerScreen('deviceInfoExample', DeviceInfoExample);
 }

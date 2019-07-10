@@ -10,6 +10,7 @@ import { Container, Content } from './styled';
 import { BackButton, Spacing, Typography } from '../../components';
 
 import { goBack } from '..';
+import colors from '../../utils/colors';
 
 type State = {||};
 
@@ -20,52 +21,58 @@ type InternalProps = $ReadOnly<{||}>;
 type Props = $ReadOnly<{|
   ...InternalProps,
   componentId: string,
+  theme: string,
 |}>;
 
 class DeviceInfoExample extends React.Component<Props, State> {
   render(): React.Node {
-    const { componentId } = this.props;
+    const { componentId, theme } = this.props;
+
+    const textColor = colors.primaryText(theme);
+
     return (
       <Container>
         <BackButton
-          onPress={() => {
-            goBack(componentId);
-          }}
+          onPress={(): * => goBack(componentId)}
+          theme={theme}
           text="rn device info example"
         />
         <Content>
-          <Typography size={13}>{`DeviceInfo.getApplicationName() ->`}</Typography>
-          <Typography size={15} bold>
+          <Typography
+            color={textColor}
+            size={13}
+          >{`DeviceInfo.getApplicationName() ->`}</Typography>
+          <Typography color={textColor} size={15} bold>
             {DeviceInfo.getApplicationName()}
           </Typography>
           <Spacing />
-          <Typography size={13}>{`DeviceInfo.getBuildNumber() ->`}</Typography>
-          <Typography size={15} bold>
+          <Typography color={textColor} size={13}>{`DeviceInfo.getBuildNumber() ->`}</Typography>
+          <Typography color={textColor} size={15} bold>
             {DeviceInfo.getBuildNumber()}
           </Typography>
           <Spacing />
-          <Typography size={13}>{`DeviceInfo.getBundleId() ->`}</Typography>
-          <Typography size={15} bold>
+          <Typography color={textColor} size={13}>{`DeviceInfo.getBundleId() ->`}</Typography>
+          <Typography color={textColor} size={15} bold>
             {DeviceInfo.getBundleId()}
           </Typography>
           <Spacing />
-          <Typography size={13}>{`DeviceInfo.getDeviceName() ->`}</Typography>
-          <Typography size={15} bold>
+          <Typography color={textColor} size={13}>{`DeviceInfo.getDeviceName() ->`}</Typography>
+          <Typography color={textColor} size={15} bold>
             {DeviceInfo.getDeviceName()}
           </Typography>
           <Spacing />
-          <Typography size={13}>{`DeviceInfo.getTimezone() ->`}</Typography>
-          <Typography size={15} bold>
+          <Typography color={textColor} size={13}>{`DeviceInfo.getTimezone() ->`}</Typography>
+          <Typography color={textColor} size={15} bold>
             {DeviceInfo.getTimezone()}
           </Typography>
           <Spacing />
-          <Typography size={13}>{`DeviceInfo.isEmulator() ->`}</Typography>
-          <Typography size={15} bold>
+          <Typography color={textColor} size={13}>{`DeviceInfo.isEmulator() ->`}</Typography>
+          <Typography color={textColor} size={15} bold>
             {String(DeviceInfo.isEmulator())}
           </Typography>
           <Spacing />
-          <Typography size={13}>{`DeviceInfo.getDeviceType() ->`}</Typography>
-          <Typography size={15} bold>
+          <Typography color={textColor} size={13}>{`DeviceInfo.getDeviceType() ->`}</Typography>
+          <Typography color={textColor} size={15} bold>
             {DeviceInfo.getDeviceType()}
           </Typography>
           <Spacing />

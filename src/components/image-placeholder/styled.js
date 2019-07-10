@@ -8,7 +8,7 @@ export const Placeholder = styled.View(
   (props: Object): Object => ({
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.global.athensGray,
+    backgroundColor: colors.backgroundPrincipal(props),
     position: 'absolute',
     top: 0,
     bottom: 0,

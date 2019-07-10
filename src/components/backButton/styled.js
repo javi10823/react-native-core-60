@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import icon from 'react-native-vector-icons/MaterialIcons';
 import { responsiveSize, normalize } from '../../utils/dimensions';
 import typography from '../typography';
-import Colors from '../../utils/colors';
+import colors from '../../utils/colors';
 
 export const Container = styled.View(
   (props: Object): Object => ({
@@ -14,14 +14,17 @@ export const Container = styled.View(
   }),
 );
 
-export const IconContainer = styled.View({
-  alignItems: 'center',
-  padding: responsiveSize(5),
-});
+export const IconContainer = styled.View(
+  (props: Object): Object => ({
+    alignItems: 'center',
+    padding: responsiveSize(5),
+    ...props.style,
+  }),
+);
 
 export const Icon = styled(icon)(
   (props: Object): Object => ({
-    color: props.color || Colors.global.black,
+    color: props.color || colors.primaryText(props),
     fontSize: props.size || normalize(25),
     ...props.style,
   }),

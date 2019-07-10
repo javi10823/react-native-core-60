@@ -46,7 +46,7 @@ class ImagePlaceholder extends React.Component<Props, State> {
           {...this.props}
           onLoad={this.onLoad}
           onLoadEnd={(): * => this.setState({ loaded: true })}
-          style={[{ opacity }, style || {}]}
+          style={[{ opacity }, style]}
         />
       </View>
     );

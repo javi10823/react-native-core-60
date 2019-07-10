@@ -25,30 +25,31 @@ type InternalProps = $ReadOnly<{||}>;
 type Props = $ReadOnly<{|
   ...InternalProps,
   componentId: string,
+  theme: string,
 |}>;
 
 class ComponentsExample extends React.Component<Props, State> {
   static options = (): * => ({ topBar: { visible: false, height: 0 } });
 
   render(): React.Node {
-    const { componentId } = this.props;
+    const { componentId, theme } = this.props;
     return (
       <Container>
         <ComponentsContainer>
           <Spacing size={32} />
           <ButtonSignUp
             text="Go back"
-            textColor={colors.global.principal}
+            textColor={colors.primaryText(theme)}
             onPress={(): * => goBack(componentId)}
           />
           <Spacing />
-          <Typography color={colors.global.white} size={18}>
+          <Typography color={colors.primaryText(theme)} size={18}>
             Typography example
           </Typography>
           <Spacing />
           <ButtonSignIn text="BUTTON EXAMPLE 1" />
           <Spacing />
-          <ButtonSignUp text="BUTTON EXAMPLE 2" textColor={colors.global.principal} />
+          <ButtonSignUp text="BUTTON EXAMPLE 2" textColor={colors.primaryText(theme)} />
           <Spacing />
           <ImageContainer>
             <ImageStyle
