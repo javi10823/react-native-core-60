@@ -19,11 +19,12 @@ type Props = $ReadOnly<{|
   bold?: boolean,
   onPress?: Function,
   noUnderline?: boolean,
+  theme: string,
 |}>;
 
 class Typography extends React.Component<Props, State> {
   static defaultProps = {
-    color: colors.global.white,
+    color: null,
     children: 'TEXT',
     textAlign: 'center',
     style: {},
@@ -41,6 +42,7 @@ class Typography extends React.Component<Props, State> {
       bold,
       onPress,
       noUnderline,
+      theme,
       ...props
     } = this.props;
 
@@ -49,7 +51,7 @@ class Typography extends React.Component<Props, State> {
         {...props}
         style={[
           {
-            color,
+            color: color || colors.primaryText(theme),
             fontSize: normalize(size),
             textAlign,
             fontFamily: font || fonts.regular,

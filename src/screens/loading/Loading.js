@@ -18,6 +18,7 @@ type InternalProps = $ReadOnly<{|
 type Props = $ReadOnly<{|
   ...InternalProps,
   componentId: string,
+  theme: string,
 |}>;
 
 class Loading extends React.Component<Props, State> {
@@ -27,9 +28,10 @@ class Loading extends React.Component<Props, State> {
   }
 
   render(): React.Node {
+    const { theme } = this.props;
     return (
       <Container>
-        <ActivityIndicator size="large" color={colors.global.white} />
+        <ActivityIndicator size="large" color={colors.primaryText(theme)} />
       </Container>
     );
   }

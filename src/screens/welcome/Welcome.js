@@ -9,7 +9,7 @@ import Spacing from '../../components/spacing';
 import { Container, TextContainer, Button, LogoContainer } from './styled';
 
 import { goToPage } from '..';
-import Colors from '../../utils/colors';
+import colors from '../../utils/colors';
 import { logIn } from '../../actions/auth';
 
 import NextDotsLogo from '../../assets/images/common/nextDotsLogo.png';
@@ -27,6 +27,7 @@ type Props = $ReadOnly<{|
   componentId: string,
   logInConnected: Function,
   loginError: Object,
+  theme: string,
 |}>;
 
 class Welcome extends React.Component<Props, State> {
@@ -46,21 +47,22 @@ class Welcome extends React.Component<Props, State> {
 
   render(): React.Node {
     const { loading } = this.state;
+    const { theme } = this.props;
     return (
       <Container>
         <LogoContainer onPress={(): * => Linking.openURL('http://nextdots.com/')}>
           <Image source={NextDotsLogo} style={{ width: '100%' }} resizeMode="contain" />
         </LogoContainer>
         <TextContainer>
-          <Typography color={Colors.text.white} size={18}>
+          <Typography color={colors.primaryText(theme)} size={18}>
             {`React Native BoilerPlate\nJunio 2019 0.59`}
           </Typography>
           <Spacing />
-          <Typography color={Colors.text.white}>nextdots.com</Typography>
+          <Typography color={colors.primaryText(theme)}>nextdots.com</Typography>
         </TextContainer>
         <Button
-          buttonColor={Colors.global.white}
-          textColor={Colors.text.primary}
+          buttonColor={colors.primary(theme)}
+          textColor={colors.primaryText(theme)}
           text="Ingresar"
           onPress={this.logIn}
           loading={loading}

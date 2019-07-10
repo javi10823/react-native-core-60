@@ -10,8 +10,9 @@ import { Container, TextContainer, Button } from './styled';
 import { Spacing, Typography } from '../../components';
 
 import { goToPage, showModal, hideModal, hideAllModals } from '..';
-import Colors from '../../utils/colors';
 import { logOut } from '../../actions/auth';
+import colors from '../../utils/colors';
+import { DARK, LIGHT } from '../../utils/constants';
 
 type State = {|
   loading: boolean,
@@ -26,6 +27,8 @@ type Props = $ReadOnly<{|
   componentId: string,
   logOutConnected: Function,
   logoutError: Object,
+  setTheme: Function,
+  theme: string,
 |}>;
 
 class Home extends React.Component<Props, State> {
@@ -65,52 +68,67 @@ class Home extends React.Component<Props, State> {
 
   render(): React.Node {
     const { loading } = this.state;
-    const { componentId } = this.props;
+    const { componentId, setTheme, theme } = this.props;
+
     return (
       <Container>
         <TextContainer>
-          <Typography color={Colors.text.white} size={18}>
+          <Typography color={colors.primaryText(theme)} size={18}>
             HOME
           </Typography>
         </TextContainer>
         <Button
-          buttonColor={Colors.global.white}
-          textColor={Colors.global.principal}
+          buttonColor={colors.primary(theme)}
+          textColor={colors.primaryText(theme)}
           text="Component Examples"
           onPress={(): * => goToPage(componentId, 'componentsExample')}
         />
         <Spacing />
         <Button
-          buttonColor={Colors.global.white}
-          textColor={Colors.global.principal}
+          buttonColor={colors.primary(theme)}
+          textColor={colors.primaryText(theme)}
           text="redux-form example"
           onPress={(): * => goToPage(componentId, 'reduxForm')}
         />
         <Spacing />
         <Button
-          buttonColor={Colors.global.white}
-          textColor={Colors.global.black}
+          buttonColor={colors.primary(theme)}
+          textColor={colors.primaryText(theme)}
           text="show modal (code way 1)"
           onPress={this.showModalWay1}
         />
         <Spacing />
         <Button
-          buttonColor={Colors.global.white}
-          textColor={Colors.global.errorBackground}
+          buttonColor={colors.primary(theme)}
+          textColor={colors.errorText(theme)}
           text="show modal (code way 2)"
           onPress={this.showModalWay2}
         />
         <Spacing />
         <Button
-          buttonColor={Colors.global.white}
-          textColor={Colors.global.principal}
+          buttonColor={colors.primary(theme)}
+          textColor={colors.primaryText(theme)}
           text="DeviceInfo Example"
           onPress={(): * => goToPage(componentId, 'deviceInfoExample')}
         />
         <Spacing />
         <Button
-          buttonColor={`${Colors.global.black}80`}
-          textColor={Colors.global.white}
+          buttonColor={colors.primary(theme)}
+          textColor={colors.primaryText(theme)}
+          text="Set dark theme"
+          onPress={(): * => setTheme(DARK)}
+        />
+        <Spacing />
+        <Button
+          buttonColor={colors.primary(theme)}
+          textColor={colors.primaryText(theme)}
+          text="Set light theme"
+          onPress={(): * => setTheme(LIGHT)}
+        />
+        <Spacing />
+        <Button
+          buttonColor={colors.opacity(theme)}
+          textColor={colors.primaryText(theme)}
           text="Logout"
           onPress={this.logOut}
           loading={loading}

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Alert } from 'react-native';
 
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, compose } from 'redux';
 import { Field, reduxForm, change } from 'redux-form';
 import { connect } from 'react-redux';
 
@@ -31,6 +31,7 @@ type Props = $ReadOnly<{|
   changeFieldValue: Function,
   handleSubmit: Function,
   valid: boolean,
+  theme: string,
 |}>;
 
 class ReduxForm extends React.Component<Props, State> {
@@ -45,10 +46,15 @@ class ReduxForm extends React.Component<Props, State> {
   };
 
   render(): React.Node {
-    const { componentId, handleSubmit, valid: fieldsValid } = this.props;
+    const { componentId, handleSubmit, valid: fieldsValid, theme } = this.props;
     return (
       <Container>
-        <BackButton onPress={(): * => goBack(componentId)} text="redux-form example" />
+        <BackButton
+          onPress={(): * => goBack(componentId)}
+          text="redux-form example"
+          theme={theme}
+          iconColor={colors.primaryText(theme)}
+        />
         <Content>
           <Field
             name="firstName"
@@ -56,12 +62,13 @@ class ReduxForm extends React.Component<Props, State> {
             type="input"
             validate={[required]}
             component={InputTextField}
-            baseColor={colors.global.white}
-            tintColor={colors.global.white}
+            baseColor={colors.primary(theme)}
+            tintColor={colors.primaryText(theme)}
             placeholder="John"
             labelPadding={16}
             inputContainerPadding={2}
             disabledLineWidth={0}
+            theme={theme}
           />
           <Spacing />
           <Field
@@ -70,24 +77,25 @@ class ReduxForm extends React.Component<Props, State> {
             type="input"
             validate={[required]}
             component={InputTextField}
-            baseColor={colors.global.white}
-            tintColor={colors.global.white}
+            baseColor={colors.primary(theme)}
+            tintColor={colors.primaryText(theme)}
             placeholder="Doe"
             labelPadding={16}
             inputContainerPadding={2}
             disabledLineWidth={0}
             secureTextEntry
+            theme={theme}
           />
           <Spacing />
           <Button
             text="Setear data"
-            buttonColor={colors.global.black + 80}
+            buttonColor={colors.opacity(theme)}
             onPress={this.setDefaultData}
           />
           <Spacing />
           <Button
             text="Hacer algo"
-            buttonColor={colors.global.black + 80}
+            buttonColor={colors.opacity(theme)}
             onPress={handleSubmit(this.doSomething)}
             disabled={!fieldsValid}
           />
@@ -118,8 +126,10 @@ export default reduxForm({
   form: 'form_name_example',
   destroyOnUnmount: true,
 })(
-  connect<Props, InternalProps, *, *, *, *>(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(ReduxForm),
+  compose(
+    connect<Props, InternalProps, *, *, *, *>(
+      mapStateToProps,
+      mapDispatchToProps,
+    )(ReduxForm),
+  ),
 );

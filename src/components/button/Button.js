@@ -14,6 +14,7 @@ import {
 import fonts from '../../utils/fonts';
 import Image from '../image-on-loading';
 import colors from '../../utils/colors';
+import store from '../../store';
 
 type State = {|
   loading: boolean,
@@ -33,13 +34,14 @@ type Props = $ReadOnly<{|
   disabledMoreVisible?: boolean,
   frozen?: boolean,
   loading?: boolean,
+  theme: string,
 |}>;
 
 class _Button extends React.Component<Props, State> {
   static defaultProps = {
     text: 'Button Text',
-    textColor: colors.global.white,
-    buttonColor: colors.global.black,
+    textColor: null,
+    buttonColor: null,
     style: { width: '80%' },
     iconStyle: {},
     textContainerStyle: {},
@@ -64,8 +66,8 @@ class _Button extends React.Component<Props, State> {
     const { loading: stateLoading } = this.state;
     const {
       text,
-      textColor,
-      buttonColor,
+      textColor = colors.primaryText(store.getState().theme.themeSelected),
+      buttonColor = colors.primary(store.getState().theme.themeSelected),
       onPress,
       style,
       iconStyle,
@@ -86,13 +88,13 @@ class _Button extends React.Component<Props, State> {
             backgroundColor: buttonColor,
             opacity: !(disabled || frozen || loading) ? 1 : disabledMoreVisible ? 0.6 : 0.3,
           },
-          style,
+          style && style.length === 1 ? style[0] : style,
         ]}
         disabled={disabled || frozen || loading}
       >
         <ButtonContent style={[{ display: loading ? 'none' : 'flex' }]}>
           {icon ? (
-            <Icon style={[iconStyle]}>
+            <Icon style={iconStyle}>
               <Image source={icon} />
             </Icon>
           ) : null}

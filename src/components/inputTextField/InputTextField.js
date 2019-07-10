@@ -31,6 +31,7 @@ type Props = $ReadOnly<{|
   inputContainerStyle?: Object,
   renderIcon?: number,
   hidePasswordIcon?: boolean,
+  theme?: string,
   // ────────────────
   label?: string,
   placeholder?: string,
@@ -84,7 +85,7 @@ class InputTextField extends React.Component<Props, State> {
       hidePasswordIcon,
       ...props
     } = this.props;
-    const { placeholder, label } = this.props;
+    const { placeholder, label, theme } = this.props;
     const doNotShowLabelInFocus = placeholder && !label;
 
     return (
@@ -94,9 +95,9 @@ class InputTextField extends React.Component<Props, State> {
           value={input && input.value}
           labelTextStyle={TextField_labelTextStyle(renderIcon)}
           inputContainerStyle={TextField_inputContainerStyle(renderIcon)}
-          tintColor={colors.text.primary}
-          errorColor={colors.global.errorBackground}
-          baseColor={colors.text.primary}
+          tintColor={colors.primaryText(theme)}
+          errorColor={colors.error(theme)}
+          baseColor={colors.primary(theme)}
           onLayout={(event: *): * =>
             this.setState({ textFieldWidth: event.nativeEvent.layout.width })
           }
@@ -115,7 +116,7 @@ class InputTextField extends React.Component<Props, State> {
           secureTextEntry={secureTextEntry && !passwordVisible}
           inputContainerPadding={responsiveSize(12)}
           labelHeight={responsiveSize(doNotShowLabelInFocus ? 0 : 32)}
-          placeholderTextColor={colors.global.inactive}
+          placeholderTextColor={colors.inactive(theme)}
           lineWidth={1.3}
         />
       </InputContainer>
