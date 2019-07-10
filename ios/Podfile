@@ -39,6 +39,8 @@ target 'coreapp' do
 
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
 
+  pod 'SentryReactNative', :path => '../node_modules/react-native-sentry'
+
 end
 
 post_install do |installer|

@@ -3,6 +3,7 @@ package com.coreapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import io.sentry.RNSentryPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -45,6 +46,7 @@ public class MainApplication extends NavigationApplication {
           return Arrays.<ReactPackage>asList(
               new RNDeviceInfo(),
               new AsyncStoragePackage(),
+              new RNSentryPackage(),
               new VectorIconsPackage()
           );
       }

@@ -58,7 +58,7 @@ class ReduxForm extends React.Component<Props, State> {
         <Content>
           <Field
             name="firstName"
-            label="Nombre"
+            label="Firstname"
             type="input"
             validate={[required]}
             component={InputTextField}
@@ -73,7 +73,7 @@ class ReduxForm extends React.Component<Props, State> {
           <Spacing />
           <Field
             name="lastName"
-            label="Apellido"
+            label="Lastname"
             type="input"
             validate={[required]}
             component={InputTextField}
@@ -88,13 +88,13 @@ class ReduxForm extends React.Component<Props, State> {
           />
           <Spacing />
           <Button
-            text="Setear data"
+            text="Set data in fields"
             buttonColor={colors.opacity(theme)}
             onPress={this.setDefaultData}
           />
           <Spacing />
           <Button
-            text="Hacer algo"
+            text="Do something"
             buttonColor={colors.opacity(theme)}
             onPress={handleSubmit(this.doSomething)}
             disabled={!fieldsValid}
