@@ -6,7 +6,6 @@ import { Text } from 'react-native';
 import fonts from '../../utils/fonts';
 import { normalize } from '../../utils/dimensions';
 import colors from '../../utils/colors';
-import { DEFAULT_THEME_COLOR } from '../../../config';
 
 type State = {||};
 

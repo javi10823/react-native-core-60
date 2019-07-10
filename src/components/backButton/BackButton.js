@@ -5,7 +5,6 @@ import { TouchableOpacity } from 'react-native';
 import { normalize } from '../../utils/dimensions';
 import { Icon, Typography, Container, IconContainer } from './styled';
 import colors from '../../utils/colors';
-import { DEFAULT_THEME_COLOR } from '../../../config';
 
 type State = {||};
 
