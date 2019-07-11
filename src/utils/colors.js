@@ -1,15 +1,19 @@
+/* eslint-disable no-param-reassign */
 // @flow
 
 import theme from 'styled-theming';
 import { MODE, LIGHT, DARK } from './constants';
+import store from '../store';
+
+export const getThemeSelectedFromStore = (): * => store.getState().theme.themeSelected;
 
 const getThemeColor = (lightColor: string, darkColor: string, props: *): * => {
-  // eslint-disable-next-line no-param-reassign
   if (props === DARK || props === LIGHT) props = { theme: { [MODE]: props } };
+  else if (!props) props = { theme: { [MODE]: getThemeSelectedFromStore() } };
   return theme(MODE, { [LIGHT]: lightColor, [DARK]: darkColor })(props);
 };
 
-// ────────── ↓↓↓↓ only colors in hex and get the name from "chir.ag/projects/name-that-color"  ↓↓↓↓ ──────────
+// ────────── ↓↓↓↓ only colors in hex ↓↓↓↓ ──────────
 // prettier-ignore
 export default {                                      // LIGHT      DARK
   backgroundPrincipal:  (props: *): * => getThemeColor('#E0E0E0', '#424242', props),

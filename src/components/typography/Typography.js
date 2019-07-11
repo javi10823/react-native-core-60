@@ -9,7 +9,7 @@ import colors from '../../utils/colors';
 
 type State = {||};
 
-type Props = $ReadOnly<{|
+type Props = {|
   color?: string,
   children?: string,
   textAlign?: 'auto' | 'left' | 'right' | 'center' | 'justify',
@@ -19,16 +19,19 @@ type Props = $ReadOnly<{|
   bold?: boolean,
   onPress?: Function,
   noUnderline?: boolean,
-  theme: string,
-|}>;
+|};
 
-class Typography extends React.Component<Props, State> {
+class _Typography extends React.Component<Props, State> {
   static defaultProps = {
-    color: null,
     children: 'TEXT',
     textAlign: 'center',
     style: {},
     size: 11,
+    color: undefined,
+    font: undefined,
+    bold: undefined,
+    onPress: undefined,
+    noUnderline: undefined,
   };
 
   render(): React.Node {
@@ -42,7 +45,6 @@ class Typography extends React.Component<Props, State> {
       bold,
       onPress,
       noUnderline,
-      theme,
       ...props
     } = this.props;
 
@@ -51,7 +53,7 @@ class Typography extends React.Component<Props, State> {
         {...props}
         style={[
           {
-            color: color || colors.primaryText(theme),
+            color: color || colors.primaryText(),
             fontSize: normalize(size),
             textAlign,
             fontFamily: font || fonts.regular,
@@ -69,4 +71,4 @@ class Typography extends React.Component<Props, State> {
   }
 }
 
-export default Typography;
+export const Typography: typeof _Typography = _Typography;

@@ -4,12 +4,12 @@ import styled from 'styled-components';
 import { responsiveSize } from '../../utils/dimensions';
 import colors from '../../utils/colors';
 // ────────────────────────────────────
-import button from '../../components/button';
+import { Button as button } from '../../components';
 
 export const Container = styled.SafeAreaView(
   (props: Object): Object => ({
     flex: 1,
-    backgroundColor: colors.backgroundPrincipal(props),
+    backgroundColor: colors.backgroundPrincipal(),
     justifyContent: 'center',
     alignItems: 'center',
     ...props.style,

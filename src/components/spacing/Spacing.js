@@ -6,12 +6,12 @@ import { responsiveSize } from '../../utils/dimensions';
 
 type State = {||};
 
-type Props = $ReadOnly<{|
+type Props = {|
   size?: number,
   horizontal?: boolean,
-|}>;
+|};
 
-class Spacing extends React.Component<Props, State> {
+class _Spacing extends React.Component<Props, State> {
   static defaultProps = {
     size: 12,
     horizontal: false,
@@ -27,4 +27,4 @@ class Spacing extends React.Component<Props, State> {
   }
 }
 
-export default Spacing;
+export const Spacing: typeof _Spacing = _Spacing;

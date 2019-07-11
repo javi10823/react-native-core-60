@@ -2,13 +2,13 @@
 
 import styled from 'styled-components';
 import { responsiveSize } from '../../utils/dimensions';
-import button from '../../components/button';
+import { Button as button } from '../../components';
 import colors from '../../utils/colors';
 
 export const Container = styled.View(
   (props: Object): Object => ({
     flex: 1,
-    backgroundColor: colors.backgroundPrincipal(props),
+    backgroundColor: colors.backgroundPrincipal(),
     justifyContent: 'center',
     alignItems: 'center',
     ...props.style,

@@ -1,3 +1,5 @@
-import InputTextField from './InputTextField';
+// @flow
+
+import { InputTextField } from './InputTextField';
 
 export default InputTextField;

@@ -1,3 +1,5 @@
-import ImagePlaceHolder from './ImagePlaceHolder';
+// @flow
 
-export default ImagePlaceHolder;
+import { ImagePlaceholder } from './ImagePlaceHolder';
+
+export default ImagePlaceholder;

@@ -1,4 +1,5 @@
-/* eslint-disable import/no-cycle */
+// @flow
+
 import Home from './Home';
 
 export default Home;

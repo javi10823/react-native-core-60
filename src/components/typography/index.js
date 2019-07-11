@@ -1,3 +1,5 @@
-import Typography from './Typography';
+// @flow
+
+import { Typography } from './Typography';
 
 export default Typography;

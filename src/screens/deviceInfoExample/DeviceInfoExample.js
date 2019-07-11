@@ -15,28 +15,23 @@ import colors from '../../utils/colors';
 type State = {||};
 
 // comingFromOutside
-type InternalProps = $ReadOnly<{||}>;
+type InternalProps = {||};
 
 // comingFromConnect
-type Props = $ReadOnly<{|
+type Props = {|
   ...InternalProps,
   componentId: string,
-  theme: string,
-|}>;
+|};
 
 class DeviceInfoExample extends React.Component<Props, State> {
   render(): React.Node {
-    const { componentId, theme } = this.props;
+    const { componentId } = this.props;
 
-    const textColor = colors.primaryText(theme);
+    const textColor = colors.primaryText();
 
     return (
       <Container>
-        <BackButton
-          onPress={(): * => goBack(componentId)}
-          theme={theme}
-          text="rn device info example"
-        />
+        <BackButton onPress={(): * => goBack(componentId)} text="Device info example" />
         <Content>
           <Typography
             color={textColor}
@@ -84,7 +79,7 @@ class DeviceInfoExample extends React.Component<Props, State> {
 
 // eslint-disable-next-line no-unused-vars
 const mapStateToProps = (state: *): * => ({
-  // spaces: store.spaces.spaces,
+  themeSelected: state.theme.themeSelected,
 });
 
 const mapDispatchToProps = (dispatch: *): * =>

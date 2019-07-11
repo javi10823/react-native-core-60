@@ -7,7 +7,6 @@ import { ActivityIndicator } from 'react-native';
 import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import colors from '../../utils/colors';
 import { initApp } from '../index';
 import { USER_TOKEN } from '../../../config';
 
@@ -21,15 +20,13 @@ type State = {|
 |};
 
 // comingFromOutside
-type InternalProps = $ReadOnly<{||}>;
+type InternalProps = {||};
 
 // comingFromConnect
-type Props = $ReadOnly<{|
+type Props = {|
   ...InternalProps,
-  componentId: string,
   initDataConnected: Function,
-  theme: string,
-|}>;
+|};
 
 class Initializing extends React.Component<Props, State> {
   async componentDidMount() {
@@ -48,10 +45,9 @@ class Initializing extends React.Component<Props, State> {
   }
 
   render(): React.Node {
-    const { theme } = this.props;
     return (
       <Container>
-        <ActivityIndicator size="large" color={colors.primaryText(theme)} />
+        <ActivityIndicator size="large" />
       </Container>
     );
   }

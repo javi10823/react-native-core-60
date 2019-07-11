@@ -1,3 +1,5 @@
-import Spacing from './Spacing';
+// @flow
+
+import { Spacing } from './Spacing';
 
 export default Spacing;

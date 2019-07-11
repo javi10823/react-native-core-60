@@ -1,5 +1,5 @@
 // @flow
 
-import Button from './Button';
+import { __Button } from './Button';
 
-export default Button;
+export default __Button;

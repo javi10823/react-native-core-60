@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { ActivityIndicator } from 'react-native';
-import colors from '../../utils/colors';
 import { Container } from './styled';
 
 type State = {|
@@ -10,16 +9,15 @@ type State = {|
 |};
 
 // comingFromOutside
-type InternalProps = $ReadOnly<{|
+type InternalProps = {|
   setModalComponentId: Function,
-|}>;
+|};
 
 // comingFromConnect
-type Props = $ReadOnly<{|
+type Props = {|
   ...InternalProps,
   componentId: string,
-  theme: string,
-|}>;
+|};
 
 class Loading extends React.Component<Props, State> {
   componentDidMount() {
@@ -28,10 +26,9 @@ class Loading extends React.Component<Props, State> {
   }
 
   render(): React.Node {
-    const { theme } = this.props;
     return (
       <Container>
-        <ActivityIndicator size="large" color={colors.primaryText(theme)} />
+        <ActivityIndicator size="large" />
       </Container>
     );
   }

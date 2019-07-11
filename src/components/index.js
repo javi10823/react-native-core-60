@@ -1,3 +1,4 @@
+// @flow
 export { default as BackButton } from './backButton';
 export { default as Button } from './button';
 export { default as ImageOnLoading } from './image-on-loading';

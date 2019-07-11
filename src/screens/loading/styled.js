@@ -5,7 +5,7 @@ import colors from '../../utils/colors';
 
 export const Container = styled.SafeAreaView(
   (props: Object): Object => ({
-    backgroundColor: colors.opacity(props),
+    backgroundColor: colors.opacity(),
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',

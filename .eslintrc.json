@@ -38,6 +38,7 @@
     "flowtype/type-id-match": [ 2, "^([A-Z][a-z0-9]+)+$" ],
     "flowtype/union-intersection-spacing": [ 2, "always" ],
     "───────────────────── ↓↓↓↓ disabled ↓↓↓↓ ───────────────────────────": "",
+    "import/no-useless-path-segments": 0,
     "camelcase": 0,
     "react/prop-types": 0,
     "react/jsx-pascal-case": 0,

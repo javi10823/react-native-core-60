@@ -10,11 +10,12 @@ type State = {|
   loaded: boolean,
 |};
 
-type Props = $ReadOnly<{|
+type Props = {|
   style?: Object,
-|}>;
+  source: Object,
+|};
 
-class ImagePlaceholder extends React.Component<Props, State> {
+class _ImagePlaceholder extends React.Component<Props, State> {
   static defaultProps = {
     style: {},
   };
@@ -53,4 +54,4 @@ class ImagePlaceholder extends React.Component<Props, State> {
   }
 }
 
-export default ImagePlaceholder;
+export const ImagePlaceholder: typeof _ImagePlaceholder = _ImagePlaceholder;

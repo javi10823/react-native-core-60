@@ -8,31 +8,23 @@ import { Field, reduxForm, change } from 'redux-form';
 import { connect } from 'react-redux';
 
 import { Container, Content } from './styled';
-import InputTextField from '../../components/inputTextField/InputTextField';
 import { required } from '../../utils/validations_es';
-import Spacing from '../../components/spacing/Spacing';
-import Button from '../../components/button';
-import BackButton from '../../components/backButton/BackButton';
 import { goBack } from '..';
 import colors from '../../utils/colors';
+import { BackButton, InputTextField, Spacing, Button } from '../../components';
 
 type State = {|
   loading: boolean,
 |};
 
-// comingFromOutside
-type InternalProps = $ReadOnly<{||}>;
-
 // comingFromConnect
-type Props = $ReadOnly<{|
-  ...InternalProps,
+type Props = {|
   componentId: string,
-  form_name_example: string,
   changeFieldValue: Function,
   handleSubmit: Function,
   valid: boolean,
-  theme: string,
-|}>;
+  themeSelected: string,
+|};
 
 class ReduxForm extends React.Component<Props, State> {
   setDefaultData = () => {
@@ -46,15 +38,13 @@ class ReduxForm extends React.Component<Props, State> {
   };
 
   render(): React.Node {
-    const { componentId, handleSubmit, valid: fieldsValid, theme } = this.props;
+    const { componentId, handleSubmit, valid: fieldsValid, themeSelected } = this.props;
+
+    console.log(`\n\n`, 'themeSelected', themeSelected, `\n\n\n`);
+
     return (
       <Container>
-        <BackButton
-          onPress={(): * => goBack(componentId)}
-          text="redux-form example"
-          theme={theme}
-          iconColor={colors.primaryText(theme)}
-        />
+        <BackButton onPress={(): * => goBack(componentId)} text="redux-form example" />
         <Content>
           <Field
             name="firstName"
@@ -62,13 +52,12 @@ class ReduxForm extends React.Component<Props, State> {
             type="input"
             validate={[required]}
             component={InputTextField}
-            baseColor={colors.primary(theme)}
-            tintColor={colors.primaryText(theme)}
+            baseColor={colors.primary()}
+            tintColor={colors.primaryText()}
             placeholder="John"
             labelPadding={16}
             inputContainerPadding={2}
             disabledLineWidth={0}
-            theme={theme}
           />
           <Spacing />
           <Field
@@ -77,25 +66,23 @@ class ReduxForm extends React.Component<Props, State> {
             type="input"
             validate={[required]}
             component={InputTextField}
-            baseColor={colors.primary(theme)}
-            tintColor={colors.primaryText(theme)}
+            baseColor={colors.primary()}
+            tintColor={colors.primaryText()}
             placeholder="Doe"
             labelPadding={16}
             inputContainerPadding={2}
             disabledLineWidth={0}
             secureTextEntry
-            theme={theme}
           />
           <Spacing />
           <Button
             text="Set data in fields"
-            buttonColor={colors.opacity(theme)}
+            buttonColor={colors.opacity()}
             onPress={this.setDefaultData}
           />
           <Spacing />
           <Button
             text="Do something"
-            buttonColor={colors.opacity(theme)}
             onPress={handleSubmit(this.doSomething)}
             disabled={!fieldsValid}
           />
@@ -107,6 +94,7 @@ class ReduxForm extends React.Component<Props, State> {
 
 const mapStateToProps = (state: *): * => ({
   form_name_example: state.form.form_name_example,
+  themeSelected: state.theme.themeSelected,
 });
 
 const mapDispatchToProps = (dispatch: *): * =>
@@ -122,12 +110,12 @@ const mapDispatchToProps = (dispatch: *): * =>
     dispatch,
   );
 
-export default reduxForm({
-  form: 'form_name_example',
-  destroyOnUnmount: true,
-})(
-  compose(
-    connect<Props, InternalProps, *, *, *, *>(
+export default compose(
+  reduxForm({
+    form: 'form_name_example',
+    destroyOnUnmount: true,
+  })(
+    connect<Props, *, *, *, *>(
       mapStateToProps,
       mapDispatchToProps,
     )(ReduxForm),

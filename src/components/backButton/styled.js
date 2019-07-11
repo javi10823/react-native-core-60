@@ -3,8 +3,8 @@
 import styled from 'styled-components';
 import icon from 'react-native-vector-icons/MaterialIcons';
 import { responsiveSize, normalize } from '../../utils/dimensions';
-import typography from '../typography';
 import colors from '../../utils/colors';
+import { Typography as typography } from '../../components/typography/Typography';
 
 export const Container = styled.View(
   (props: Object): Object => ({
@@ -24,7 +24,7 @@ export const IconContainer = styled.View(
 
 export const Icon = styled(icon)(
   (props: Object): Object => ({
-    color: props.color || colors.primaryText(props),
+    color: props.color || colors.primaryText(),
     fontSize: props.size || normalize(25),
     ...props.style,
   }),

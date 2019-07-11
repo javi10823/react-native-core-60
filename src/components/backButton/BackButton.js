@@ -8,7 +8,7 @@ import colors from '../../utils/colors';
 
 type State = {||};
 
-type Props = $ReadOnly<{|
+type Props = {|
   text?: string,
   style?: Object,
   iconStyle?: Object,
@@ -17,10 +17,10 @@ type Props = $ReadOnly<{|
   size?: number,
   iconColor?: string,
   onPress?: Function,
-  theme: string,
-|}>;
+  textColor?: string,
+|};
 
-class BackButton extends React.Component<Props, State> {
+class _BackButton extends React.Component<Props, State> {
   static defaultProps = {
     text: '',
     style: {},
@@ -28,7 +28,8 @@ class BackButton extends React.Component<Props, State> {
     textStyle: {},
     textSize: 18,
     size: normalize(25),
-    iconColor: null,
+    iconColor: undefined,
+    textColor: undefined,
     onPress: () => {},
   };
 
@@ -40,24 +41,19 @@ class BackButton extends React.Component<Props, State> {
       textStyle,
       textSize,
       size,
-      iconColor,
+      iconColor = colors.primaryText(),
       onPress,
-      theme,
+      textColor = colors.primaryText(),
     } = this.props;
 
     return (
       <TouchableOpacity onPress={onPress}>
         <Container style={style}>
           <IconContainer>
-            <Icon
-              name="arrow-back"
-              size={size}
-              color={iconColor || colors.primaryText(theme)}
-              style={iconStyle}
-            />
+            <Icon name="arrow-back" size={size} color={iconColor} style={iconStyle} />
           </IconContainer>
           {!!text && (
-            <Typography style={textStyle} size={textSize} color={colors.primaryText(theme)}>
+            <Typography style={textStyle} size={textSize} color={textColor}>
               {text}
             </Typography>
           )}
@@ -67,4 +63,4 @@ class BackButton extends React.Component<Props, State> {
   }
 }
 
-export default BackButton;
+export const BackButton: typeof _BackButton = _BackButton;

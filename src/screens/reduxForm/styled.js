@@ -7,7 +7,7 @@ import colors from '../../utils/colors';
 export const Container = styled.SafeAreaView(
   (props: Object): Object => ({
     flex: 1,
-    backgroundColor: colors.backgroundPrincipal(props),
+    backgroundColor: colors.backgroundPrincipal(),
     ...props.style,
   }),
 );

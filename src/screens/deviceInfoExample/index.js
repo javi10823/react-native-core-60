@@ -1,4 +1,5 @@
-/* eslint-disable import/no-cycle */
+// @flow
+
 import DeviceInfoExample from './DeviceInfoExample';
 
 export default DeviceInfoExample;

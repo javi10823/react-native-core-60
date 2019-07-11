@@ -1,11 +1,28 @@
 # React Native Core app 2019 - (Junio 19)- React Native 0.59
 
-<img width="600" src="https://user-images.githubusercontent.com/30802967/59052277-15c7c980-8865-11e9-9f7e-da53852693b8.png">
-<img width="600" src="https://user-images.githubusercontent.com/30802967/59700530-dd5fae00-91c9-11e9-8271-e407b369fa4f.png">
-<img width="600" src="https://user-images.githubusercontent.com/30802967/59052273-152f3300-8865-11e9-858e-2fff137c0823.png">
-<img width="600" src="https://user-images.githubusercontent.com/30802967/59052272-152f3300-8865-11e9-9968-4a45ddb3b497.png">
-<img width="600" src="https://user-images.githubusercontent.com/30802967/59052270-14969c80-8865-11e9-8cee-b394ce6d76f1.png">
-<img width="600" src="https://user-images.githubusercontent.com/30802967/59700528-dcc71780-91c9-11e9-972f-9cd91b67faad.png">
+<img width="520" src="https://user-images.githubusercontent.com/30802967/61081715-47045e00-a3fe-11e9-878c-f1f7c4f7b46f.png">
+<img width="435" src="https://user-images.githubusercontent.com/30802967/61081832-977bbb80-a3fe-11e9-8b16-03f7d8897114.png">
+<img width="520" src="https://user-images.githubusercontent.com/30802967/61081887-b5e1b700-a3fe-11e9-88a2-6ed5646d7fa3.png">
+<img width="520" src="https://user-images.githubusercontent.com/30802967/61081890-b712e400-a3fe-11e9-8278-c982f6e94520.png">
+<img width="435" src="https://user-images.githubusercontent.com/30802967/61081934-ceea6800-a3fe-11e9-82bb-cb2878b27fc5.png">
+<img width="435" src="https://user-images.githubusercontent.com/30802967/61081940-cf82fe80-a3fe-11e9-9712-ec3cc1cf0ef7.png">
+<img width="520" src="https://user-images.githubusercontent.com/30802967/61081935-ceea6800-a3fe-11e9-996d-57cf4152da0a.png">
+<img width="520" src="https://user-images.githubusercontent.com/30802967/61081942-d01b9500-a3fe-11e9-9cf2-03559e9b263e.png">
+<img width="435" src="https://user-images.githubusercontent.com/30802967/61081943-d01b9500-a3fe-11e9-8770-c1dd5001dc2c.png">
+<img width="435" src="https://user-images.githubusercontent.com/30802967/61081936-ceea6800-a3fe-11e9-8336-062fb9dac99b.png">
+<img width="520" src="https://user-images.githubusercontent.com/30802967/61081937-cf82fe80-a3fe-11e9-832c-d83e96137b2b.png">
+<img width="520" src="https://user-images.githubusercontent.com/30802967/61081939-cf82fe80-a3fe-11e9-8e59-e0003648ce4a.png">
+<img width="435" src="https://user-images.githubusercontent.com/30802967/61081938-cf82fe80-a3fe-11e9-92f9-ab97bb9f04c7.png">
+<img width="435" src="https://user-images.githubusercontent.com/30802967/61081941-d01b9500-a3fe-11e9-8f67-65bf8e0182d9.png">
+<img width="520" src="https://user-images.githubusercontent.com/30802967/61082440-d9f1c800-a3ff-11e9-9788-aa6ce7b6556d.png">
+<img width="435" src="https://user-images.githubusercontent.com/30802967/61082460-e413c680-a3ff-11e9-86d6-91e04474c53c.png">
+<img width="520" src="https://user-images.githubusercontent.com/30802967/61082469-ebd36b00-a3ff-11e9-8bef-e2bd8d846b1f.png">
+<img width="520" src="https://user-images.githubusercontent.com/30802967/61082480-f261e280-a3ff-11e9-8744-200071d69dc0.png">
+<img width="435" src="https://user-images.githubusercontent.com/30802967/61082497-fa218700-a3ff-11e9-920f-2ce6464cdca6.png">
+<img width="435" src="https://user-images.githubusercontent.com/30802967/61082510-01e12b80-a400-11e9-8f82-56fc1de77106.png">
+
+
+
 
 - React Native version: 0.59.5
 - React Native navigation from Wix 2.21.0

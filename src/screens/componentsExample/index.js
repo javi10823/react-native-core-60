@@ -1,4 +1,5 @@
-/* eslint-disable import/no-cycle */
+// @flow
+
 import ComponentsExample from './ComponentsExample';
 
 export default ComponentsExample;

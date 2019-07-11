@@ -24,24 +24,27 @@ type State = {|
   textFieldWidth: number,
 |};
 
-type Props = $ReadOnly<{|
+type Props = {|
   input?: Object,
-  meta?: *,
+  meta: *,
   secureTextEntry?: boolean,
   inputContainerStyle?: Object,
   renderIcon?: number,
   hidePasswordIcon?: boolean,
-  theme?: string,
   // ────────────────
   label?: string,
   placeholder?: string,
-|}>;
+|};
 
-class InputTextField extends React.Component<Props, State> {
+class _InputTextField extends React.Component<Props, State> {
   static defaultProps = {
     input: {},
     inputContainerStyle: {},
     label: '',
+    secureTextEntry: undefined,
+    renderIcon: undefined,
+    hidePasswordIcon: undefined,
+    placeholder: undefined,
   };
 
   state = { passwordVisible: false, textFieldWidth: 100 };
@@ -85,7 +88,7 @@ class InputTextField extends React.Component<Props, State> {
       hidePasswordIcon,
       ...props
     } = this.props;
-    const { placeholder, label, theme } = this.props;
+    const { placeholder, label } = this.props;
     const doNotShowLabelInFocus = placeholder && !label;
 
     return (
@@ -95,9 +98,9 @@ class InputTextField extends React.Component<Props, State> {
           value={input && input.value}
           labelTextStyle={TextField_labelTextStyle(renderIcon)}
           inputContainerStyle={TextField_inputContainerStyle(renderIcon)}
-          tintColor={colors.primaryText(theme)}
-          errorColor={colors.error(theme)}
-          baseColor={colors.primary(theme)}
+          tintColor={colors.primaryText()}
+          errorColor={colors.error()}
+          baseColor={colors.primary()}
           onLayout={(event: *): * =>
             this.setState({ textFieldWidth: event.nativeEvent.layout.width })
           }
@@ -116,7 +119,7 @@ class InputTextField extends React.Component<Props, State> {
           secureTextEntry={secureTextEntry && !passwordVisible}
           inputContainerPadding={responsiveSize(12)}
           labelHeight={responsiveSize(doNotShowLabelInFocus ? 0 : 32)}
-          placeholderTextColor={colors.inactive(theme)}
+          placeholderTextColor={colors.inactive()}
           lineWidth={1.3}
         />
       </InputContainer>
@@ -124,4 +127,4 @@ class InputTextField extends React.Component<Props, State> {
   }
 }
 
-export default InputTextField;
+export const InputTextField: typeof _InputTextField = _InputTextField;

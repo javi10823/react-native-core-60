@@ -8,7 +8,7 @@ export const Container = styled.View(
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.backgroundPrincipal(props),
+    backgroundColor: colors.backgroundPrincipal(),
     ...props.style,
   }),
 );

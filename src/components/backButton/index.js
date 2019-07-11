@@ -1,3 +1,5 @@
-import BackButton from './BackButton';
+// @flow
+
+import { BackButton } from './BackButton';
 
 export default BackButton;

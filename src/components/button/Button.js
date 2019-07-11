@@ -14,13 +14,12 @@ import {
 import fonts from '../../utils/fonts';
 import Image from '../image-on-loading';
 import colors from '../../utils/colors';
-import store from '../../store';
 
 type State = {|
   loading: boolean,
 |};
 
-type Props = $ReadOnly<{|
+type Props = {|
   text?: string,
   textColor?: ?string,
   buttonColor?: string,
@@ -34,15 +33,15 @@ type Props = $ReadOnly<{|
   disabledMoreVisible?: boolean,
   frozen?: boolean,
   loading?: boolean,
-  theme?: string,
-|}>;
+|};
 
 class _Button extends React.Component<Props, State> {
   static defaultProps = {
     text: 'Button Text',
-    textColor: null,
-    buttonColor: null,
+    textColor: undefined,
+    buttonColor: undefined,
     style: { width: '80%' },
+    onPress: undefined,
     iconStyle: {},
     textContainerStyle: {},
     icon: 0,
@@ -50,6 +49,7 @@ class _Button extends React.Component<Props, State> {
     disabled: false,
     disabledMoreVisible: false,
     frozen: false,
+    loading: undefined,
   };
 
   state = {
@@ -66,8 +66,8 @@ class _Button extends React.Component<Props, State> {
     const { loading: stateLoading } = this.state;
     const {
       text,
-      textColor = colors.primaryText(store.getState().theme.themeSelected),
-      buttonColor = colors.primary(store.getState().theme.themeSelected),
+      textColor = colors.primaryText(),
+      buttonColor = colors.primary(),
       onPress,
       style,
       iconStyle,
@@ -79,6 +79,8 @@ class _Button extends React.Component<Props, State> {
       frozen,
       loading = stateLoading,
     } = this.props;
+
+    console.log(`\n\n`, text, textColor, `\n\n\n`);
 
     return (
       <Button
@@ -115,4 +117,4 @@ class _Button extends React.Component<Props, State> {
   }
 }
 
-export default _Button;
+export const __Button: typeof _Button = _Button;

@@ -1,4 +1,5 @@
-/* eslint-disable import/no-cycle */
+// @flow
+
 import Loading from './Loading';
 
 export default Loading;

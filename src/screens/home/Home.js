@@ -19,17 +19,16 @@ type State = {|
 |};
 
 // comingFromOutside
-type InternalProps = $ReadOnly<{||}>;
+type InternalProps = {||};
 
 // comingFromConnect
-type Props = $ReadOnly<{|
+type Props = {|
   ...InternalProps,
   componentId: string,
   logOutConnected: Function,
   logoutError: Object,
   setTheme: Function,
-  theme: string,
-|}>;
+|};
 
 class Home extends React.Component<Props, State> {
   modalLoadingComponentId: string;
@@ -68,67 +67,40 @@ class Home extends React.Component<Props, State> {
 
   render(): React.Node {
     const { loading } = this.state;
-    const { componentId, setTheme, theme } = this.props;
+    const { componentId, setTheme } = this.props;
 
     return (
       <Container>
         <TextContainer>
-          <Typography color={colors.primaryText(theme)} size={18}>
-            HOME
-          </Typography>
+          <Typography size={18}>HOME</Typography>
         </TextContainer>
         <Button
-          buttonColor={colors.primary(theme)}
-          textColor={colors.primaryText(theme)}
           text="Component Examples"
           onPress={(): * => goToPage(componentId, 'componentsExample')}
         />
         <Spacing />
-        <Button
-          buttonColor={colors.primary(theme)}
-          textColor={colors.primaryText(theme)}
-          text="redux-form example"
-          onPress={(): * => goToPage(componentId, 'reduxForm')}
-        />
+        <Button text="redux-form example" onPress={(): * => goToPage(componentId, 'reduxForm')} />
+        <Spacing />
+        <Button text="show modal (code way 1)" onPress={this.showModalWay1} />
         <Spacing />
         <Button
-          buttonColor={colors.primary(theme)}
-          textColor={colors.primaryText(theme)}
-          text="show modal (code way 1)"
-          onPress={this.showModalWay1}
-        />
-        <Spacing />
-        <Button
-          buttonColor={colors.primary(theme)}
-          textColor={colors.errorText(theme)}
+          buttonColor={colors.primary()}
+          textColor={colors.errorText()}
           text="show modal (code way 2)"
           onPress={this.showModalWay2}
         />
         <Spacing />
         <Button
-          buttonColor={colors.primary(theme)}
-          textColor={colors.primaryText(theme)}
           text="DeviceInfo Example"
           onPress={(): * => goToPage(componentId, 'deviceInfoExample')}
         />
         <Spacing />
-        <Button
-          buttonColor={colors.primary(theme)}
-          textColor={colors.primaryText(theme)}
-          text="Set dark theme"
-          onPress={(): * => setTheme(DARK)}
-        />
+        <Button text="Set dark theme" onPress={(): * => setTheme(DARK)} />
+        <Spacing />
+        <Button text="Set light theme" onPress={(): * => setTheme(LIGHT)} />
         <Spacing />
         <Button
-          buttonColor={colors.primary(theme)}
-          textColor={colors.primaryText(theme)}
-          text="Set light theme"
-          onPress={(): * => setTheme(LIGHT)}
-        />
-        <Spacing />
-        <Button
-          buttonColor={colors.opacity(theme)}
-          textColor={colors.primaryText(theme)}
+          buttonColor={colors.opacity()}
           text="Logout"
           onPress={this.logOut}
           loading={loading}
@@ -140,6 +112,7 @@ class Home extends React.Component<Props, State> {
 
 const mapStateToProps = (state: *): * => ({
   logoutError: state.auth.logoutError,
+  themeSelected: state.theme.themeSelected,
 });
 
 const mapDispatchToProps = (dispatch: *): * =>

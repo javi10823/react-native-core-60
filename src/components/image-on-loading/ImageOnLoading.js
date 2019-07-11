@@ -10,10 +10,11 @@ type State = {|
   loaded: boolean,
 |};
 
-type Props = $ReadOnly<{|
+type Props = {|
   withPlaceholder?: boolean,
   style?: Object,
-|}>;
+  source: Object,
+|};
 
 const AnimatedImage = ({
   opacity,
@@ -49,7 +50,7 @@ const AnimatedImage = ({
   />
 );
 
-class DefaultProfileImageOnLoading extends React.Component<Props, State> {
+class _ImageOnLoading extends React.Component<Props, State> {
   static defaultProps = {
     withPlaceholder: false,
     style: {},
@@ -102,4 +103,4 @@ class DefaultProfileImageOnLoading extends React.Component<Props, State> {
   }
 }
 
-export default DefaultProfileImageOnLoading;
+export const ImageOnLoading: typeof _ImageOnLoading = _ImageOnLoading;

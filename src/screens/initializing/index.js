@@ -1,4 +1,5 @@
-/* eslint-disable import/no-cycle */
+// @flow
+
 import Initializing from './Initializing';
 
 export default Initializing;

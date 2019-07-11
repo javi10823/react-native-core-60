@@ -1,4 +1,5 @@
-/* eslint-disable import/no-cycle */
-import DefaultProfileImageOnLoading from './ImageOnLoading';
+// @flow
 
-export default DefaultProfileImageOnLoading;
+import { ImageOnLoading } from './ImageOnLoading';
+
+export default ImageOnLoading;
