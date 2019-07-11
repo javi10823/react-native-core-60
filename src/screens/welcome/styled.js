@@ -24,7 +24,7 @@ export const TextContainer = styled.View(
   }),
 );
 
-export const Button = styled(button)(
+export const Button: typeof button = styled(button)(
   (props: Object): Object => ({
     width: '80%',
     ...props.style,

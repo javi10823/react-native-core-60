@@ -22,7 +22,7 @@ type State = {|
 
 type Props = $ReadOnly<{|
   text?: string,
-  textColor?: string,
+  textColor?: ?string,
   buttonColor?: string,
   onPress?: Function,
   style?: Object,
@@ -34,7 +34,7 @@ type Props = $ReadOnly<{|
   disabledMoreVisible?: boolean,
   frozen?: boolean,
   loading?: boolean,
-  theme: string,
+  theme?: string,
 |}>;
 
 class _Button extends React.Component<Props, State> {

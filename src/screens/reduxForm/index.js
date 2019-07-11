@@ -1,4 +1,4 @@
-/* eslint-disable import/no-cycle */
+// @flow
 import ReduxForm from './ReduxForm';
 
 export default ReduxForm;

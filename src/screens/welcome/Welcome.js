@@ -63,7 +63,7 @@ class Welcome extends React.Component<Props, State> {
         <Button
           buttonColor={colors.primary(theme)}
           textColor={colors.primaryText(theme)}
-          text="Ingresar"
+          text="Continue"
           onPress={this.logIn}
           loading={loading}
         />

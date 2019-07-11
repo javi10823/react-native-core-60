@@ -1,4 +1,5 @@
-/* eslint-disable import/no-cycle */
+// @flow
+
 import Welcome from './Welcome';
 
 export default Welcome;
