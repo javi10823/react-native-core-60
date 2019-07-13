@@ -4,7 +4,8 @@ import * as React from 'react';
 import { Alert, Image, Linking } from 'react-native';
 import { compose, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Typography, Spacing } from '../../components';
+import Typography from '../../components/typography';
+import Spacing from '../../components/spacing';
 import { Container, TextContainer, Button, LogoContainer } from './styled';
 
 import { goToPage } from '..';
@@ -18,15 +19,16 @@ type State = {|
 |};
 
 // comingFromOutside
-type InternalProps = {||};
+type InternalProps = $ReadOnly<{||}>;
 
 // comingFromConnect
-type Props = {|
+type Props = $ReadOnly<{|
   ...InternalProps,
   componentId: string,
   logInConnected: Function,
   loginError: Object,
-|};
+  theme: string,
+|}>;
 
 class Welcome extends React.Component<Props, State> {
   state = { loading: false };
@@ -45,18 +47,22 @@ class Welcome extends React.Component<Props, State> {
 
   render(): React.Node {
     const { loading } = this.state;
+    const { theme } = this.props;
     return (
       <Container>
         <LogoContainer onPress={(): * => Linking.openURL('http://nextdots.com/')}>
           <Image source={NextDotsLogo} style={{ width: '100%' }} resizeMode="contain" />
         </LogoContainer>
         <TextContainer>
-          <Typography size={18}>{`React Native BoilerPlate\nJunio 2019 0.59`}</Typography>
+          <Typography color={colors.primaryText(theme)} size={18}>
+            {`React Native BoilerPlate\nJunio 2019 0.59`}
+          </Typography>
           <Spacing />
-          <Typography>nextdots.com</Typography>
+          <Typography color={colors.primaryText(theme)}>nextdots.com</Typography>
         </TextContainer>
         <Button
-          buttonColor={colors.primary()}
+          buttonColor={colors.primary(theme)}
+          textColor={colors.primaryText(theme)}
           text="Login"
           onPress={this.logIn}
           loading={loading}
@@ -68,7 +74,6 @@ class Welcome extends React.Component<Props, State> {
 
 const mapStateToProps = (state: *): * => ({
   loginError: state.auth.loginError,
-  themeSelected: state.theme.themeSelected,
 });
 
 const mapDispatchToProps = (dispatch: *): * =>

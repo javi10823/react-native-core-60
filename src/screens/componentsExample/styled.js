@@ -36,16 +36,13 @@ export const ButtonSignIn = styled(Button)(
 );
 
 export const ButtonSignUp = styled(Button)(
-  (props: Object): Object => {
-    console.log(`\n\n`, 'componentsExample - ButtonSignUp - props', props, `\n\n\n`);
-    return {
-      borderColor: colors.secondary(),
-      backgroundColor: colors.primary(),
-      width: '100%',
-      borderRadius: responsiveSize(5),
-      ...props.style,
-    };
-  },
+  (props: Object): Object => ({
+    borderColor: colors.secondary(),
+    backgroundColor: colors.primary(),
+    width: '100%',
+    borderRadius: responsiveSize(5),
+    ...props.style,
+  }),
 );
 
 export const ImageContainer = styled.View(
