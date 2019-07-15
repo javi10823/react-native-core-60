@@ -142,7 +142,10 @@ android {
 configurations.all {
     resolutionStrategy.eachDependency { DependencyResolveDetails details ->
         def requested = details.requested
-        if (requested.group == 'com.android.support' && requested.name != 'multidex') {
+
+        if (requested.group == 'com.android.support' &&
+                (requested.name != 'multidex' && requested.name != 'multidex-instrumentation')) {
+            project.logger.lifecycle(requested.name)
             details.useVersion "${rootProject.ext.supportLibVersion}"
         }
     }
