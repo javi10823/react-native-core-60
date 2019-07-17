@@ -1,11 +1,12 @@
 # React Native Core app 2019 - (Junio 19)- React Native 0.59
 
-<img width="520" src="https://user-images.githubusercontent.com/30802967/61081715-47045e00-a3fe-11e9-878c-f1f7c4f7b46f.png">
-<img width="435" src="https://user-images.githubusercontent.com/30802967/61081832-977bbb80-a3fe-11e9-8b16-03f7d8897114.png">
+| iOS | Android |
+| --- | --- |
+| <img width="520" src="https://user-images.githubusercontent.com/30802967/61081715-47045e00-a3fe-11e9-878c-f1f7c4f7b46f.png"> | <img width="435" src="https://user-images.githubusercontent.com/30802967/61081832-977bbb80-a3fe-11e9-8b16-03f7d8897114.png"> |
 
- <details><summary>Click here to see all screenshots</summary>
+<details><summary>Click here to see all screenshots</summary>
 
-<img width="520" src="https://user-images.githubusercontent.com/30802967/61081887-b5e1b700-a3fe-11e9-88a2-6ed5646d7fa3.png">
+<img width="520" src="https://user-images.githubusercontent.com/30802967/61081887-b5e1b700-a3fe-11e9-88a2-6ed5646d7fa3.png"> 
 <img width="520" src="https://user-images.githubusercontent.com/30802967/61081890-b712e400-a3fe-11e9-8278-c982f6e94520.png">
 <img width="435" src="https://user-images.githubusercontent.com/30802967/61081934-ceea6800-a3fe-11e9-82bb-cb2878b27fc5.png">
 <img width="435" src="https://user-images.githubusercontent.com/30802967/61081940-cf82fe80-a3fe-11e9-9712-ec3cc1cf0ef7.png">
