@@ -1,7 +1,7 @@
 // @flow
 
 import { Navigation } from 'react-native-navigation';
-import registerScreen from '../utils/themeProvider';
+import registerScreen from './provider';
 import Welcome from './welcome';
 import ComponentsExample from './componentsExample';
 import Home from './home';

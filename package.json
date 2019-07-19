@@ -95,7 +95,6 @@
     "*.{js,jsx}": [
       "prettier --write",
       "eslint --ignore-path .prettierignore --fix",
-      "yarn flow",
       "git add"
     ],
     "*.{json}": [
